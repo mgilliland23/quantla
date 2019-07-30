@@ -1,6 +1,4 @@
 var inquirer = require('inquirer');
-var fs = require('fs');
-const firebase = require("firebase");
 // Required for side-effects
 require("firebase/firestore");
 var Fundamentals = require("./checkFundamentals");
