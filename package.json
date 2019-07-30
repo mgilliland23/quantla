@@ -32,8 +32,19 @@
     "firebase-functions": "^3.1.0",
     "inquirer": "^6.4.1",
     "mysql2": "^1.6.5",
+    "prettier": "^1.18.2",
     "request": "^2.88.0",
     "sequelize": "^5.11.0",
     "xml-js": "^1.6.11"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "chai-http": "^4.3.0",
+    "cross-env": "^5.2.0",
+    "eslint": "^6.0.0",
+    "eslint-config-prettier": "^4.3.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "mocha": "^6.1.4",
+    "prettier": "^1.17.1"
   }
 }
