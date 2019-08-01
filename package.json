@@ -1,39 +1,26 @@
 {
   "name": "quantla",
   "version": "1.0.0",
-  "description": "",
+  "description": "This is the Quantla project. Quantla is a Quantitative Lab group that focus on trading and market data analysis.",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "lint": "eslint --quiet .",
-    "fix": "eslint --fix .",
-    "test": "npm run lint && cross-env NODE_ENV=test mocha -u tdd --reporter spec --exit"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/mgilliland23/quantla.git"
+    "url": "git+https://github.com/costargc/quantla.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/mgilliland23/quantla/issues"
+    "url": "https://github.com/costargc/quantla/issues"
   },
-  "homepage": "https://github.com/mgilliland23/quantla#readme",
+  "homepage": "https://github.com/costargc/quantla#readme",
   "dependencies": {
-    "bluebird": "^3.5.5",
-    "cli-table": "^0.3.1",
-    "colors": "^1.3.3",
-    "eslint": "^6.1.0",
-    "firebase": "^6.3.0",
-    "firebase-admin": "^8.2.0",
-    "firebase-functions": "^3.1.0",
-    "inquirer": "^6.4.1",
-    "request": "^2.88.0",
-    "xml-js": "^1.6.11",
     "dotenv": "^8.0.0",
-    "express": "^4.17.0",
+    "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
-    "mysql2": "^1.6.5",
-    "sequelize": "^5.8.6"
+    "path": "^0.12.7"
   }
 }

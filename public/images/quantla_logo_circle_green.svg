@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="260mm"
+   height="260mm"
+   viewBox="0 0 260 260"
+   version="1.1"
+   id="svg8091"
+   inkscape:version="0.92.4 (5da689c313, 2019-01-14)"
+   sodipodi:docname="quantla_logo_circle_green.svg">
+  <defs
+     id="defs8085" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="195.31467"
+     inkscape:cy="529.34034"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     units="mm"
+     width="300mm"
+     showguides="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1137"
+     inkscape:window-x="1912"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid8715" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata8088">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-37)">
+    <circle
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.648;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+       id="path8676"
+       cx="129.26787"
+       cy="179.07141"
+       r="113.39286" />
+    <circle
+       style="opacity:1;fill:#99cb14;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.648;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+       id="path8676-9"
+       r="125.4881"
+       cy="167.73215"
+       cx="130.0238" />
+    <circle
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:0.67322797;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:0"
+       id="path8676-9-8"
+       cy="167.73215"
+       cx="130.02379"
+       r="100.52906" />
+    <path
+       inkscape:connector-curvature="0"
+       id="path3783"
+       d="M 59.338828,215.38927 H 95.703381 L 132.06788,175.82097 95.703381,136.25264 H 59.338828 l 36.364553,39.56833 z"
+       style="fill:#99cb14;stroke:#000000;stroke-width:0.51619762px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0;fill-opacity:1" />
+    <path
+       sodipodi:nodetypes="ccccccc"
+       inkscape:connector-curvature="0"
+       id="path3783-8"
+       d="m 109.41346,238.14364 h 36.36461 l 59.60594,-62.9257 -59.60594,-61.87111 h -36.36461 l 58.00419,61.69534 z"
+       style="fill:#99cb14;stroke:#000000;stroke-width:0.64822984px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:0;fill-opacity:1" />
+  </g>
+</svg>
