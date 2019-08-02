@@ -3,8 +3,6 @@ var express = require("express");
 var exphbs = require("express-handlebars");
 var path = require("path");
 
-
-
 // var db = require("./models");
 
 var app = express();
@@ -27,7 +25,7 @@ app.set("view engine", "handlebars");
 
 // Routes
 require("./routes/apiRoutes")(app);
-require("./routes/htmlRoutes")(app,path);
+require("./routes/htmlRoutes")(app, path);
 
 // var syncOptions = { force: false };
 
@@ -39,13 +37,13 @@ require("./routes/htmlRoutes")(app,path);
 
 // Starting the server, syncing our models ------------------------------------/
 // db.sequelize.sync(syncOptions).then(function() {
-  app.listen(PORT, function() {
-    console.log(
-      "==> 🌎  Listening on port %s. Visit http://localhost:%s/",
-      PORT,
-      PORT
-    );
-  });
+app.listen(PORT, function () {
+  console.log(
+    "==> 🌎  Listening on port %s. Visit http://localhost:%s/",
+    PORT,
+    PORT
+  );
+});
 // });
 
 module.exports = app;
