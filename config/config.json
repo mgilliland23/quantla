@@ -1,9 +1,9 @@
 {
   "development": {
-    "username": "root",
-    "password": "",
-    "database": "inviteKeys",
-    "host": "localhost",
+    "username": "matt",
+    "password": "password",
+    "database": "quantla_db",
+    "host": "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "test": {
