@@ -54,10 +54,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/tabulator_core.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/tabulator.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/modules/accessor.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/css/tabulator_midnight.min.css" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/css/tabulator_midnight.min.css" />
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/tabulator.min.js" integrity="sha256-AttZ+NgtkJsxpj6UNvZycUtQ6DERFleG8tZ0grtES8A=" crossorigin="anonymous"></script> -->
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/tabulator/4.3.0/js/jquery_wrapper.min.js" integrity="sha256-wuEJiS4bjkp7LeKUf078OKDKD3gjIqfswCnT5z8QPKE=" crossorigin="anonymous"></script> -->
-    
+
     <!-- es6-promise.auto -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.auto.min.js"></script>
     <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/es6-promise/4.1.1/es6-promise.min.js"></script> -->
@@ -66,12 +67,12 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
     <!-- setup -->
-    <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/table.css">
-    <link rel="stylesheet" href="/assets/buttons.css">
-    <script src="/assets/main.js"></script>
-    <script src="/assets/core.js"></script>
-    <script src="/assets/tabulator.js"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/table.css">
+    <link rel="stylesheet" href="/assets/css/buttons.css">
+    <script src="/assets/js/main.js"></script>
+    <script src="/assets/js/createTables.js"></script>
+    <script src="/assets/js/tabulator.js"></script>
 
 </head>
 
@@ -83,7 +84,9 @@
 
             <!-- <table class="table table-sm table-hover table-dark" id="NewsTable"></table> -->
 
-            <table style="align-content: center; margin-left: 0px; align-items: center" id="example-table"></table>
+            <table style="align-content: center; margin-left: 0px; align-items: center" id="news-table"></table>
+            <table style="align-content: center; margin-left: 0px; align-items: center" id="prices-table"></table>
+            <table style="align-content: center; margin-left: 0px; align-items: center" id="fund-table"></table>
 
         </section>
     </div>

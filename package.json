@@ -18,11 +18,21 @@
   },
   "homepage": "https://github.com/costargc/quantla#readme",
   "dependencies": {
+    "atob": "^2.1.2",
+    "base-64": "^0.1.0",
+    "cli-table": "^0.3.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
     "firebase": "^6.3.3",
+    "firebase-admin": "^8.3.0",
     "firebaseui": "^4.1.0",
-    "path": "^0.12.7"
+    "inquirer": "^6.5.0",
+    "mysql2": "^1.6.5",
+    "path": "^0.12.7",
+    "request": "^2.88.0",
+    "sequelize": "^5.12.2",
+    "utf8": "^3.0.0",
+    "xml-js": "^1.6.11"
   }
 }

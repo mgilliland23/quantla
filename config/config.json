@@ -1,8 +1,8 @@
 {
   "development": {
     "username": "root",
-    "password": "x",
-    "database": "exampledb",
+    "password": "",
+    "database": "inviteKeys",
     "host": "localhost",
     "dialect": "mysql"
   },
