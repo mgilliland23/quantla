@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt_BR">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -7,15 +7,14 @@
 
     <meta name="description"
         content="Quantla is a quantitative lab team that with the goal to create a trading bot AI advisor">
-    <meta name="keywords"
-        content="cryptocurrency, bitcoin, hedge fund,  ">
+    <meta name="keywords" content="cryptocurrency, bitcoin, hedge fund,  ">
     <meta property="og:title" content="Quantla">
     <meta property="og:description"
         content="Quantla is a quantitative lab team that with the goal to create a trading bot AI advisor">
-    <meta property="og:locale" content="pt_BR">
+    <meta property="og:locale" content="en">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://quantla.com/">
-    <meta property="og:site_name" content="Melhor Terapia">
+    <meta property="og:site_name" content="Quantla">
     <meta name="twitter:description"
         content="Quantla is a quantitative lab team that with the goal to create a trading bot AI advisor">
     <meta name="twitter:title" content="Quantla">
@@ -26,7 +25,7 @@
     <title>Quantla</title>
 
     <!-- jquery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script> -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
     <!-- bootstrap -->
@@ -50,10 +49,18 @@
     <!-- reCAPTCHA type:v3 -->
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdFrYAUAAAAAMPcS_9e_upcDbcHO_VgqHPUUAXx"></script> -->
 
+    <!-- firebase -->
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
+    <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+    <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
+
     <!-- setup -->
-    <link rel="stylesheet" href="/assets/main.css">
-    <link rel="stylesheet" href="/assets/buttons.css">
-    <script src="/assets/main.js"></script>
+    <link rel="stylesheet" href="/assets/css/main.css">
+    <link rel="stylesheet" href="/assets/css/buttons.css">
+    <script src="/assets/js/main.js"></script>
+
+
 </head>
 
 <body>
@@ -78,7 +85,7 @@
 
             <div class="row">
 
-                <div class="card">
+                <div class="card" id="inviteCard">
                     <div class="card-body">
 
                         <div style="margin-bottom: 10px;"><span>Invite code:</span></div>
@@ -88,16 +95,18 @@
                                 id="code" class="form-control"
                                 oninvalid="this.setCustomValidity('please enter your invite code')">
 
-                            <button style="margin-top: 15px;" type="submit" class="custom-button-green">Sign Up</button>
+                            <button style="margin-top: 15px;" id="signUp" type="submit" class="custom-button-green">Sign
+                                Up</button>
 
                         </form>
 
                     </div>
 
                 </div>
+                <div id="firebaseui-auth-container"></div>
 
                 <div class="text-center" style="max-width: 350px; align-content: center; margin: auto;">
-                    <small>If you are already a member click <a href="/login">here</a> to
+                    <small>If you are already a member click <a href="#" id="login">here</a> to
                         login.</small>
                     <br><small><a href="/team">Check our team</a></small>
                 </div>
@@ -108,6 +117,10 @@
     </div>
 
     <div class="particles_full" id="particles-js"> </div>
+
+    <script src="assets/js/firebase_config.js"></script>
+    <script src="assets/js/login.js"></script>
+
 
 
 </body>
