@@ -7,17 +7,17 @@
     "dialect": "mysql"
   },
   "test": {
-    "username": "root",
-    "password": "x",
-    "database": "exampledb",
-    "host": "localhost",
+    "username": "matt",
+    "password": "password",
+    "database": "quantla_db",
+    "host": "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
   "production": {
-    "username": "root",
-    "password": "x",
-    "database": "exampledb",
-    "host": "localhost",
+    "username": "matt",
+    "password": "password",
+    "database": "quantla_db",
+    "host": "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   }
 }
