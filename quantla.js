@@ -58,9 +58,10 @@ function runAnalysis() {
       db.collection("news")
         .doc(datetime)
         .set(result);
+      console.log("News data has been added to the database");
     },
     function(err) {
-      console.log(err); // Error: "It broke"
+      console.log(err);
     }
   );
 
@@ -75,7 +76,22 @@ function runAnalysis() {
       console.log("Prices Data has been added to the database: ", datetime);
     },
     function(err) {
-      console.log(err); // Error: "It broke"
+      console.log(err);
+    }
+  );
+
+  //Run analysis on fundamentals data. Store results to firestore DB
+  var fundamentals = new Fundamentals();
+  fundamentals.checkFundamentals.then(
+    function(result) {
+      console.log("Check fundamentals results: ", result);
+      db.collection("fundamentals")
+        .doc(datetime)
+        .set(result);
+      console.log("Fundamentals added to the database");
+    },
+    function(err) {
+      console.log(err);
     }
   );
 }
