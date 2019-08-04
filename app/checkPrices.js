@@ -8,6 +8,7 @@ var Prices = function() {
   //Using this data, it calculates what prices we should buy, sell or hold at
 
   this.checkPrices = new Promise(function(resolve, reject) {
+    console.log(colors.inverse("Prices data"));
     interval = "1min";
 
     symbol = "BTCUSD";

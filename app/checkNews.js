@@ -3,13 +3,12 @@ var convert = require("xml-js");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
-var newsArr = [];
-
 var News = function() {
   //this is an async function that grabs news articles and then analyzes them
   //We use Google News API to grab the news articles
   //And IBM Watson is used to analyze the articles and determine if they are (+) or (-) from -1 -> 1
   this.checkNews = new Promise(function(resolve, reject) {
+    var newsArr = [];
     var queryURL =
       "https://news.google.com/rss/search?q=" +
       "BTC Bitcoin" +
@@ -19,7 +18,7 @@ var News = function() {
       var results = JSON.parse(
         convert.xml2json(body, { compact: true, spaces: 4 })
       );
-
+      console.log("results");
       count = 0;
       found_news = 5;
 
@@ -56,6 +55,8 @@ var News = function() {
         request(options, function(err, res, watsondata) {
           if (error) throw error;
           if (watsondata.results != undefined) {
+            console.log("retrieved analysis for news article");
+            // console.log(watsondata.results.length);
             var newsArticle = {
               url: watsondata.results.retrieved_url,
               score: watsondata.results.sentiment.document.score,
@@ -66,7 +67,9 @@ var News = function() {
             count++;
 
             var newsArticles = { articles: newsArr };
-            if (newsArr.length === 5) resolve(newsArticles);
+            if (newsArr.length === found_news) {
+              resolve(newsArticles);
+            }
             if (newsArr.length === 0) reject("Error fetching news");
           }
         });
