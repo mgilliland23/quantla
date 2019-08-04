@@ -16,6 +16,10 @@ module.exports = function (app, path) {
     // });
   });
 
+  app.get("/terms", function (req, res) {
+    res.sendFile(path.join(__dirname, "../public", "tos.html"));
+  });
+
   // Load index page
   app.get("/core", function (req, res) {
     res.sendFile(path.join(__dirname, "../public", "core.html"));
