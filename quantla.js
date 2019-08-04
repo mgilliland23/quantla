@@ -26,20 +26,37 @@ let db = admin.firestore();
 runAnalysis();
 setInterval(runAnalysis, 300000);
 
+//Get the date in the format dd-mm-yyyy hh:mm:ss
 function getDateTime() {
   var currentdate = new Date();
+
+  var hours = currentdate.getHours();
+  if (hours < 10) hours = "0" + hours;
+
+  var minutes = currentdate.getMinutes();
+  if (minutes < 10) minutes = "0" + minutes;
+
+  var seconds = currentdate.getSeconds();
+  if (seconds < 10) seconds = "0" + seconds;
+
+  var day = currentdate.getDate();
+  if (day < 10) day = "0" + day;
+
+  var month = currentdate.getMonth() + 1;
+  if (month < 10) month = "0" + month;
+
   var datetime =
-    currentdate.getDate() +
+    day +
     "-" +
-    (currentdate.getMonth() + 1) +
+    month +
     "-" +
     currentdate.getFullYear() +
     " " +
-    currentdate.getHours() +
+    hours +
     ":" +
-    currentdate.getMinutes() +
+    minutes +
     ":" +
-    currentdate.getSeconds();
+    seconds;
 
   return datetime.toString();
 }
