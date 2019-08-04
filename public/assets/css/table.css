@@ -2,3 +2,29 @@
     margin: auto;
     width: 50% !important; 
  }
+
+hr {
+    border-color: #4d4b4b;
+    color: #4d4b4b;
+}
+
+.pull-right {
+    float: right;
+}
+
+.header-icon {
+    font-size: 60px;
+    color: #9acc14;
+    width: 68px;
+    float: left;
+    margin-top: 15px;
+    line-height: 0;
+}
+
+.header-title {
+    margin-left: 80px;
+}
+
+.tabulator-tableHolder {
+    max-height: 300px !important;
+  }

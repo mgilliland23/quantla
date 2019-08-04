@@ -45,7 +45,7 @@
     <!-- font-family: 'Roboto', sans-serif; -->
 
     <!-- particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
     <!-- reCAPTCHA type:v3 -->
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdFrYAUAAAAAMPcS_9e_upcDbcHO_VgqHPUUAXx"></script> -->
@@ -67,31 +67,232 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-sparklines/2.1.2/jquery.sparkline.min.js"></script>
 
     <!-- setup -->
-    <link rel="stylesheet" href="/assets/css/main.css">
-    <link rel="stylesheet" href="/assets/css/table.css">
+    <link rel="stylesheet" href="/assets/css/core.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
-    <script src="/assets/js/main.js"></script>
+    <link rel="stylesheet" href="/assets/css/table.css">
+    <!-- <script src="/assets/js/main.js"></script> -->
 
 
 </head>
 
 <body>
 
+    <div class="container">
 
-    <div class="container" style="left: -100px; top: 0px;">
-        <section style="align-content: center; margin: auto; padding-bottom: 150px; align-items: center">
+        <div class="row" style=" margin: auto; padding-top: 40px;">
 
-            <!-- <table class="table table-sm table-hover table-dark" id="NewsTable"></table> -->
+            <div class="col-12">
 
-            <table style="align-content: center; margin-left: 0px; align-items: center" id="news-table"></table>
-            <table style="align-content: center; margin-left: 0px; align-items: center" id="prices-table"></table>
-            <table style="align-content: center; margin-left: 0px; align-items: center" id="fund-table"></table>
+                <div class="pull-right text-right" style="line-height: 14px">
+                    <small style="color: #7a7676">Quantla-Core<br>
+                        <span>v1.0.0</span></small>
+                </div>
 
-        </section>
+                <div class="header-icon"> <img src="/images/quantla_logo_circle_green.png" width="60px" height="60px">
+                </div>
+
+                <div class="header-title">
+                    <h3>Quantla</h3>
+                    <span> Quantla is an online trade advisor platform allowing you to access current Bitcoin data
+                        (news/
+                        prices/ fundamentals).
+                        Its powered by an AI (using tensorflow) that is trained with the data provided. <span
+                            style="color: yellow;">Use this
+                            tool responsively and carefully.</span> </span>
+                </div>
+
+                <hr>
+
+            </div>
+        </div>
+
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <h3>Proposed trade [valid for <span id="trade_timer" ;>10min:00s</span>]</h3>
+            </div>
+
+        </div>
+
+
+        <div class="row text-center mt-3">
+
+            <div class="col" style="margin: 0; padding: 0; border:0 ">
+                <div class="card">
+
+                    <div class=" card-body text-center">
+                        <div class="row" style="align-content: center; margin: auto; text-align: center">
+                            <div class="col">
+                                <i class="fab fa-bitcoin" style="float: left; width: 50px; font-size: 48px;"></i>
+
+                                <h3 id="curr_price" style="margin-left: 10px;">10.000,00</h3>
+                                <div class="small text-center">Current Price</div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col" style="margin: 0; padding: 0; border:0 ">
+                <div class="card">
+
+                    <div class=" card-body text-center">
+                        <div class="row" style="align-content: center; margin: auto; text-align: center">
+                            <div class="col">
+                                <i id="indication_img" class="fas fa-arrow-circle-up"
+                                    style="float: left; width: 50px; font-size: 48px; color:greenyellow"></i>
+                                <!-- fas fa-exchange-alt = hold -->
+                                <!-- fas fa-arrow-circle-up = buy -->
+                                <!-- fas fa-arrow-circle-down = sell -->
+
+                                <!-- <i class="fas fa-caret-square-down" style="float: left; width: 50px; font-size: 48px;"></i> -->
+
+                                <h3 id="indication" style="margin-left: 10px; color:greenyellow">Buy</h3>
+                                <!-- yellow = hold -->
+                                <!-- greenyellow = buy -->
+                                <!-- red = sell -->
+                                <div class="small text-center">Its time to</div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col" style="margin: 0; padding: 0; border:0 ">
+                <div class="card">
+
+                    <div class=" card-body text-center">
+                        <div class="row" style="align-content: center; margin: auto; text-align: center">
+                            <div class="col">
+                                <i class="fas fa-tenge fa-rotate-180" style="float: left; width: 50px; font-size: 48px;"></i>
+
+                                <h3 id="curr_price" style="margin-left: 10px;">10.000,00</h3>
+                                <div class="small text-center">Buy if Price</div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col" style="margin: 0; padding: 0; border:0 ">
+                <div class="card">
+
+                    <div class=" card-body text-center">
+                        <div class="row" style="align-content: center; margin: auto; text-align: center">
+                            <div class="col">
+                                <i class="fas fa-tenge" style="float: left; width: 50px; font-size: 48px;"></i>
+
+                                <h3 id="curr_price" style="margin-left: 10px;">10.000,00</h3>
+                                <div class="small text-center">Sell if Price</div>
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <h3>Trade history</h3>
+            </div>
+
+        </div>
+
+        <div class="row text-center mt-3">
+
+            <div class="col-12">
+                <section style="align-content: center; padding: 0; margin: auto; align-items: center">
+
+                    <table style="align-content: center; align-items: center" id="trade-table"></table>
+
+                </section>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <h3>Recent News</h3>
+            </div>
+
+        </div>
+
+        <div class="row text-center mt-3">
+
+            <div class="col-12">
+                <section style="align-content: center; padding: 0; margin: auto; align-items: center">
+
+                    <table style="align-content: center; align-items: center" id="news-table"></table>
+
+                </section>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <h3>Recent Prices</h3>
+            </div>
+
+        </div>
+
+        <div class="row text-center mt-3">
+
+            <div class="col-12">
+                <section style="align-content: center; padding: 0; margin: auto; align-items: center">
+
+                    <table style="align-content: center; align-items: center" id="prices-table"></table>
+
+                </section>
+            </div>
+
+        </div>
+
+        <div class="row mt-3">
+
+            <div class="col-12">
+                <h3>Recent Fundamentals</h3>
+            </div>
+
+        </div>
+
+        <div class="row text-center mt-3">
+
+            <div class="col-12">
+                <section style="align-content: center; padding: 0; margin: auto; align-items: center">
+
+                    <table style="align-content: center; align-items: center" id="fund-table"></table>
+
+                </section>
+            </div>
+
+        </div>
+
     </div>
 
+    <!-- <div class="particles_full" id="particles-js"> </div> -->
 
-    <div class="particles_full" id="particles-js"> </div>
+
+
 
     <script src="/assets/js/tableConfig.js"></script>
     <script src="/assets/js/tabulator.js"></script>
