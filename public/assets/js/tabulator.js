@@ -26,6 +26,8 @@ TradeData = [
   {time: "13",currprice: 10000,indication: "Buy",BPrice: 10000, SPrice: 10000, pnl: 100}
 ];
 
+
+
 newsData = [
   {
     time: "2",
@@ -49,6 +51,30 @@ newsData = [
   }
 ];
 
+PriceData = [
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]},
+  {time: "1",currPrice: 10000,PriceVar: 0.05,"10PriceVar": -0.30, linePlot: [10000,11000,9000,10000]}
+];
+
 function createTable(tableName, tableData, configData) {
   var table = new Tabulator(tableName, {
     height:0,
@@ -68,5 +94,5 @@ function createTable(tableName, tableData, configData) {
 
 createTable("#trade-table", TradeData, TradeConfigData);
 createTable("#news-table", newsData, NewsConfigData);
-createTable("#prices-table", newsData, PricesConfigData);
+createTable("#prices-table", PriceData, PricesConfigData);
 createTable("#fund-table", newsData, FundConfigData);
