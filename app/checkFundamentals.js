@@ -55,8 +55,6 @@ var Fundamentals = function() {
   });
 };
 
-var fulldata = [];
-
 module.exports = Fundamentals;
 
 // fs.appendFile("log.txt", "What key market fundamentals do you want to check?: {" + selectedDataPoint + "}\n", function (err) {

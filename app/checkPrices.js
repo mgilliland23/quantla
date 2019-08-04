@@ -4,7 +4,7 @@ var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
 var Prices = function() {
   //This function checks the current prices for bitcoin and calculates the trend
-  //It grabs price data from the previous 6 hours and provides hourly trends
+  //It grabs price data from the previous 6 hours and provides 1 and 10 minute trends
   //Using this data, it calculates what prices we should buy, sell or hold at
 
   this.checkPrices = new Promise(function(resolve, reject) {
