@@ -28,6 +28,7 @@ var Prices = function() {
       //This is the current price
       var currentPriceData = pricesData[Object.keys(pricesData)[0]];
       var currentPriceClose = currentPriceData["4. close"];
+      //Volume returns as 0 sometimes????
       var currentVolume = currentPriceData["5. volume"];
       console.log("Current price: ", currentPriceClose);
 
