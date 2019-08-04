@@ -58,6 +58,8 @@ a:hover {
   color: #949ba2;
 }
 
+/* Styling for firebaseUI widget */
+
 .firebaseui-container {
   max-width: 380px !important;
   width: 380px !important;
@@ -69,9 +71,11 @@ a:hover {
 .firebaseui-title {
   color: white !important;
 }
+
 .firebaseui-link {
   color: #99cb14;
 }
+
 .mdl-button--raised.mdl-button--colored {
   background: #99cb14;
 }
@@ -79,4 +83,20 @@ a:hover {
 .mdl-button--raised.mdl-button--colored:hover {
   background: #baf519;
   color: #1e2125;
+}
+
+.firebaseui-label, .firebaseui-input {
+  color: lightgray;
+}
+
+.firebaseui-textfield.mdl-textfield .firebaseui-input {
+  border-color: white;
+}
+
+.firebaseui-textfield.mdl-textfield:focus .firebaseui-input {
+  border-color: white;
+}
+
+.firebaseui-textfield.mdl-textfield .firebaseui-label::after {
+  background-color: #99cb14;
 }
