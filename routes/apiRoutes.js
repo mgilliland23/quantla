@@ -1,18 +1,24 @@
-// var db = require("../models");
+var db = require("../models");
 
 module.exports = function(app) {
-  // Get all examples
-  app.get("/api/examples", function(req, res) {
-    // db.Example.findAll({}).then(function(dbExamples) {
-    //   res.json(dbExamples);
-    // });
-  });
+  // // Get all examples
+  // app.get("/api/iviteKeys", function(req, res) {
+  //   db.Invite.findAll({ where: { invite_key: req.params.invite_key } }).then(
+  //     function(dbResponse) {
+  //       res.json(dbResponse);
+  //     }
+  //   );
+  // });
 
-  // Create a new example
-  app.post("/api/examples", function(req, res) {
-    // db.Example.create(req.body).then(function(dbExample) {
-    //   res.json(dbExample);
-    // });
+  // Check for invite key in the database
+  app.post("/api/inviteKeys", function(req, res) {
+    console.log("key from front end", req.body.inviteString);
+    db.Invite.findAll({
+      where: { inviteString: req.body.inviteString }
+    }).then(function(dbResponse) {
+      console.log(dbResponse);
+      res.json(dbResponse);
+    });
   });
 
   // Delete an example by id

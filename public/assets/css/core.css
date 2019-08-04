@@ -1,23 +1,34 @@
 body {
   background: #1e2125;
-  display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
   padding: 0;
   margin: 0;
-  height: 100vh;
-  width: 100vw;
+  padding-bottom: 100px;
+  /* height: 100vh; */
+  /* width: 95vw; */
   font-family: "Ubuntu Mono", monospace;
   color: #fff;
-  overflow: hidden;
+  /* overflow-x: hidden; */
+
 }
 
-html {
-  height: 110%;
-  margin-bottom: 0.01em;
-  overflow:initial !important;
+
+body::-webkit-scrollbar {
+  width: 1em;
 }
+
+body::-webkit-scrollbar-track {
+  -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+background-color: rgba(0, 0, 0, 0.637);
+outline: 1px solid slategrey;
+}
+
+
 
 a {
   color: #99cb14;
@@ -37,15 +48,19 @@ a:hover {
 }
 
 .card {
-  display: flex;
-  flex-direction: column;
   background-color: rgba(148, 155, 168, 0.1);
-  position: relative;
-  top: 0;
-  width: 100%;
   padding: 5px 5px 5px 5px;
-  margin: 20px 20px 20px 20px;
+  margin: 10px 10px 10px 10px;
   border: 0;
+  height: 150px;
+  min-width: 260px;
+}
+
+.card-body {
+  text-align: center;
+  margin: auto;
+  height: 100%;
+  width: 100%;
 }
 
 .form-control {
