@@ -88,11 +88,11 @@ a:hover {
 
 .mdl-button--raised.mdl-button--colored:hover {
   background: #baf519;
-  color: #1e2125;
+  color: white;
 }
 
 .firebaseui-label, .firebaseui-input {
-  color: lightgray;
+  color: white;
 }
 
 .firebaseui-textfield.mdl-textfield .firebaseui-input {
@@ -105,4 +105,35 @@ a:hover {
 
 .firebaseui-textfield.mdl-textfield .firebaseui-label::after {
   background-color: #99cb14;
+}
+
+.firebaseui-text {
+  color: rgba(255, 255, 255, 0.87);
+  direction: ltr;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+}
+
+.firebaseui-textfield {
+  color: rgba(255, 255, 255, 0.87);
+  width: 100%;
+}
+
+.firebaseui-tos {
+  color: rgb(199, 199, 199);
+  direction: ltr;
+  font-size: 12px;
+  line-height: 16px;
+  margin-bottom: 24px;
+  margin-top: 0;
+  text-align: left;
+}
+
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label, .mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+  color: rgb(199, 199, 199);
+}
+
+.mdl-button--primary.mdl-button--primary {
+  color:  #99cb14;
 }
