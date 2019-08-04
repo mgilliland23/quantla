@@ -22,10 +22,9 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
-// Run the analysis for all BTC data sets every 30,000ms (5min)
-// setInterval(runAnalysis(), 30000);
-
+// Run the analysis for all BTC data sets immediately, and then every 30,000ms (5min)
 runAnalysis();
+setInterval(runAnalysis, 300000);
 
 function getDateTime() {
   var currentdate = new Date();
