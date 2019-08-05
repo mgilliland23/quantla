@@ -18,7 +18,7 @@ var News = function() {
       var results = JSON.parse(
         convert.xml2json(body, { compact: true, spaces: 4 })
       );
-      console.log("results");
+
       count = 0;
       found_news = 5;
 
@@ -47,7 +47,8 @@ var News = function() {
           headers: {
             origin:
               "https://cors-anywhere.herokuapp.com/https://natural-language-understanding-demo.ng.bluemix.net/api/analyze",
-            mydate: results.rss.channel.item[i].pubDate._text
+            mydate: results.rss.channel.item[i].pubDate._text,
+            title: results.rss.channel.item[i].title._text
           },
           json: true
         };
@@ -56,11 +57,12 @@ var News = function() {
           if (error) throw error;
           if (watsondata.results != undefined) {
             console.log("retrieved analysis for news article");
-            // console.log(watsondata.results.length);
+
             var newsArticle = {
               url: watsondata.results.retrieved_url,
               score: watsondata.results.sentiment.document.score,
-              date: res.request.headers.mydate
+              date: res.request.headers.mydate,
+              title: res.request.headers.title
             };
             //newsArticle = new NewsArticle(url, date, score);
             newsArr.push(newsArticle);

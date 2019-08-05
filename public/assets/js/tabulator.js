@@ -201,6 +201,330 @@ TradeData = [
   }
 ];
 
+PriceData = [
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  },
+  {
+    time: "1",
+    currPrice: 10000,
+    PriceVar: 0.05,
+    "10PriceVar": -0.3,
+    linePlot: [10000, 11000, 9000, 10000]
+  }
+];
+
+fundData = [
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  },
+  {
+    time: "1",
+    hash: 53775192.232,
+    hashVar: -0.03,
+    trans: 121107,
+    transVar: -0.36,
+    costT: 60.932,
+    costTVar: 0.218
+  }
+];
+
 // {
 //   time: "2",
 //   "news title": "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB",
@@ -215,7 +539,7 @@ $.get("api/news", function(data) {
   articles.forEach(function(article) {
     var newsTableRow = {
       time: article.date,
-      "news title": "article.title",
+      "news title": article.title,
       link: article.url,
       "score-link": article.score
     };
@@ -229,10 +553,12 @@ $.get("api/prices", function(data) {
   var prices = data;
 
   prices.forEach(function(price) {
+    console.log(price.currentPrice);
     var pricesTableRow = {
       time: price.timestamp,
-      "current price": price.currentPrice,
-      "price variation": price.priceVariation
+      currPrice: price.currentPrice,
+      PriceVar: price.priceVariation,
+      "10PriceVar": price.tenMinPriceVariation
     };
     pricesTableData.push(pricesTableRow);
   });
@@ -243,12 +569,15 @@ $.get("api/fundamentals", function(data) {
   var fundamentalsTableData = [];
   var fundamentals = data;
 
-  articles.forEach(function(article) {
+  fundamentals.forEach(function(fundamental) {
     var fundamentalsTableRow = {
-      time: article.date,
-      "fundamentals title": "article.title",
-      link: article.url,
-      "score-link": article.score
+      time: fundamental.timestamp,
+      hash: fundamental.hashrate,
+      hashVar: fundamental.hashrateVariation,
+      trans: fundamental.transactionFee,
+      transVar: fundamental.transactionFeeVariation,
+      costT: fundamental.costPerTransaction,
+      costTVar: fundamental.costPerTransactionVariation
     };
     fundamentalsTableData.push(fundamentalsTableRow);
   });

@@ -22,11 +22,29 @@ var lineFormatter = function (cell, formatterParams, onRendered) {
 
 PricesConfigData = [
   { title: "time", field: "time", align: "center" },
-  { title: "current price", field: "current price", align: "center" },
-  { title: "price variation", field: "price variation", align: "center" },
+  { title: "Current Price", field: "currPrice", align: "center" },
   {
-    title: "score-link",
-    field: "score-link",
+    title: "Price var",
+    field: "PriceVar",
+    align: "center",
+    formatter: function (cell, formatterParams) {
+      var value = cell.getValue();
+      if (value < 0) {
+        return (
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+        );
+      } else {
+        return (
+          "<span style='color:#13f113; font-weight:bold'>" +
+          "+" +
+          value +
+          "</span>"
+        );
+      }
+    }
+  }, {
+    title: "10min Price var",
+    field: "10PriceVar",
     align: "center",
     formatter: function (cell, formatterParams) {
       var value = cell.getValue();
@@ -44,16 +62,15 @@ PricesConfigData = [
       }
     }
   },
-  { title: "Box Plot", field: "box", width: 160, formatter: lineFormatter }
+  { title: "Price Trend", field: "linePlot", width: 160, formatter: lineFormatter }
 ];
 
 FundConfigData = [
   { title: "time", field: "time", align: "center" },
-  { title: "news title", field: "news title", align: "center" },
-  { title: "link", field: "link", align: "center" },
+  { title: "Hash Rate", field: "hash", align: "center" },
   {
-    title: "score-link",
-    field: "score-link",
+    title: "Hash Rate var",
+    field: "hashVar",
     align: "center",
     formatter: function (cell, formatterParams) {
       var value = cell.getValue();
@@ -71,13 +88,65 @@ FundConfigData = [
       }
     }
   },
-  { title: "Box Plot", field: "box", width: 160, formatter: boxFormatter }
+  { title: "Transactions", field: "trans", align: "center" },
+  {
+    title: "Transactions var",
+    field: "transVar",
+    align: "center",
+    formatter: function (cell, formatterParams) {
+      var value = cell.getValue();
+      if (value < 0) {
+        return (
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+        );
+      } else {
+        return (
+          "<span style='color:#13f113; font-weight:bold'>" +
+          "+" +
+          value +
+          "</span>"
+        );
+      }
+    }
+  },
+  { title: "C/T", field: "costT", align: "center" },
+  {
+    title: "C/T var",
+    field: "costTVar",
+    align: "center",
+    formatter: function (cell, formatterParams) {
+      var value = cell.getValue();
+      if (value < 0) {
+        return (
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+        );
+      } else {
+        return (
+          "<span style='color:#13f113; font-weight:bold'>" +
+          "+" +
+          value +
+          "</span>"
+        );
+      }
+    }
+  }
 ];
 
 NewsConfigData = [
   { title: "time", field: "time", align: "center" },
   { title: "news title", field: "news title", align: "center" },
-  { title: "link", field: "link", align: "center" },
+  {
+    title: "link",
+    field: "link",
+    align: "center",
+    formatter: function (cell, formatterParams) {
+      var value = cell.getValue();
+      return (
+        "<a href=" + value + ">News Link</a>"
+        // "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+      );
+    }
+  },
   {
     title: "score-link",
     field: "score-link",

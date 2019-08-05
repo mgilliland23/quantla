@@ -56,7 +56,7 @@ module.exports = function(app) {
   app.get("/api/prices", function(req, res) {
     let pricesRef = firestore
       .collection("prices")
-      .orderBy("dateCreated")
+      .orderBy("dateCreated", "desc")
       .limit(10);
     var pricesObjs = [];
 
@@ -68,8 +68,7 @@ module.exports = function(app) {
           if (documentSnapshot.exists) {
             //This is the document id, which is the timestamp we used to link the collections
             console.log(documentSnapshot.id);
-            //Get the data (articles and their analysis) from the snapshot
-            console.log(documentSnapshot.data().articles);
+            //Get the prices data from the snapshot
             var pricesData = documentSnapshot.data();
             var currentPrice = pricesData.currentPrice;
             var currentVolume = pricesData.currentVolume;
@@ -103,7 +102,7 @@ module.exports = function(app) {
   app.get("/api/fundamentals", function(req, res) {
     let fundamentalsRef = firestore
       .collection("fundamentals")
-      .orderBy("dateCreated")
+      .orderBy("dateCreated", "desc")
       .limit(10);
     var fundamentalsObjs = [];
 
@@ -115,22 +114,20 @@ module.exports = function(app) {
           if (documentSnapshot.exists) {
             //This is the document id, which is the timestamp we used to link the collections
             console.log(documentSnapshot.id);
-            //Get the data (articles and their analysis) from the snapshot
-            console.log(documentSnapshot.data().articles);
+            //Get the data (fundamentals and their analysis) from the snapshot
             var fundamentalsData = documentSnapshot.data();
-            var costPerTransactionVariation =
-              fundamentalsData.costPerTransactionVariation;
-            var hashrateVariation = fundamentalsData.hashrateVariation;
-            var transactionFeeVariation =
-              fundamentalsData.transactionFeeVariation;
 
             var fundamentalsObj = {
               timestamp: documentSnapshot.id,
-              costPerTransactionVariation: costPerTransactionVariation,
-              hashrateVariation: hashrateVariation,
-              transactionFeeVariation: transactionFeeVariation
+              costPerTransaction: fundamentalsData.costPerTransaction,
+              costPerTransactionVariation:
+                fundamentalsData.costPerTransactionVariation,
+              hashrate: fundamentalsData.hashRate,
+              hashrateVariation: fundamentalsData.hashrateVariation,
+              transactionFee: fundamentalsData.transactionFee,
+              transactionFeeVariation: fundamentalsData.transactionFeeVariation
             };
-
+            console.log(fundamentalsObj);
             fundamentalsObjs.push(fundamentalsObj);
           } else {
             console.log(`Found missing document: ${documentSnapshot.id}`);

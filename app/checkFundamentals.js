@@ -46,8 +46,11 @@ var Fundamentals = function() {
 
       var fundamentalsObj = {
         dateCreated: new Date(),
+        hashRate: currHashRate,
         hashrateVariation: hashRateVariation,
+        transactionFee: currTransactionFee,
         transactionFeeVariation: transactionFeeVariation,
+        costPerTransaction: currCostPerTransaction,
         costPerTransactionVariation: costPerTransactionVariation
       };
 

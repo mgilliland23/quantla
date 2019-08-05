@@ -68,21 +68,21 @@ function runAnalysis() {
   console.log("Analysis being run at: ", datetime);
 
   //Run analysis on BTC news. Store results to firestore DB
-  var news = new News();
-  news.checkNews.then(
-    function(result) {
-      db.collection("news")
-        .doc(datetime)
-        .set({
-          dateCreated: result.dateCreated,
-          articles: result.articles
-        });
-      console.log("News data has been added to the database");
-    },
-    function(err) {
-      console.log(err);
-    }
-  );
+  // var news = new News();
+  // news.checkNews.then(
+  //   function(result) {
+  //     db.collection("news")
+  //       .doc(datetime)
+  //       .set({
+  //         dateCreated: result.dateCreated,
+  //         articles: result.articles
+  //       });
+  //     console.log("News data has been added to the database");
+  //   },
+  //   function(err) {
+  //     console.log(err);
+  //   }
+  // );
 
   //Run analysis on BTC price data. Store results to firestore DB
   var prices = new Prices();
