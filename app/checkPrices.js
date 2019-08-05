@@ -44,12 +44,13 @@ var Prices = function() {
       console.log("Previous price: 10 Mins ago:  ", tenMinPriceClose);
 
       //Calculating the variation in prices:
-      var priceVariation = (currentPriceClose / previousPriceClose - 1) * 1000;
+      var priceVariation = (currentPriceClose / previousPriceClose - 1) * 100;
       var tenMinPriceVariation =
-        (currentPriceClose / tenMinPriceClose - 1) * 1000;
+        (currentPriceClose / tenMinPriceClose - 1) * 100;
 
       //Construct the object to be returned by the function
       var priceData = {
+        dateCreated: new Date(),
         currentPrice: currentPriceClose,
         previousPrice: previousPriceClose,
         priceVariation: priceVariation,

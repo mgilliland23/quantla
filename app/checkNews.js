@@ -66,9 +66,14 @@ var News = function() {
             newsArr.push(newsArticle);
             count++;
 
-            var newsArticles = { articles: newsArr };
+            //var newsArticles = { articles: newsArr };
             if (newsArr.length === found_news) {
-              resolve(newsArticles);
+              var newsObj = {
+                dateCreated: new Date(),
+                articles: newsArr
+              };
+
+              resolve(newsObj);
             }
             if (newsArr.length === 0) reject("Error fetching news");
           }

@@ -45,6 +45,7 @@ var Fundamentals = function() {
         currCostPerTransaction / prevCostPerTransaction - 1;
 
       var fundamentalsObj = {
+        dateCreated: new Date(),
         hashrateVariation: hashRateVariation,
         transactionFeeVariation: transactionFeeVariation,
         costPerTransactionVariation: costPerTransactionVariation

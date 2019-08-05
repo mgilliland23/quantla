@@ -73,7 +73,10 @@ function runAnalysis() {
     function(result) {
       db.collection("news")
         .doc(datetime)
-        .set(result);
+        .set({
+          dateCreated: result.dateCreated,
+          articles: result.articles
+        });
       console.log("News data has been added to the database");
     },
     function(err) {
