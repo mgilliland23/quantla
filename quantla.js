@@ -100,17 +100,17 @@ function runAnalysis() {
   );
 
   //Run analysis on fundamentals data. Store results to firestore DB
-  var fundamentals = new Fundamentals();
-  fundamentals.checkFundamentals.then(
-    function(result) {
-      console.log("Check fundamentals results: ", result);
-      db.collection("fundamentals")
-        .doc(datetime)
-        .set(result);
-      console.log("Fundamentals added to the database");
-    },
-    function(err) {
-      console.log(err);
-    }
-  );
+  // var fundamentals = new Fundamentals();
+  // fundamentals.checkFundamentals.then(
+  //   function(result) {
+  //     console.log("Check fundamentals results: ", result);
+  //     db.collection("fundamentals")
+  //       .doc(datetime)
+  //       .set(result);
+  //     console.log("Fundamentals added to the database");
+  //   },
+  //   function(err) {
+  //     console.log(err);
+  //   }
+  // );
 }
