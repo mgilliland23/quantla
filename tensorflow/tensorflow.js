@@ -87,8 +87,8 @@ model.compile({
 
 const options = {
     epochs: 1000,
-    validationSplit: 0.1, // If I want to use only 
-    shuffle: true, // If I want to use only 
+    // validationSplit: 0.1, // If I want to use only 
+    // shuffle: true, // If I want to use only 
 }
 
 
