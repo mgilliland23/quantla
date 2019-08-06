@@ -3,7 +3,7 @@ var convert = require("xml-js");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
-var News = function() {
+var News = function(datetime) {
   //this is an async function that grabs news articles and then analyzes them
   //We use Google News API to grab the news articles
   //And IBM Watson is used to analyze the articles and determine if they are (+) or (-) from -1 -> 1
@@ -20,7 +20,7 @@ var News = function() {
       );
 
       count = 0;
-      found_news = 5;
+      found_news = 1;
 
       for (var i = 0; i < found_news; i++) {
         var options = {
@@ -71,7 +71,7 @@ var News = function() {
             //var newsArticles = { articles: newsArr };
             if (newsArr.length === found_news) {
               var newsObj = {
-                dateCreated: new Date(),
+                dateCreated: datetime,
                 articles: newsArr
               };
 

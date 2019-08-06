@@ -2,7 +2,7 @@ var colors = require("colors");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
-var Prices = function() {
+var Prices = function(datetime) {
   //This function checks the current prices for bitcoin and calculates the trend
   //It grabs price data from the previous 6 hours and provides 1 and 10 minute trends
   //Using this data, it calculates what prices we should buy, sell or hold at
@@ -36,7 +36,6 @@ var Prices = function() {
         return [JSON.parse(body), url];
       });
     }).then(function(results) {
-      console.log(results);
       var currentPriceAsks = results[0][0].asks[0][0];
       console.log("current ask price", currentPriceAsks);
 
@@ -56,7 +55,7 @@ var Prices = function() {
 
       // Construct the object to be returned by the function
       var priceData = {
-        dateCreated: new Date(),
+        dateCreated: datetime,
         currentPriceAsks: currentPriceAsks,
         currentPriceBids: currentPriceBids,
         previousPrice: previousPriceClose,

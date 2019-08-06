@@ -70,20 +70,16 @@ module.exports = function(app) {
             console.log(documentSnapshot.id);
             //Get the prices data from the snapshot
             var pricesData = documentSnapshot.data();
-            var currentPrice = pricesData.currentPrice;
-            var currentVolume = pricesData.currentVolume;
-            var previousPrice = pricesData.previousPrice;
-            var priceVariation = pricesData.priceVariation;
-            var tenMinPriceVariation = pricesData.tenMinPriceVariation;
 
             var pricesObj = {
               timestamp: documentSnapshot.id,
-              currentPrice: currentPrice,
-              currentVolume: currentVolume,
-              previousPrice: previousPrice,
-              priceVariation: priceVariation,
-              tenMinPriceVariation: tenMinPriceVariation
+              currentPrice: pricesData.currentPriceAsks,
+              currentVolume: pricesData.currentVolume,
+              previousPrice: pricesData.previousPrice,
+              tenMinPriceVariation: pricesData.tenMinPriceVariation
             };
+
+            console.log(pricesObj);
 
             pricesObjs.push(pricesObj);
           } else {
