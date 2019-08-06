@@ -26,63 +26,28 @@ let db = admin.firestore();
 runAnalysis();
 setInterval(runAnalysis, 300000);
 
-//Get the date in the format dd-mm-yyyy hh:mm:ss
-function getDateTime() {
-  var currentdate = new Date();
-
-  var hours = currentdate.getHours();
-  if (hours < 10) hours = "0" + hours;
-
-  var minutes = currentdate.getMinutes();
-  if (minutes < 10) minutes = "0" + minutes;
-
-  var seconds = currentdate.getSeconds();
-  if (seconds < 10) seconds = "0" + seconds;
-
-  var day = currentdate.getDate();
-  if (day < 10) day = "0" + day;
-
-  var month = currentdate.getMonth() + 1;
-  if (month < 10) month = "0" + month;
-
-  var datetime =
-    day +
-    "-" +
-    month +
-    "-" +
-    currentdate.getFullYear() +
-    " " +
-    hours +
-    ":" +
-    minutes +
-    ":" +
-    seconds;
-
-  return datetime.toString();
-}
-
 function runAnalysis() {
-  //This will be the date time used to link the different data sets
-  var datetime = getDateTime();
+  //This will be the date time used to link the different data sets Unix epoch format
+  var datetime = Math.floor(new Date() / 1000).toString();
 
   console.log("Analysis being run at: ", datetime);
 
-  //Run analysis on BTC news. Store results to firestore DB
-  // var news = new News();
-  // news.checkNews.then(
-  //   function(result) {
-  //     db.collection("news")
-  //       .doc(datetime)
-  //       .set({
-  //         dateCreated: result.dateCreated,
-  //         articles: result.articles
-  //       });
-  //     console.log("News data has been added to the database");
-  //   },
-  //   function(err) {
-  //     console.log(err);
-  //   }
-  // );
+  // Run analysis on BTC news. Store results to firestore DB
+  var news = new News();
+  news.checkNews.then(
+    function(result) {
+      db.collection("news")
+        .doc(datetime)
+        .set({
+          dateCreated: result.dateCreated,
+          articles: result.articles
+        });
+      console.log("News data has been added to the database");
+    },
+    function(err) {
+      console.log(err);
+    }
+  );
 
   //Run analysis on BTC price data. Store results to firestore DB
   var prices = new Prices();
@@ -99,18 +64,18 @@ function runAnalysis() {
     }
   );
 
-  //Run analysis on fundamentals data. Store results to firestore DB
-  // var fundamentals = new Fundamentals();
-  // fundamentals.checkFundamentals.then(
-  //   function(result) {
-  //     console.log("Check fundamentals results: ", result);
-  //     db.collection("fundamentals")
-  //       .doc(datetime)
-  //       .set(result);
-  //     console.log("Fundamentals added to the database");
-  //   },
-  //   function(err) {
-  //     console.log(err);
-  //   }
-  // );
+  // Run analysis on fundamentals data. Store results to firestore DB
+  var fundamentals = new Fundamentals();
+  fundamentals.checkFundamentals.then(
+    function(result) {
+      console.log("Check fundamentals results: ", result);
+      db.collection("fundamentals")
+        .doc(datetime)
+        .set(result);
+      console.log("Fundamentals added to the database");
+    },
+    function(err) {
+      console.log(err);
+    }
+  );
 }
