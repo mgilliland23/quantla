@@ -99,7 +99,7 @@ function writeToFile(APIdata) {
     var json = JSON.parse(fileData);
     json.push(APIdata);
     var jsonContent = JSON.stringify(json);
-    fs.writeFile("./public/assetsdata.json", jsonContent, err => {
+    fs.writeFile("./public/assets/data.json", jsonContent, err => {
       if (err) throw err;
       console.log("data written to file");
     });
