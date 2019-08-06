@@ -23,6 +23,7 @@ admin.initializeApp({
 
 let db = admin.firestore();
 
+
 var stream = fs.createWriteStream("data.json", { flags: "a" });
 
 function writeToFile(APIdata) {
@@ -38,6 +39,7 @@ function writeToFile(APIdata) {
   });
 }
 
+
 // Run the analysis for all BTC data sets immediately, and then every 30,000ms (5min)
 runAnalysis();
 setInterval(runAnalysis, 300000);
@@ -47,6 +49,7 @@ function runAnalysis() {
   var datetime = Math.floor(new Date() / 1000).toString();
 
   console.log("Analysis being run at: ", datetime);
+
 
   // // Run analysis on BTC news. Store results to firestore DB
   var news = new News(datetime);
@@ -90,6 +93,7 @@ function runAnalysis() {
   var fundamentals = new Fundamentals();
   fundamentals.checkFundamentals.then(
     function(result) {
+
       writeToFile(result);
       console.log("Check fundamentals results: ", result);
       db.collection("fundamentals")
