@@ -15,11 +15,11 @@ var uiConfig = {
   // tosUrl and privacyPolicyUrl accept either url string or a callback
   // function.
   // Terms of service url/callback.
-  tosUrl: function () {
+  tosUrl: function() {
     window.location.assign("/terms");
   },
   // Privacy policy url/callback.
-  privacyPolicyUrl: function () {
+  privacyPolicyUrl: function() {
     window.location.assign("/terms");
   },
   credentialHelper: firebaseui.auth.CredentialHelper.NONE
@@ -33,14 +33,14 @@ if (ui.isPendingRedirect()) {
   ui.start("#firebaseui-auth-container", uiConfig);
 }
 
-$("#login").on("click", function () {
+$("#login").on("click", function() {
   console.log("clicker");
   $("#inviteCard").hide();
   //Start google's login UI
   ui.start("#firebaseui-auth-container", uiConfig);
 });
 
-$("#signUp").on("click", function (event) {
+$("#signUp").on("click", function(event) {
   event.preventDefault();
 
   $.post(
@@ -50,17 +50,29 @@ $("#signUp").on("click", function (event) {
         .val()
         .trim()
     },
-    function (data, status) {
+    function(data, status) {
       console.log(data);
+      //Check if the invite code is valid
       if (data.length > 0) {
-        //Check if the invite code is valid, and if so, hide the invite field and show the login UI
+        //And if so, hide the invite field and show the login UI
         $("#inviteCard").hide();
         //Start google's login UI
         ui.start("#firebaseui-auth-container", uiConfig);
       } else {
-        //display error message on front end
-        $();
+        if ($("#codeForm").find("p").length === 0) {
+          //display error message on front end
+          var errorMsg = $("<p>").text("That is not a valid invite code!");
+          $("#codeForm").append(errorMsg);
+        }
       }
     }
   );
+});
+
+$("#code").on("focus", function(event) {
+  event.preventDefault();
+  $(this).val(" ");
+  $("#codeForm")
+    .find("p")
+    .remove();
 });
