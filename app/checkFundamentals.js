@@ -6,7 +6,7 @@ var colors = require("colors");
 
 require("./tools.js")();
 
-var Fundamentals = function() {
+var Fundamentals = function(datetime) {
   this.checkFundamentals = new Promise(function(resolve, reject) {
     // mining data
     console.log(colors.inverse("Mining data"));
@@ -45,7 +45,7 @@ var Fundamentals = function() {
         currCostPerTransaction / prevCostPerTransaction - 1;
 
       var fundamentalsObj = {
-        dateCreated: new Date(),
+        dateCreated: datetime,
         hashRate: currHashRate,
         hashrateVariation: hashRateVariation,
         transactionFee: currTransactionFee,
