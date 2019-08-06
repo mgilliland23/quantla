@@ -1,20 +1,24 @@
 var mysqlDB = require("../models");
 require("firebase/firestore");
+var atob = require('atob');
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("../quantla-firebase-adminsdk-o0jvh-e71456c4b6.json");
-
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://quantla.firebaseio.com"
+  apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
+  authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
+  databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
+  projectId: "quantla",
+  storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
+  messagingSenderId: atob("NzAyNjA0ODczMTU5"),
+  appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
 });
 
 let firestore = admin.firestore();
 
-module.exports = function(app) {
+module.exports = function (app) {
   // Get news articles
-  app.get("/api/news", function(req, res) {
+  app.get("/api/news", function (req, res) {
     let newsRef = firestore
       .collection("news")
       .orderBy("dateCreated")
@@ -48,12 +52,12 @@ module.exports = function(app) {
       .catch(err => {
         console.log(err);
       })
-      .then(function() {
+      .then(function () {
         res.json(newsObjs);
       });
   });
 
-  app.get("/api/prices", function(req, res) {
+  app.get("/api/prices", function (req, res) {
     let pricesRef = firestore
       .collection("prices")
       .orderBy("dateCreated", "desc")
@@ -94,12 +98,12 @@ module.exports = function(app) {
       .catch(err => {
         console.log(err);
       })
-      .then(function() {
+      .then(function () {
         res.json(pricesObjs);
       });
   });
 
-  app.get("/api/fundamentals", function(req, res) {
+  app.get("/api/fundamentals", function (req, res) {
     let fundamentalsRef = firestore
       .collection("fundamentals")
       .orderBy("dateCreated", "desc")
@@ -137,24 +141,24 @@ module.exports = function(app) {
       .catch(err => {
         console.log(err);
       })
-      .then(function() {
+      .then(function () {
         res.json(fundamentalsObjs);
       });
   });
 
   // Check for invite key in the database
-  app.post("/api/inviteKeys", function(req, res) {
+  app.post("/api/inviteKeys", function (req, res) {
     console.log("key from front end", req.body.inviteString);
     mysqlDB.Invite.findAll({
       where: { inviteString: req.body.inviteString }
-    }).then(function(dbResponse) {
+    }).then(function (dbResponse) {
       console.log(dbResponse);
       res.json(dbResponse);
     });
   });
 
   // Delete an example by id
-  app.delete("/api/examples/:id", function(req, res) {
+  app.delete("/api/examples/:id", function (req, res) {
     // db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
     //   res.json(dbExample);
     // });
