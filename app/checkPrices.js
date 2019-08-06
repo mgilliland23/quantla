@@ -36,6 +36,7 @@ var Prices = function(datetime) {
         return [JSON.parse(body), url];
       });
     }).then(function(results) {
+
       var currentPriceAsks = results[0][0].asks[0][0];
       console.log("current ask price", currentPriceAsks);
 
@@ -56,6 +57,7 @@ var Prices = function(datetime) {
       // Construct the object to be returned by the function
       var priceData = {
         dateCreated: datetime,
+
         currentPriceAsks: currentPriceAsks,
         currentPriceBids: currentPriceBids,
         previousPrice: previousPriceClose,

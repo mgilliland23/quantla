@@ -1,14 +1,15 @@
 var colors = require("colors");
+var atob = require('atob');
 // < !--The core Firebase JS SDK is always required and must be listed first-- >
 var firebase = require("firebase");
 var app = firebase.initializeApp({
-  apiKey: process.env.FIREBASE_KEY,
-  authDomain: "quantla.firebaseapp.com",
-  databaseURL: "https://quantla.firebaseio.com",
+  apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
+  authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
+  databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
   projectId: "quantla",
-  storageBucket: "quantla.appspot.com",
-  messagingSenderId: "702604873159",
-  appId: process.env.FIREBASE_APP_ID
+  storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
+  messagingSenderId: atob("NzAyNjA0ODczMTU5"),
+  appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
 });
 
 module.exports = function() {
