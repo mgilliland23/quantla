@@ -1,6 +1,6 @@
 [
   {
-    "dateCreated": "2019-08-06T18:44:06.599Z",
+    "dateCreated": "2019-08-06T21:29:54.149Z",
     "hashRate": 60348820.23798387,
     "hashrateVariation": -0.14044943820224698,
     "transactionFee": 45.616555450000014,
@@ -9,15 +9,7 @@
     "costPerTransactionVariation": -0.00858991426212763
   },
   {
-    "dateCreated": "1565117046",
-    "currentPriceAsks": "11719.87461511",
-    "currentPriceBids": "11710.50000001",
-    "previousPrice": 11711.26048944,
-    "tenMinPriceVariation": 0.0007355421457637679,
-    "currentVolume": "6968599.82426090"
-  },
-  {
-    "dateCreated": "1565117046",
+    "dateCreated": "1565126993",
     "articles": [
       {
         "url": "https://www.coindesk.com/bitcoin-price-rises-above-12k-to-hit-one-month-high",
