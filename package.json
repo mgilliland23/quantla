@@ -2,6 +2,9 @@
   "name": "quantla",
   "version": "1.0.0",
   "description": "This is the Quantla project. Quantla is a Quantitative Lab group that focus on trading and market data analysis.",
+  "engines": {
+    "node": "12.1.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,7 +21,6 @@
   },
   "homepage": "https://github.com/costargc/quantla#readme",
   "dependencies": {
-    "@tensorflow/tfjs": "^1.2.6",
     "atob": "^2.1.2",
     "base-64": "^0.1.0",
     "cli-table": "^0.3.1",
