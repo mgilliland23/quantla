@@ -95,11 +95,11 @@ function runAnalysis() {
 }
 
 function writeToFile(APIdata) {
-  fs.readFile("data.json", function(err, fileData) {
+  fs.readFile("./public/assets/data.json", function(err, fileData) {
     var json = JSON.parse(fileData);
     json.push(APIdata);
     var jsonContent = JSON.stringify(json);
-    fs.writeFile("data.json", jsonContent, err => {
+    fs.writeFile("./public/assetsdata.json", jsonContent, err => {
       if (err) throw err;
       console.log("data written to file");
     });
