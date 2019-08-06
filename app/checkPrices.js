@@ -28,15 +28,21 @@ var Prices = function() {
 
       //This is the current price
       var currentPriceData = pricesData[Object.keys(pricesData)[0]];
+
       var currentPriceClose = currentPriceData["4. close"];
+      console.log("Current price: ", currentPriceClose);
       //Volume returns as 0 sometimes????
       var currentVolume = currentPriceData["5. volume"];
-      console.log("Current price: ", currentPriceClose);
 
       //This is the price from 1 minute previous
       var previousPriceData = pricesData[Object.keys(pricesData)[1]];
       var previousPriceClose = previousPriceData["4. close"];
       console.log("Previous price: 1 Mins ago:  ", previousPriceClose);
+      console.log("previous volume: " + previousPriceData["5. volume"]);
+
+      if (currentVolume === 0) {
+        currentVolume = previousPriceData["5. volume"];
+      }
 
       //This is the price from 10 minute previous
       var tenMinPriceData = pricesData[Object.keys(pricesData)[9]];
@@ -44,12 +50,12 @@ var Prices = function() {
       console.log("Previous price: 10 Mins ago:  ", tenMinPriceClose);
 
       //Calculating the variation in prices:
-      var priceVariation = (currentPriceClose / previousPriceClose - 1) * 1000;
-      var tenMinPriceVariation =
-        (currentPriceClose / tenMinPriceClose - 1) * 1000;
+      var priceVariation = currentPriceClose / previousPriceClose - 1;
+      var tenMinPriceVariation = currentPriceClose / tenMinPriceClose - 1;
 
       //Construct the object to be returned by the function
       var priceData = {
+        dateCreated: new Date(),
         currentPrice: currentPriceClose,
         previousPrice: previousPriceClose,
         priceVariation: priceVariation,
