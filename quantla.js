@@ -1,4 +1,5 @@
 var inquirer = require("inquirer");
+var atob = require("atob");
 // Required for side-effects
 require("firebase/firestore");
 var firebase = require("firebase");
@@ -7,6 +8,7 @@ var Prices = require("./app/checkPrices");
 var News = require("./app/checkNews");
 const fs = require("fs");
 
+
 require("./app/tools.js")();
 
 apikey = grabmykey();
@@ -14,11 +16,16 @@ console.log("\033[2J");
 
 var admin = require("firebase-admin");
 
-var serviceAccount = require("./quantla-firebase-adminsdk-o0jvh-e71456c4b6.json");
+// var serviceAccount = require("./quantla-firebase-adminsdk-o0jvh-e71456c4b6.json");
 
 admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://quantla.firebaseio.com"
+  apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
+  authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
+  databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
+  projectId: "quantla",
+  storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
+  messagingSenderId: atob("NzAyNjA0ODczMTU5"),
+  appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
 });
 
 let db = admin.firestore();
@@ -99,7 +106,7 @@ function writeToFile(APIdata) {
     var json = JSON.parse(fileData);
     json.push(APIdata);
     var jsonContent = JSON.stringify(json);
-    fs.writeFile("./public/assetsdata.json", jsonContent, err => {
+    fs.writeFile("./public/assets/data.json", jsonContent, err => {
       if (err) throw err;
       console.log("data written to file");
     });
