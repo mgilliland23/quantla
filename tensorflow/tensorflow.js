@@ -206,15 +206,29 @@ async function trainData() {
 
         let ysPredict = model.predict(xsPredict)
 
-        ysPredict.print();
+        // ysPredict.print();
 
-        console.log(
-            {
-                BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
-                HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
-                SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
-            }
-        );
+        PredictResults = {
+            BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
+            HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
+            SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
+        }
+
+        console.log(PredictResults);
+
+
+
+        var AIDecision = Math.max(PredictResults.BuyProb, PredictResults.HoldProb, PredictResults.SellProb);
+
+        if (AIDecision === PredictResults.BuyProb) {
+            console.log("It's time to buy");
+        }
+        else if (AIDecision === PredictResults.HoldProb) {
+            console.log("It's time to Hold");
+        }
+        else {
+            console.log("It's time to Sell");
+        }
 
         // console.log(ysPredict.data().then(function (results) {
         //     console.log(results);
@@ -223,6 +237,7 @@ async function trainData() {
     });
 }
 
+console.log(tf.memory().numTensors);
 
 // console.log(xdata[xdata.length-1].length);
 // console.log(origin[origin.length - 1].length);
