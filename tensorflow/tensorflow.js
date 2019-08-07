@@ -1,143 +1,256 @@
 // npm install @tensorflow/tfjs
 var tf = require('@tensorflow/tfjs');
-var firebase = require("firebase");
-var admin = require("firebase-admin");
-var atob = require('atob');
+let jsonData = require('../public/assets/data.json');
 
-var firebaseConfig = {
-    apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
-    authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
-    databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
-    projectId: "quantla",
-    storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
-    messagingSenderId: atob("NzAyNjA0ODczMTU5"),
-    appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
-};
+var xdata = [];
+var ydata = [];
+var origin = [];
+var x0 = [];
+var x1 = [];
+var x2 = [];
+var x3 = [];
+var x4 = [];
+var x5 = [];
+var x6 = [];
+var x7 = [];
+var x8 = [];
+var x9 = [];
+var x10 = [];
+var y0 = [];
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+jsonData.forEach(function (entry) {
+    x0.push(entry[2].articles[0].score);
+    x1.push(entry[0].currentPriceAsks);
+    x2.push(entry[0].currentPriceAsks - entry[0].currentPriceBids);
+    x3.push(entry[0].tenMinPriceVariation);
+    x4.push(entry[0].currentVolume);
+    x5.push(entry[1].hashRate);
+    x6.push(entry[1].hashrateVariation);
+    x7.push(entry[1].transactionFee);
+    x8.push(entry[1].transactionFeeVariation);
+    x9.push(entry[1].costPerTransaction);
+    x10.push(entry[1].costPerTransactionVariation);
+    y0.push(entry[0].tenMinPriceVariation);
+});
 
-// console.log(db.collection('prices').get());
+// console.log(Math.max.apply(Math, x0));
+// console.log(Math.min.apply(Math, x0));
 
-var pricesdata = [];
+var BuySignal = y0.sort()[y0.length - Math.floor((y0.length / 3))];
+var SellSignal = y0.sort()[Math.floor((y0.length / 3))];
 
-// db.collection('prices').limit(288).get().then(function (snapshot) {
-//     snapshot.docs.forEach(function (doc) {
-//         pricesdata = doc.data();
+// console.log(y0.sort());
+// console.log(SellSignal);
+// console.log(BuySignal);
 
-//         console.log(pricesdata.length);
-//     })
-// });
+jsonData.forEach(function (entry) {
+    // console.log(entry[0]);
+    // xdata.push(entry[1]);
+    // xdata.push(entry[2].articles[0].score);
+
+    xdata.push(
+        [
+            (entry[2].articles[0].score - Math.min.apply(Math, x0)) / (Math.max.apply(Math, x0) - Math.min.apply(Math, x0) * 0.99999999999),
+            (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) / (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
+            (entry[0].currentPriceAsks - entry[0].currentPriceBids - Math.min.apply(Math, x2)) / (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
+            (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) / (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
+            (entry[0].currentVolume - Math.min.apply(Math, x4)) / (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
+            (entry[1].hashRate - Math.min.apply(Math, x5)) / (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
+            (entry[1].hashrateVariation - Math.min.apply(Math, x6)) / (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
+            (entry[1].transactionFee - Math.min.apply(Math, x7)) / (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
+            (entry[1].transactionFeeVariation - Math.min.apply(Math, x8)) / (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
+            (entry[1].costPerTransaction - Math.min.apply(Math, x9)) / (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
+            (entry[1].costPerTransactionVariation - Math.min.apply(Math, x10)) / (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
+        ]
+    );
+
+    origin.push(
+        [
+            (entry[2].articles[0].score - Math.min.apply(Math, x0)) / (Math.max.apply(Math, x0) - Math.min.apply(Math, x0) * 0.99999999999),
+            (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) / (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
+            (entry[0].currentPriceAsks - entry[0].currentPriceBids - Math.min.apply(Math, x2)) / (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
+            (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) / (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
+            (entry[0].currentVolume - Math.min.apply(Math, x4)) / (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
+            (entry[1].hashRate - Math.min.apply(Math, x5)) / (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
+            (entry[1].hashrateVariation - Math.min.apply(Math, x6)) / (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
+            (entry[1].transactionFee - Math.min.apply(Math, x7)) / (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
+            (entry[1].transactionFeeVariation - Math.min.apply(Math, x8)) / (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
+            (entry[1].costPerTransaction - Math.min.apply(Math, x9)) / (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
+            (entry[1].costPerTransactionVariation - Math.min.apply(Math, x10)) / (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
+        ]
+    );
+
+    if (entry[0].tenMinPriceVariation >= BuySignal) {
+        ydata.push([1, 0, 0]);
+        // ydata.push("Buy");
+    }
+    else if (entry[0].tenMinPriceVariation <= SellSignal) {
+        ydata.push([0, 0, 1]);
+        // ydata.push("Sell");
+    }
+    else {
+        ydata.push([0, 1, 0]);
+        // ydata.push("Hold");
+    }
+
+    // fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
+    // newsTableData.push(buildNewsTable(entry[2]));
+});
 
 
+// shift remove beginning
+ydata.shift();
+ydata.shift();
+
+// pop remove final
+xdata.pop();
+xdata.pop();
+
+// console.log(xdata[xdata.length - 1]);
+// xdata[xdata.length - 0 - 1].push(200);
+// xdata[xdata.length - 0 - 1].push(200);
+
+var mergedata = 10;
+
+xdata = MergeHistoricData(xdata, mergedata);
+
+// console.log(xdata[xdata.length - 1].length);
+
+for (i = 0; i < mergedata; i++) {
+    ydata.shift();
+    xdata.shift();
+}
 
 
-// var ref = database.collection('prices');
+// console.log(xdata[0]);
+// console.log(xdata[xdata.length-1]);
+// console.log(ydata[ydata.length-1]);
 
-// console.log(ref);
+let model;
 
-// firebase.getCollections().then(collections => {
-//     for (let collection of collections) {
-//         console.log(`Found collection with id: ${collection.id}`);
-//     }
-// });
+// console.log(labelsTensor.print());
 
-
-
-
-
-// var xdata = [];
-// var ydata = [];
-
-// let model;
-
-// // dummy data... I'm just constructing xdata and ydata random here.. xdata is the inputs and ydata is Buy/Sell/Hold
-// for (i = 0; i < 144; i++) {
-
-//     xdata[i] = [
-//         Math.random(),
-//         Math.random(),
-//         Math.random(),
-//         Math.random()
-//     ];
-
-//     randstate = Math.floor(Math.random() * (1 - (-1) + 1)) + (-1);
-
-//     if (randstate === -1) {
-//         ydata[i] = 0; //Sell
-//     } else if (randstate === 0) {
-//         ydata[i] = 1; //Hold
-//     }
-//     else {
-//         ydata[i] = 2; //Buy
-//     };
-
-// };
-// // dummy data end
-
-// labelsTensor = tf.tensor1d(ydata, 'int32');
-// // console.log(labelsTensor.print());
-
-// xs = tf.tensor2d(xdata);
-// // oneHot only works with numbers... need to convert text to num in our case Sell==0 ; Hold == 1; Buy == 2
-// ys = tf.oneHot(labelsTensor, 3);
+xs = tf.tensor2d(xdata);
+ys = tf.tensor2d(ydata);
 
 // labelsTensor.dispose();
 
-// // console.log(xs.shape);
-// // console.log(ys.shape);
+// console.log(xs.shape);
+// console.log(ys.shape);
 
-// // console.log(xs.print());
-// // console.log(ys.print());
+// console.log(xs.print());
+// console.log(ys.print());
 
-// // setting up the model... input >> hidden >> output
-// model = tf.sequential();
+// setting up the model... input >> hidden >> output
+model = tf.sequential();
 
-// let hidden = tf.layers.dense({
-//     units: 16, //number 1st column of hidden layers
-//     activation: "sigmoid",
-//     inputDim: 4 //data that is comming in...
-// });
+let hidden = tf.layers.dense({
+    units: 64, //number 1st column of hidden layers
+    activation: "sigmoid",
+    inputDim: 121 //data that is comming in...
+});
 
-// let inner = tf.layers.dense({
-//     units: 16, //number 1st column of hidden layers
-//     activation: "sigmoid",
-//     inputDim: 16 //data that is comming in...
-// });
+let inner = tf.layers.dense({
+    units: 32, //number 1st column of hidden layers
+    activation: "sigmoid",
+    inputDim: 64 //data that is comming in...
+});
 
-// let output = tf.layers.dense({
-//     units: 3,     // data that is comming out...
-//     activation: "softmax"
-// });
+let output = tf.layers.dense({
+    units: 3,     // data that is comming out...
+    activation: "softmax"
+});
 
 
-// model.add(hidden);
-// // model.add(inner);
-// model.add(output);
+model.add(hidden);
+model.add(inner);
+model.add(output);
 
 
 // // we need also an optimizer...
-// const learningRate = 0.2;
-// const optimization = tf.train.sgd(learningRate);
+const learningRate = 0.2;
+const optimization = tf.train.sgd(learningRate);
 
 // // and then we need to compile the model
-// model.compile({
-//     optimizer: optimization,
-//     // loss: 'meanSquaredError'
-//     // this is the entropy - measure of messed things
-//     loss: 'categoricalCrossentropy'
-// })
+model.compile({
+    optimizer: optimization,
+    // loss: 'meanSquaredError'
+    // this is the entropy - measure of messed things
+    loss: 'categoricalCrossentropy'
+})
 
 // // console.log(model);
 
-// const options = {
-//     epochs: 1000,
-//     // validationSplit: 0.1, // If I want to use only 
-//     // shuffle: true, // If I want to use only 
-// }
+const options = {
+    epochs: 1000,
+    // validationSplit: 0.1, // If I want to use only 
+    // shuffle: true, // If I want to use only 
+}
+
+
+trainData();
+async function trainData() {
+    model.fit(xs, ys, options).then(function (results) {
+        // console.dir(results.history.loss, { 'maxArrayLength': null });
+        console.log("start loss: " + results.history.loss[0]);
+        console.log("final loss: " + results.history.loss[results.history.loss.length - 1]);
+        console.log("trainning is complete");
+
+
+        // prediction...
+        origin = MergeHistoricData(origin, mergedata);
+
+        const xsPredict = tf.tensor2d([
+            origin[origin.length - 1]
+        ]);
+
+        let ysPredict = model.predict(xsPredict)
+
+        // ysPredict.print();
+
+        PredictResults = {
+            BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
+            HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
+            SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
+        }
+
+        console.log(PredictResults);
 
 
 
-// model.fit(xs, ys, options).then(function (results) {
-//     console.dir(results.history.loss, { 'maxArrayLength': null });
-// }); 
+        var AIDecision = Math.max(PredictResults.BuyProb, PredictResults.HoldProb, PredictResults.SellProb);
+
+        if (AIDecision === PredictResults.BuyProb) {
+            console.log("It's time to buy");
+        }
+        else if (AIDecision === PredictResults.HoldProb) {
+            console.log("It's time to Hold");
+        }
+        else {
+            console.log("It's time to Sell");
+        }
+
+        // console.log(ysPredict.data().then(function (results) {
+        //     console.log(results);
+        // }));
+
+    });
+}
+
+console.log(tf.memory().numTensors);
+
+// console.log(xdata[xdata.length-1].length);
+// console.log(origin[origin.length - 1].length);
+
+
+
+function MergeHistoricData(data, mergecutoff) {
+    for (i = 0; i < data.length - mergecutoff; i++) {
+        for (j = 0; j < mergecutoff; j++) {
+            for (k = 0; k < data[data.length - i - 1 - j - 1].length; k++) {
+                data[data.length - i - 1].push(data[data.length - i - 1 - j - 1][k]);
+            }
+        }
+    }
+    return data
+}
