@@ -2,125 +2,59 @@ var colors = require("colors");
 var convert = require("xml-js");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
+const NaturalLanguageUnderstandingV1 = require("ibm-watson/natural-language-understanding/v1.js");
 
-var News = function (datetime) {
+var News = function(datetime) {
   //this is an async function that grabs news articles and then analyzes them
   //We use Google News API to grab the news articles
   //And IBM Watson is used to analyze the articles and determine if they are (+) or (-) from -1 -> 1
-  this.checkNews = new Promise(function (resolve, reject) {
+  this.checkNews = new Promise(function(resolve, reject) {
     var newsArr = [];
     var queryURL =
       "https://news.google.com/rss/search?q=" +
       "BTC Bitcoin news when:1h" +
       "+ &hl=en-US&gl=US&ceid=US:en";
 
-    request(queryURL, { json: true }, function (error, response, body) {
-      var results = JSON.parse(
-        convert.xml2json(body, { compact: true, spaces: 4 })
-      );
-      console.log();
-
-
-
-
-      count = 0;
-      found_news = 1;
-
-      for (var i = 0; i < found_news; i++) {
-
-        if (results.rss.channel.item[i] == undefined) {
-          console.log(colors.inverse("this is a very bad error!"));
-        }
-
-        var options = {
-          url:
-            "https://cors-anywhere.herokuapp.com/https://natural-language-understanding-demo.ng.bluemix.net/api/analyze",
-          method: "post",
-          contentType: "application/json",
-          body: {
-            features: {
-              concepts: {},
-              entities: {},
-              keywords: {},
-              categories: {},
-              emotion: {},
-              sentiment: {},
-              semantic_roles: {},
-              syntax: {
-                tokens: { lemma: true, part_of_speech: true },
-                sentences: true
-              }
-            },
-            url: results.rss.channel.item[i].link._text
-          },
-          headers: {
-            origin:
-              "https://cors-anywhere.herokuapp.com/https://natural-language-understanding-demo.ng.bluemix.net/api/analyze",
-            mydate: results.rss.channel.item[i].pubDate._text,
-            title: results.rss.channel.item[i].title._text
-          },
-          json: true
-        };
-
-        request(options, function (err, res, watsondata) {
-          if (error) { throw error };
-
-          // console.log(options.body.url);
-          // console.log(options.headers.title);
-          // console.log(options.headers.mydate);
-
-          // TODO: error appeared that stopped the app!!!  
-          // if (watsondata.results != undefined) {
-          // ^
-          // TypeError: Cannot read property 'results' of undefined
-
-          // TODO_update: changed logic to include an if statement if news fails form watson - 
-          // we would get score = 0 in that case. But at least news would still show in the core page.
-
-
-          if (watsondata != undefined) {
-            console.log("retrieved analysis for news article");
-
-            var newsArticle = {
-              url: watsondata.results.retrieved_url,
-              score: watsondata.results.sentiment.document.score,
-              date: res.request.headers.mydate,
-              title: res.request.headers.title
-            };
-            //newsArticle = new NewsArticle(url, date, score);
-            newsArr.push(newsArticle);
-            count++;
-
-            //var newsArticles = { articles: newsArr };
-            if (newsArr.length === found_news) {
-              var newsObj = {
-                dateCreated: datetime,
-                articles: newsArr
-              };
-
-              resolve(newsObj);
-            }
-            if (newsArr.length === 0) reject("Error fetching news");
-          }
-          else {
-
-            // console.log(options.headers);
-            console.log(colors.inverse("can't connect to IBM"));
-            var newsArticle = {
-              url: options.body.url,
-              score: 0,
-              date: options.headers.title.mydate,
-              title: options.headers.title
-            };
-            //newsArticle = new NewsArticle(url, date, score);
-            newsArr.push(newsArticle);
-            count++;
-
-          }
-        });
-      }
-
+    const naturalLanguageUnderstanding = new NaturalLanguageUnderstandingV1({
+      version: "2019-07-12"
     });
+
+    const analyzeParams = {
+      url: "https://twitter.com/hashtag/bitcoin?f=tweets&vertical=news",
+      features: {
+        sentiment: {
+          targets: ["bitcoin", "BTC"]
+        }
+      }
+    };
+
+    naturalLanguageUnderstanding
+      .analyze(analyzeParams)
+      .then(analysisResults => {
+        console.log(analysisResults.sentiment.targets);
+        var sentimentAnalysis = analysisResults.sentiment.targets;
+        var bitcoin = sentimentAnalysis[0];
+        var BTC = sentimentAnalysis[1];
+        console.log(analysisResults.sentiment.document);
+
+        var newsObj = {
+          dateCreated: datetime,
+          btcScore: BTC.score,
+          bitcoinScore: bitcoin.score,
+          documentScore: analysisResults.sentiment.document.score
+        };
+        resolve(newsObj);
+      })
+      .catch(err => {
+        var newsObj = {
+          dateCreated: datetime,
+          btcScore: 0,
+          bitcoinScore: 0,
+          documentScore: 0
+        };
+        resolve(newsObj);
+        console.log("error:", err);
+      });
   });
 };
 

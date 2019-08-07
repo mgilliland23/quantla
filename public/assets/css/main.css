@@ -57,6 +57,10 @@ button:focus {
   border-color: #99cb14;
 }
 
+#buyInvite {
+  float: right;
+}
+
 .form-control {
   padding: 6px 12px;
   font-size: 14px;
@@ -75,7 +79,7 @@ button:focus {
 
 #codeForm p {
   padding-top: 20px;
-  size: .5rem;
+  size: 0.5rem;
   color: red;
 }
 
@@ -106,7 +110,8 @@ button:focus {
   color: white;
 }
 
-.firebaseui-label, .firebaseui-input {
+.firebaseui-label,
+.firebaseui-input {
   color: white;
 }
 
@@ -131,7 +136,7 @@ button:focus {
 }
 
 .firebaseui-input-invalid {
-  color: rgba(255, 255, 255, .87);
+  color: rgba(255, 255, 255, 0.87);
 }
 
 .firebaseui-textfield {
@@ -149,7 +154,8 @@ button:focus {
   text-align: left;
 }
 
-.mdl-textfield--floating-label.is-dirty .mdl-textfield__label, .mdl-textfield--floating-label.is-focused .mdl-textfield__label {
+.mdl-textfield--floating-label.is-dirty .mdl-textfield__label,
+.mdl-textfield--floating-label.is-focused .mdl-textfield__label {
   color: rgb(199, 199, 199);
 }
 
@@ -158,5 +164,5 @@ button:focus {
 }
 
 .form-control:focus {
-  box-shadow: 0 0 0 0.2rem rgba(186, 245, 25, .25);
+  box-shadow: 0 0 0 0.2rem rgba(186, 245, 25, 0.25);
 }

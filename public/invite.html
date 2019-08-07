@@ -58,6 +58,8 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
     <script src="/assets/js/main.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+
 
 
 </head>
@@ -67,7 +69,7 @@
 
     <div class="container">
 
-        <section style="max-width: 350px; align-content: center; margin: auto; padding-bottom: 150px">
+        <section style="max-width: 380px; align-content: center; margin: auto; padding-bottom: 150px">
 
             <div class="row" style="padding-bottom: 20px;">
                 <div class="col-2">
@@ -96,16 +98,39 @@
 
                             <button style="margin-top: 15px;" id="signUp" type="submit" class="custom-button-green">Sign
                                 Up</button>
-
+                            <button style="margin-top: 15px;" id="buyInvite" type="submit"
+                                class="custom-button-green">Purchase Code</button>
                         </form>
 
                     </div>
+
+                    <!-- Payment Modal -->
+                    <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title">Modal title</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <p>Modal body text goes here.</p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Payment Modal  -->
 
                 </div>
 
                 <div id="firebaseui-auth-container"></div>
 
-                <div class="text-center" style="max-width: 350px; align-content: center; margin: auto;">
+                <div class="text-center" style="max-width: 380px; align-content: center; margin: auto;">
                     <small>If you are already a member click <a href="#" id="login">here</a> to
                         login.</small>
                     <br><small><a href="/team">Check our team</a></small>
