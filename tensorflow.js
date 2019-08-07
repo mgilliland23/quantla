@@ -7,6 +7,9 @@ runTensorFlowAnalysis();
 setInterval(runTensorFlowAnalysis, 300000);
 
 function runTensorFlowAnalysis() {
+    // TODO: ther eis a bug when loading the json file ... 
+    // for some reason the prediction is running multiple times with the same data
+
     console.log("tensorflow prediction is running...");
     let jsonData = require('./public/assets/data.json');
     // TODO: change the data creation to make it generict if we add a new data source for the model.
@@ -46,10 +49,16 @@ function runTensorFlowAnalysis() {
     // console.log(Math.max.apply(Math, x0));
     // console.log(Math.min.apply(Math, x0));
 
-    var BuySignal = y0.sort()[y0.length - Math.floor((y0.length / 3))];
-    var SellSignal = y0.sort()[Math.floor((y0.length / 3))];
-    var CurrentPrice = x1[x1.length - 1] * 1;
-    var dateCreated = t0[t0.length - 1];
+    var dateCreated = 0;
+    var CurrentPrice = 0;
+    var BuySignal = 0;
+    var SellSignal = 0;
+
+    BuySignal = y0.sort()[y0.length - Math.floor((y0.length / 3))];
+    SellSignal = y0.sort()[Math.floor((y0.length / 3))];
+    CurrentPrice = x1[x1.length - 1] * 1;
+    dateCreated = t0[t0.length - 1] * 1;
+    console.log(dateCreated);
     // console.log(y0.sort());
     // console.log(SellSignal);
     // console.log(BuySignal);

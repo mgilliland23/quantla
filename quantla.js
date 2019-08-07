@@ -119,3 +119,6 @@ function writeToFile(APIdata) {
     });
   });
 }
+
+
+
