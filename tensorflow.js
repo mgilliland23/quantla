@@ -9,12 +9,13 @@ var tf = require('@tensorflow/tfjs');
 // })
 
 runTensorFlowAnalysis();
-setInterval(function () {
-    tf.disposeVariables();
-    runTensorFlowAnalysis();
 
-}, 30000);
-// }, 300000);
+setInterval(function () {
+    // tf.disposeVariables();
+    runTensorFlowAnalysis();
+}, 300000);
+// }, 30000);
+
 
 function runTensorFlowAnalysis() {
     // TODO: ther eis a bug when loading the json file ... 
