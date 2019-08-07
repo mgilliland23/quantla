@@ -3,26 +3,35 @@ var convert = require("xml-js");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
-var News = function(datetime) {
+var News = function (datetime) {
   //this is an async function that grabs news articles and then analyzes them
   //We use Google News API to grab the news articles
   //And IBM Watson is used to analyze the articles and determine if they are (+) or (-) from -1 -> 1
-  this.checkNews = new Promise(function(resolve, reject) {
+  this.checkNews = new Promise(function (resolve, reject) {
     var newsArr = [];
     var queryURL =
       "https://news.google.com/rss/search?q=" +
       "BTC Bitcoin news when:1h" +
       "+ &hl=en-US&gl=US&ceid=US:en";
 
-    request(queryURL, { json: true }, function(error, response, body) {
+    request(queryURL, { json: true }, function (error, response, body) {
       var results = JSON.parse(
         convert.xml2json(body, { compact: true, spaces: 4 })
       );
+      console.log();
+
+
+
 
       count = 0;
       found_news = 1;
 
       for (var i = 0; i < found_news; i++) {
+
+        if (results.rss.channel.item[i] == undefined) {
+          console.log(colors.inverse("this is a very bad error!"));
+        }
+
         var options = {
           url:
             "https://cors-anywhere.herokuapp.com/https://natural-language-understanding-demo.ng.bluemix.net/api/analyze",
@@ -53,9 +62,23 @@ var News = function(datetime) {
           json: true
         };
 
-        request(options, function(err, res, watsondata) {
-          if (error) throw error;
-          if (watsondata.results != undefined) {
+        request(options, function (err, res, watsondata) {
+          if (error) { throw error };
+
+          // console.log(options.body.url);
+          // console.log(options.headers.title);
+          // console.log(options.headers.mydate);
+
+          // TODO: error appeared that stopped the app!!!  
+          // if (watsondata.results != undefined) {
+          // ^
+          // TypeError: Cannot read property 'results' of undefined
+
+          // TODO_update: changed logic to include an if statement if news fails form watson - 
+          // we would get score = 0 in that case. But at least news would still show in the core page.
+
+
+          if (watsondata != undefined) {
             console.log("retrieved analysis for news article");
 
             var newsArticle = {
@@ -79,8 +102,24 @@ var News = function(datetime) {
             }
             if (newsArr.length === 0) reject("Error fetching news");
           }
+          else {
+
+            // console.log(options.headers);
+            console.log(colors.inverse("can't connect to IBM"));
+            var newsArticle = {
+              url: options.body.url,
+              score: 0,
+              date: options.headers.title.mydate,
+              title: options.headers.title
+            };
+            //newsArticle = new NewsArticle(url, date, score);
+            newsArr.push(newsArticle);
+            count++;
+
+          }
         });
       }
+
     });
   });
 };

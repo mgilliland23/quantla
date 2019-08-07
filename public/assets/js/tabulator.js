@@ -1,49 +1,54 @@
-TradeData = [
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
-  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" }
-];
+grabtabulatordata();
+setInterval(function () {
+  grabtabulatordata();
+  console.log("test");
+}, 30000);
 
-var newsTableData = [];
-var pricesTableData = [];
-var fundamentalsTableData = [];
+function grabtabulatordata() {
 
-$.getJSON("/assets/data.json", function (json) {
-  //console.log(json); // this will show the info it in firebug console
-  json.forEach(function (entry) {
-    // console.log(entry[0]);
+  var TradeData = [];
+  var newsTableData = [];
+  var pricesTableData = [];
+  var fundamentalsTableData = [];
 
-    pricesTableData.push(buildPriceTable(entry[0]));
-    fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
-    newsTableData.push(buildNewsTable(entry[2]));
+
+  $.getJSON("./assets/AIDecision.json", function (json) {
+    //console.log(json); // this will show the info it in firebug console
+    json.forEach(function (entry) {
+      console.log(entry[0]);
+
+      TradeData.push(buildDecisionTable(entry));
+
+    });
+
+    createTable("#trade-table", orderTable(TradeData).slice(0, 30), TradeConfigData);
+
   });
 
-  createTable("#prices-table", orderTable(pricesTableData).slice(0,30), PricesConfigData);
-  createTable("#fund-table", orderTable(fundamentalsTableData).slice(0,30), FundConfigData);
-  createTable("#news-table", orderTable(newsTableData).slice(0,30), NewsConfigData);
-});
+
+
+  $.getJSON("/assets/data.json", function (json) {
+    //console.log(json); // this will show the info it in firebug console
+    json.forEach(function (entry) {
+      // console.log(entry[0]);
+
+      pricesTableData.push(buildPriceTable(entry[0]));
+      fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
+      newsTableData.push(buildNewsTable(entry[2]));
+    });
+
+    createTable("#prices-table", orderTable(pricesTableData).slice(0, 30), PricesConfigData);
+    createTable("#fund-table", orderTable(fundamentalsTableData).slice(0, 30), FundConfigData);
+    createTable("#news-table", orderTable(newsTableData).slice(0, 30), NewsConfigData);
+  });
+
+
+}
 
 function orderTable(data) {
   var ordered = [];
   for (i = 0; i < data.length; i++) {
-    ordered[i] = data[data.length -1 - i];
+    ordered[i] = data[data.length - 1 - i];
   }
   return ordered
 }
@@ -56,12 +61,28 @@ function buildPriceTable(price) {
     time: d,
     currPrice: price.currentPriceAsks,
     Spread: price.currentPriceAsks - price.currentPriceBids,
-    "10PriceVar": Math.round(price.tenMinPriceVariation * 10000)/10000,
+    "10PriceVar": Math.round(price.tenMinPriceVariation * 10000) / 10000,
     volume: price.currentVolume
   };
 
 
   return pricesTableRow;
+}
+
+
+function buildDecisionTable(AIdata) {
+  // console.log(price);
+  var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+  d.setUTCSeconds(parseInt(AIdata.dateCreated * 1));
+  var AITableRow = {
+    time: d,
+    currprice: AIdata.CurrentPrice,
+    indication: AIdata.AIDecision,
+    BPrice: AIdata.BuyIfPrice,
+    SPrice: AIdata.SellIfPrice,
+  };
+
+  return AITableRow;
 }
 
 function buildFundamentalsTable(fundamental) {
@@ -71,11 +92,11 @@ function buildFundamentalsTable(fundamental) {
   var fundamentalsTableRow = {
     time: d,
     hash: fundamental.hashRate,
-    hashVar: Math.round(fundamental.hashrateVariation * 10000)/10000,
+    hashVar: Math.round(fundamental.hashrateVariation * 10000) / 10000,
     trans: fundamental.transactionFee,
-    transVar: Math.round(fundamental.transactionFeeVariation * 10000)/10000,
+    transVar: Math.round(fundamental.transactionFeeVariation * 10000) / 10000,
     costT: fundamental.costPerTransaction,
-    costTVar: Math.round(fundamental.costPerTransactionVariation * 10000)/10000,
+    costTVar: Math.round(fundamental.costPerTransactionVariation * 10000) / 10000,
   };
   return fundamentalsTableRow;
 }
@@ -168,6 +189,5 @@ function createTable(tableName, tableData, configData) {
   table.setData(tableData);
 }
 
-//generate box plot
+  //generate box plot
 
-createTable("#trade-table", TradeData, TradeConfigData);
