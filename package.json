@@ -2,6 +2,9 @@
   "name": "quantla",
   "version": "1.0.0",
   "description": "This is the Quantla project. Quantla is a Quantitative Lab group that focus on trading and market data analysis.",
+  "engines": {
+    "node": "12.1.0"
+  },
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
