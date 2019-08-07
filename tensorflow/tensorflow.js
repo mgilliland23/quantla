@@ -1,6 +1,5 @@
 // npm install @tensorflow/tfjs
 var tf = require('@tensorflow/tfjs');
-
 let jsonData = require('../public/assets/data.json');
 
 var xdata = [];
@@ -123,9 +122,7 @@ for (i = 0; i < mergedata; i++) {
 }
 
 
-
 // console.log(xdata[0]);
-
 // console.log(xdata[xdata.length-1]);
 // console.log(ydata[ydata.length-1]);
 
@@ -138,8 +135,8 @@ ys = tf.tensor2d(ydata);
 
 // labelsTensor.dispose();
 
-console.log(xs.shape);
-console.log(ys.shape);
+// console.log(xs.shape);
+// console.log(ys.shape);
 
 // console.log(xs.print());
 // console.log(ys.print());
@@ -208,7 +205,21 @@ async function trainData() {
         ]);
 
         let ysPredict = model.predict(xsPredict)
+
         ysPredict.print();
+
+        console.log(
+            {
+                BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
+                HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
+                SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
+            }
+        );
+
+        // console.log(ysPredict.data().then(function (results) {
+        //     console.log(results);
+        // }));
+
     });
 }
 
