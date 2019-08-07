@@ -1,5 +1,4 @@
 var inquirer = require("inquirer");
-var atob = require("atob");
 // Required for side-effects
 require("firebase/firestore");
 var firebase = require("firebase");
@@ -8,7 +7,6 @@ var Prices = require("./app/checkPrices");
 var News = require("./app/checkNews");
 const fs = require("fs");
 const atob = require("atob");
-
 
 require("./app/tools.js")();
 
@@ -31,13 +29,8 @@ var serviceAccount = {
 };
 
 admin.initializeApp({
-  apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
-  authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
-  databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
-  projectId: "quantla",
-  storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
-  messagingSenderId: atob("NzAyNjA0ODczMTU5"),
-  appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
+  credential: admin.credential.cert(serviceAccount),
+  databaseURL: "https://quantla.firebaseio.com"
 });
 
 let db = admin.firestore();
