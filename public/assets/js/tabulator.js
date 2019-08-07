@@ -43,7 +43,7 @@ $.getJSON("/assets/data.json", function (json) {
 function orderTable(data) {
   var ordered = [];
   for (i = 0; i < data.length; i++) {
-    ordered[i] = data[data.length - i];
+    ordered[i] = data[data.length -1 - i];
   }
   return ordered
 }
