@@ -9,13 +9,19 @@ var tf = require('@tensorflow/tfjs');
 // })
 
 runTensorFlowAnalysis();
-setInterval(runTensorFlowAnalysis, 300000);
+setInterval(function () {
+    tf.disposeVariables();
+    runTensorFlowAnalysis();
+
+// }, 30000);
+}, 300000);
 
 function runTensorFlowAnalysis() {
     // TODO: ther eis a bug when loading the json file ... 
     // for some reason the prediction is running multiple times with the same data
 
     console.log("tensorflow prediction is running...");
+
     // var jsonData = require('./public/assets/data.json');
     // jsonData = fs.readFile("./public/assets/data.json");
     // fs.readFile("./public/assets/data.json", function (err, fileData) {
@@ -72,6 +78,9 @@ function runTensorFlowAnalysis() {
     CurrentPrice = x1[x1.length - 1] * 1;
     dateCreated = t0[t0.length - 1] * 1;
     console.log(dateCreated);
+    // console.log(tf.memory().numTensors);
+
+
     // console.log(y0.sort());
     // console.log(SellSignal);
     // console.log(BuySignal);
@@ -159,13 +168,14 @@ function runTensorFlowAnalysis() {
     // console.log(xdata[xdata.length-1]);
     // console.log(ydata[ydata.length-1]);
 
+
     let model;
 
     // console.log(labelsTensor.print());
 
     xs = tf.tensor2d(xdata);
     ys = tf.tensor2d(ydata);
-
+    // console.log(tf.memory().numTensors); // 2 
     // labelsTensor.dispose();
 
     console.log(xs.shape);
@@ -194,15 +204,19 @@ function runTensorFlowAnalysis() {
         activation: "softmax"
     });
 
+    // console.log(tf.memory().numTensors); // 2
 
     model.add(hidden);
     model.add(inner);
     model.add(output);
 
+    // console.log(tf.memory().numTensors); // 8
 
     // // we need also an optimizer...
     const learningRate = 0.2;
     const optimization = tf.train.sgd(learningRate);
+
+    // console.log(tf.memory().numTensors); // 9
 
     // // and then we need to compile the model
     model.compile({
@@ -211,6 +225,7 @@ function runTensorFlowAnalysis() {
         // this is the entropy - measure of messed things
         loss: 'categoricalCrossentropy'
     })
+
 
     // // console.log(model);
 
@@ -221,82 +236,99 @@ function runTensorFlowAnalysis() {
     }
 
 
+
     trainData();
+
+
     async function trainData() {
-        model.fit(xs, ys, options).then(function (results) {
-            // console.dir(results.history.loss, { 'maxArrayLength': null });
-            console.log("start loss: " + results.history.loss[0]);
-            console.log("final loss: " + results.history.loss[results.history.loss.length - 1]);
-            console.log("trainning is complete");
+
+        tf.tidy(function () {
+
+            model.fit(xs, ys, options).then(function (results) {
+                // console.dir(results.history.loss, { 'maxArrayLength': null });
+
+                tf.dispose(xs);
+                tf.dispose(ys);
+                
+
+                console.log("start loss: " + results.history.loss[0]);
+                console.log("final loss: " + results.history.loss[results.history.loss.length - 1]);
+                console.log("trainning is complete");
 
 
-            // prediction...
-            origin = MergeHistoricData(origin, mergedata);
+                // prediction...
+                origin = MergeHistoricData(origin, mergedata);
 
-            const xsPredict = tf.tensor2d([
-                origin[origin.length - 1]
-            ]);
+                const xsPredict = tf.tensor2d([
+                    origin[origin.length - 1]
+                ]);
 
-            let ysPredict = model.predict(xsPredict)
+                let ysPredict = model.predict(xsPredict)
 
-            // ysPredict.print();
-            var PredictResults = [];
+                tf.dispose(model);
 
-            PredictResults = {
-                BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
-                HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
-                SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
-            }
+                // ysPredict.print();
+                var PredictResults = [];
 
-
-
-
-            var AIDecision = Math.max(PredictResults.BuyProb, PredictResults.HoldProb, PredictResults.SellProb);
-            PredictResults["dateCreated"] = dateCreated;
-            PredictResults["CurrentPrice"] = CurrentPrice;
+                PredictResults = {
+                    BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
+                    HoldProb: Math.round(ysPredict.dataSync()[1] * 1000) * 100 / 1000,
+                    SellProb: Math.round(ysPredict.dataSync()[2] * 1000) * 100 / 1000,
+                }
 
 
-            if (AIDecision === PredictResults.BuyProb) {
-                console.log("It's time to buy");
-                PredictResults["AIDecision"] = "Buy";
-                PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
-                PredictResults["BuyIfPrice"] = CurrentPrice;
 
 
-            }
-            else if (AIDecision === PredictResults.HoldProb) {
-                console.log("It's time to Hold");
-                PredictResults["AIDecision"] = "Hold";
-                PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
-                PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
-            }
-            else {
-                console.log("It's time to Sell");
-                PredictResults["AIDecision"] = "Sell";
-                PredictResults["SellIfPrice"] = CurrentPrice;
-                PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
-            }
+                var AIDecision = Math.max(PredictResults.BuyProb, PredictResults.HoldProb, PredictResults.SellProb);
+                PredictResults["dateCreated"] = dateCreated;
+                PredictResults["CurrentPrice"] = CurrentPrice;
 
-            console.log(PredictResults);
 
-            fs.readFile("./public/assets/AIDecision.json", function (err, fileData) {
-                var json = JSON.parse(fileData);
-                json.push(PredictResults);
-                var jsonContent = JSON.stringify(json);
-                fs.writeFile("./public/assets/AIDecision.json", jsonContent, err => {
-                    if (err) throw err;
-                    console.log("data written to file");
+                if (AIDecision === PredictResults.BuyProb) {
+                    console.log("It's time to buy");
+                    PredictResults["AIDecision"] = "Buy";
+                    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
+                    PredictResults["BuyIfPrice"] = CurrentPrice;
+
+
+                }
+                else if (AIDecision === PredictResults.HoldProb) {
+                    console.log("It's time to Hold");
+                    PredictResults["AIDecision"] = "Hold";
+                    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
+                    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
+                }
+                else {
+                    console.log("It's time to Sell");
+                    PredictResults["AIDecision"] = "Sell";
+                    PredictResults["SellIfPrice"] = CurrentPrice;
+                    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
+                }
+
+                console.log(PredictResults);
+
+                fs.readFile("./public/assets/AIDecision.json", function (err, fileData) {
+                    var json = JSON.parse(fileData);
+                    json.push(PredictResults);
+                    var jsonContent = JSON.stringify(json);
+                    fs.writeFile("./public/assets/AIDecision.json", jsonContent, err => {
+                        if (err) throw err;
+                        console.log("data written to file");
+                    });
                 });
+
+                // console.log(ysPredict.data().then(function (results) {
+                //     console.log(results);
+                // }));
+
+
+
             });
-
-            // console.log(ysPredict.data().then(function (results) {
-            //     console.log(results);
-            // }));
-
-        });
+        })
     }
 
     console.log(tf.memory().numTensors);
+
 };
 // console.log(xdata[xdata.length-1].length);
 // console.log(origin[origin.length - 1].length);
