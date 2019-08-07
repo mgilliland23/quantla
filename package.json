@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/costargc/quantla#readme",
   "dependencies": {
+    "@tensorflow/tfjs": "^1.2.6",
     "atob": "^2.1.2",
     "base-64": "^0.1.0",
     "cli-table": "^0.3.1",
