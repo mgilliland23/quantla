@@ -1,7 +1,7 @@
 // npm install @tensorflow/tfjs
 const fs = require("fs");
 var tf = require('@tensorflow/tfjs');
-
+var jsonData = require('./public/assets/data.json');
 
 runTensorFlowAnalysis();
 setInterval(runTensorFlowAnalysis, 300000);
@@ -11,7 +11,7 @@ function runTensorFlowAnalysis() {
     // for some reason the prediction is running multiple times with the same data
 
     console.log("tensorflow prediction is running...");
-    let jsonData = require('./public/assets/data.json');
+    jsonData = require('./public/assets/data.json');
     // TODO: change the data creation to make it generict if we add a new data source for the model.
     var xdata = [];
     var ydata = [];
@@ -227,6 +227,7 @@ function runTensorFlowAnalysis() {
             let ysPredict = model.predict(xsPredict)
 
             // ysPredict.print();
+            var PredictResults = [];
 
             PredictResults = {
                 BuyProb: Math.round(ysPredict.dataSync()[0] * 1000) * 100 / 1000,
