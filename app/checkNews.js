@@ -3,18 +3,18 @@ var convert = require("xml-js");
 var Promise = require("bluebird");
 var request = Promise.promisifyAll(require("request"), { multiArgs: true });
 
-var News = function(datetime) {
+var News = function (datetime) {
   //this is an async function that grabs news articles and then analyzes them
   //We use Google News API to grab the news articles
   //And IBM Watson is used to analyze the articles and determine if they are (+) or (-) from -1 -> 1
-  this.checkNews = new Promise(function(resolve, reject) {
+  this.checkNews = new Promise(function (resolve, reject) {
     var newsArr = [];
     var queryURL =
       "https://news.google.com/rss/search?q=" +
       "BTC Bitcoin news when:1h" +
       "+ &hl=en-US&gl=US&ceid=US:en";
 
-    request(queryURL, { json: true }, function(error, response, body) {
+    request(queryURL, { json: true }, function (error, response, body) {
       var results = JSON.parse(
         convert.xml2json(body, { compact: true, spaces: 4 })
       );
@@ -53,8 +53,14 @@ var News = function(datetime) {
           json: true
         };
 
-        request(options, function(err, res, watsondata) {
+        request(options, function (err, res, watsondata) {
           if (error) throw error;
+
+          // TODO: error appeared that stopped the app!!!  
+          // if (watsondata.results != undefined) {
+          // ^
+          // TypeError: Cannot read property 'results' of undefined
+
           if (watsondata.results != undefined) {
             console.log("retrieved analysis for news article");
 
