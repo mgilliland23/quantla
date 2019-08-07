@@ -11,8 +11,8 @@ var News = function(datetime) {
     var newsArr = [];
     var queryURL =
       "https://news.google.com/rss/search?q=" +
-      "BTC Bitcoin" +
-      "+ news&hl=en-US&gl=US&ceid=US:en";
+      "BTC Bitcoin news when:1h" +
+      "+ &hl=en-US&gl=US&ceid=US:en";
 
     request(queryURL, { json: true }, function(error, response, body) {
       var results = JSON.parse(
