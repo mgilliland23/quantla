@@ -22,27 +22,8 @@ var lineFormatter = function(cell, formatterParams, onRendered) {
 
 PricesConfigData = [
   { title: "time", field: "time", align: "center", width: 190 },
-  { title: "Current Price", field: "currPrice", align: "center" },
-  {
-    title: "Price var",
-    field: "PriceVar",
-    align: "center",
-    formatter: function(cell, formatterParams) {
-      var value = cell.getValue();
-      if (value < 0) {
-        return (
-          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
-        );
-      } else {
-        return (
-          "<span style='color:#13f113; font-weight:bold'>" +
-          "+" +
-          value +
-          "</span>"
-        );
-      }
-    }
-  },
+  { title: "Current Price (Ask)", field: "currPrice", align: "center" },
+  { title: "Bid x Ask Spread", field: "Spread", align: "center" },
   {
     title: "10min Price var",
     field: "10PriceVar",
@@ -63,12 +44,7 @@ PricesConfigData = [
       }
     }
   },
-  {
-    title: "Price Trend",
-    field: "linePlot",
-    width: 160,
-    formatter: lineFormatter
-  }
+  { title: "volume", field: "volume", align: "center" },
 ];
 
 FundConfigData = [

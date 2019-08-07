@@ -15,21 +15,18 @@ console.log("\033[2J");
 
 var admin = require("firebase-admin");
 
-// var serviceAccount = require("./quantla-firebase-adminsdk-o0jvh-e71456c4b6.json");
-
 var serviceAccount = {
   "type": "service_account",
   "project_id": "quantla",
-  "private_key_id": "e71456c4b68574e10a16b94b3ee97eb5497e29f1",
-  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQDfGe8QcEYzq4ng\nu2f7yU7E/sm+8MERV5YZD43+s048HNdeJRUrMV0SLtQMfKZif4OvWcOymloPYSbK\nGF3kaaqIfnpADZmEWXurFNQV0UZi++BKDL16UwLqH8MYZGuDlI8XtiLjoBKP9H+W\n+YwN9gVNay3skeWPEOwpgfsCvksshg3Q02tkfwwdJbaNUK5w5+ETOkiR51a/JYr1\nS0Mw4lukGHPdElP7XxVT25NQx6tAB5sYBQkxQpUEg5r6Fadh0iw6kw6QLIpI2fb0\nxZjUGO+7pExu2gv61wJId9YPreRq4L2k0/kq/pZIvCpbWJXh970CBsgBnNNAYNTE\n0iDlH4dlAgMBAAECggEACM5KfhTcZH41ETp8ancB5asj1eZFTJSvLzqKsX6szBkc\nVBI1IXEPmh/gjUSfQZyEW1e47nQCsYA1an0nOZSFH2GUnDIdONjaVYCbNWg+9bm4\n2tthYDJmF00dI3mVN8qVkktFWcQv72AoaBJd+ZAYGfvswl1o2OqDU8kWWf+eUnm+\nKpgJmZV15+972S7wwJtjy79T6y3YqXeAM117R8825sKS19gd1TGZ3t2kJk1w10Tm\nH2s6HdiFFv7m3oprPgxKC8fJCT501M9Qzx5Opz5hjGHAA3kUZvy/9JigyOx3zv7b\neowYO0TNMcUlVHJ1JOWsqS7mcRYKonW5WYUBhNt0uQKBgQD+9ifWKHOxrzcO7U/s\nzePLrabKKVN54Z5U+JoFrvghOYiMy9S9VA4JHHNkINYi5tVuxr9EZNH3ZEYo7qfM\n7F971tTKv5q+w2wy3lxBz0L1n+4bicML+reyDbsM7dguN0ZYjpsqOSFFUUHdjYo8\nyJL61AHeP+3o0sw738gdEyG4DQKBgQDgAo7dGLUhVh37W7zF7+X7mkNjozagvMEd\nNZq8YLAKRZnQUDYsW7aUkej8pWHek4/njeEXmeEryfR4tK6GN6QDo0VyGmYYGC4+\nKyIhvta9ZDML+7gUTnz9glsRkfApgByvnhhFP01TFl7zZ19l9FL2sfvxv9qjBiZ9\n5wILWvAeuQKBgQCuRJwoAlBJ5ARTHJvjtTr9jb0SMzsOdMtfMuk790M8mnGeIvhP\nTHOngJ3Sk6sqAfNim1BCtFLbsNtPwQhKxknhgI7D4kEoILUE8/3FMaCH+P+sLPZ3\narBCcKYoiS2ZMUjQ4PBn5NK76XWGtOcG8uWbsmtweOvplqPoTOYgEWKbxQKBgD6F\n+EIVx1iKpMuni0Tj9JkJMY353CF5DZ2NfKbfhcMYMhpGiRhQcOF+6Dy8HFj3bs7+\ndrkTphmGwMmABMZJeWnahGOYoq5O8XlAqMIqdd1evjC2DWb9kT1gyPJafWHX9CnA\nQp3xUS/DqrTdQW8/hnh8rQmItwmRieTSOWvZ8fNhAoGBAL1AZPElW5AFkUwNxaML\nIRgyI8WPXFQZ4IFOAPOyy1gy6nIV0Z/AoeiLVOsHrAaK67sRNXlqtLvuZGS7u/lJ\n2Kuxfc+miT9yltxMX198Hiq14txe2Pi+fIBHURerHUuOHjmYvvvp7H+pZQfwqNgu\nlXsXfmkW4wXjCkA5/uZiyaQn\n-----END PRIVATE KEY-----\n",
-  "client_email": "firebase-adminsdk-o0jvh@quantla.iam.gserviceaccount.com",
-  "client_id": "115971399577433796244",
-  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
-  "token_uri": "https://oauth2.googleapis.com/token",
-  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
-  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-o0jvh%40quantla.iam.gserviceaccount.com"
+  "private_key_id": atob("ZTcxNDU2YzRiNjg1NzRlMTBhMTZiOTRiM2VlOTdlYjU0OTdlMjlmMQ=="),
+  "private_key": atob("LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JSUV2Z0lCQURBTkJna3Foa2lHOXcwQkFRRUZBQVNDQktnd2dnU2tBZ0VBQW9JQkFRRGZHZThRY0VZenE0bmcKdTJmN3lVN0Uvc20rOE1FUlY1WVpENDMrczA0OEhOZGVKUlVyTVYwU0x0UU1mS1ppZjRPdldjT3ltbG9QWVNiSwpHRjNrYWFxSWZucEFEWm1FV1h1ckZOUVYwVVppKytCS0RMMTZVd0xxSDhNWVpHdURsSThYdGlMam9CS1A5SCtXCitZd045Z1ZOYXkzc2tlV1BFT3dwZ2ZzQ3Zrc3NoZzNRMDJ0a2Z3d2RKYmFOVUs1dzUrRVRPa2lSNTFhL0pZcjEKUzBNdzRsdWtHSFBkRWxQN1h4VlQyNU5ReDZ0QUI1c1lCUWt4UXBVRWc1cjZGYWRoMGl3Nmt3NlFMSXBJMmZiMAp4WmpVR08rN3BFeHUyZ3Y2MXdKSWQ5WVByZVJxNEwyazAva3EvcFpJdkNwYldKWGg5NzBDQnNnQm5OTkFZTlRFCjBpRGxINGRsQWdNQkFBRUNnZ0VBQ001S2ZoVGNaSDQxRVRwOGFuY0I1YXNqMWVaRlRKU3ZMenFLc1g2c3pCa2MKVkJJMUlYRVBtaC9nalVTZlFaeUVXMWU0N25RQ3NZQTFhbjBuT1pTRkgyR1VuRElkT05qYVZZQ2JOV2crOWJtNAoydHRoWURKbUYwMGRJM21WTjhxVmtrdEZXY1F2NzJBb2FCSmQrWkFZR2Z2c3dsMW8yT3FEVThrV1dmK2VVbm0rCktwZ0ptWlYxNSs5NzJTN3d3SnRqeTc5VDZ5M1lxWGVBTTExN1I4ODI1c0tTMTlnZDFUR1ozdDJrSmsxdzEwVG0KSDJzNkhkaUZGdjdtM29wclBneEtDOGZKQ1Q1MDFNOVF6eDVPcHo1aGpHSEFBM2tVWnZ5LzlKaWd5T3gzenY3Ygplb3dZTzBUTk1jVWxWSEoxSk9Xc3FTN21jUllLb25XNVdZVUJoTnQwdVFLQmdRRCs5aWZXS0hPeHJ6Y083VS9zCnplUExyYWJLS1ZONTRaNVUrSm9GcnZnaE9ZaU15OVM5VkE0SkhITmtJTllpNXRWdXhyOUVaTkgzWkVZbzdxZk0KN0Y5NzF0VEt2NXErdzJ3eTNseEJ6MEwxbis0YmljTUwrcmV5RGJzTTdkZ3VOMFpZanBzcU9TRkZVVUhkallvOAp5Skw2MUFIZVArM28wc3c3MzhnZEV5RzREUUtCZ1FEZ0FvN2RHTFVoVmgzN1c3ekY3K1g3bWtOam96YWd2TUVkCk5acThZTEFLUlpuUVVEWXNXN2FVa2VqOHBXSGVrNC9uamVFWG1lRXJ5ZlI0dEs2R042UURvMFZ5R21ZWUdDNCsKS3lJaHZ0YTlaRE1MKzdnVVRuejlnbHNSa2ZBcGdCeXZuaGhGUDAxVEZsN3paMTlsOUZMMnNmdnh2OXFqQmlaOQo1d0lMV3ZBZXVRS0JnUUN1Ukp3b0FsQko1QVJUSEp2anRUcjlqYjBTTXpzT2RNdGZNdWs3OTBNOG1uR2VJdmhQClRIT25nSjNTazZzcUFmTmltMUJDdEZMYnNOdFB3UWhLeGtuaGdJN0Q0a0VvSUxVRTgvM0ZNYUNIK1Arc0xQWjMKYXJCQ2NLWW9pUzJaTVVqUTRQQm41Tks3NlhXR3RPY0c4dVdic210d2VPdnBscVBvVE9ZZ0VXS2J4UUtCZ0Q2RgorRUlWeDFpS3BNdW5pMFRqOUprSk1ZMzUzQ0Y1RFoyTmZLYmZoY01ZTWhwR2lSaFFjT0YrNkR5OEhGajNiczcrCmRya1RwaG1Hd01tQUJNWkplV25haEdPWW9xNU84WGxBcU1JcWRkMWV2akMyRFdiOWtUMWd5UEphZldIWDlDbkEKUXAzeFVTL0RxclRkUVc4L2huaDhyUW1JdHdtUmllVFNPV3ZaOGZOaEFvR0JBTDFBWlBFbFc1QUZrVXdOeGFNTApJUmd5SThXUFhGUVo0SUZPQVBPeXkxZ3k2bklWMFovQW9laUxWT3NIckFhSzY3c1JOWGxxdEx2dVpHUzd1L2xKCjJLdXhmYyttaVQ5eWx0eE1YMTk4SGlxMTR0eGUyUGkrZklCSFVSZXJIVXVPSGptWXZ2dnA3SCtwWlFmd3FOZ3UKbFhzWGZta1c0d1hqQ2tBNS91Wml5YVFuCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0K"),
+  "client_email": atob("ZmlyZWJhc2UtYWRtaW5zZGstbzBqdmhAcXVhbnRsYS5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbQ=="),
+  "client_id": atob("MTE1OTcxMzk5NTc3NDMzNzk2MjQ0"),
+  "auth_uri": atob("aHR0cHM6Ly9hY2NvdW50cy5nb29nbGUuY29tL28vb2F1dGgyL2F1dGg="),
+  "token_uri": atob("aHR0cHM6Ly9vYXV0aDIuZ29vZ2xlYXBpcy5jb20vdG9rZW4="),
+  "auth_provider_x509_cert_url": atob("aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vb2F1dGgyL3YxL2NlcnRz"),
+  "client_x509_cert_url": atob("aHR0cHM6Ly93d3cuZ29vZ2xlYXBpcy5jb20vcm9ib3QvdjEvbWV0YWRhdGEveDUwOS9maXJlYmFzZS1hZG1pbnNkay1vMGp2aCU0MHF1YW50bGEuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20=")
 };
-
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -53,6 +50,8 @@ function runAnalysis() {
   var getNews = news.checkNews.then(
     function (result) {
       //Write to DB
+      result.articles[0]["dateCreated"] = datetime;
+
       db.collection("news")
         .doc(datetime)
         .set({
@@ -114,7 +113,7 @@ function writeToFile(APIdata) {
     var json = JSON.parse(fileData);
     json.push(APIdata);
     var jsonContent = JSON.stringify(json);
-    fs.writeFile("./public/asset/sdata.json", jsonContent, err => {
+    fs.writeFile("./public/assets/data.json", jsonContent, err => {
       if (err) throw err;
       console.log("data written to file");
     });

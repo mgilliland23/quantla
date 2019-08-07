@@ -1,234 +1,66 @@
 TradeData = [
-  {
-    time: "1",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: "open"
-  },
-  {
-    time: "2",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: "open"
-  },
-  {
-    time: "3",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "4",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "5",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "6",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "7",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "8",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "9",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "10",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "11",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "12",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "1",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "2",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "3",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "4",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "5",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "6",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "7",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "8",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "9",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "10",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "11",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: -100
-  },
-  {
-    time: "12",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  },
-  {
-    time: "13",
-    currprice: 10000,
-    indication: "Buy",
-    BPrice: 10000,
-    SPrice: 10000,
-    pnl: 100
-  }
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" },
+  { time: "1", currprice: 10000, indication: "Buy", BPrice: 10000, SPrice: 10000, pnl: "open" }
 ];
 
 var newsTableData = [];
 var pricesTableData = [];
 var fundamentalsTableData = [];
 
-$.getJSON("/assets/data.json", function(json) {
+$.getJSON("/assets/data.json", function (json) {
   //console.log(json); // this will show the info it in firebug console
-  json.forEach(function(entry) {
-    console.log(entry);
+  json.forEach(function (entry) {
+    // console.log(entry[0]);
 
     pricesTableData.push(buildPriceTable(entry[0]));
     fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
     newsTableData.push(buildNewsTable(entry[2]));
   });
-  createTable("#prices-table", pricesTableData, PricesConfigData);
-  createTable("#fund-table", fundamentalsTableData, FundConfigData);
-  createTable("#news-table", newsTableData, NewsConfigData);
+
+  createTable("#prices-table", orderTable(pricesTableData).slice(0,30), PricesConfigData);
+  createTable("#fund-table", orderTable(fundamentalsTableData).slice(0,30), FundConfigData);
+  createTable("#news-table", orderTable(newsTableData).slice(0,30), NewsConfigData);
 });
 
+function orderTable(data) {
+  var ordered = [];
+  for (i = 0; i < data.length; i++) {
+    ordered[i] = data[data.length - i];
+  }
+  return ordered
+}
+
 function buildPriceTable(price) {
-  console.log(price);
+  // console.log(price);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(price.dateCreated));
   var pricesTableRow = {
     time: d,
     currPrice: price.currentPriceAsks,
-    PriceVar: "~",
-    "10PriceVar": price.tenMinPriceVariation
+    Spread: price.currentPriceAsks - price.currentPriceBids,
+    "10PriceVar": price.tenMinPriceVariation * 1,
+    volume: price.currentVolume
   };
+
+
   return pricesTableRow;
 }
 
@@ -249,11 +81,13 @@ function buildFundamentalsTable(fundamental) {
 }
 
 function buildNewsTable(news) {
-  console.log(news);
+  // console.log(news);
+  var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
+  d.setUTCSeconds(parseInt(news.articles[0].dateCreated));
   var article = news.articles[0];
 
   var newsTableRow = {
-    time: article.date,
+    time: d,
     "news title": article.title,
     link: article.url,
     "score-link": article.score
