@@ -1,14 +1,14 @@
 // npm install @tensorflow/tfjs
 const fs = require("fs");
 var tf = require('@tensorflow/tfjs');
-let jsonData = require('./public/assets/data.json');
+
 
 runTensorFlowAnalysis();
 setInterval(runTensorFlowAnalysis, 300000);
 
 function runTensorFlowAnalysis() {
     console.log("tensorflow prediction is running...");
-
+    let jsonData = require('./public/assets/data.json');
     // TODO: change the data creation to make it generict if we add a new data source for the model.
     var xdata = [];
     var ydata = [];

@@ -157,31 +157,31 @@ TradeConfigData = [
   { title: "current price", field: "currprice", align: "center" },
   { title: "Its time to", field: "indication", align: "center" },
   { title: "Buy if Price", field: "BPrice", align: "center" },
-  { title: "Sell if Price", field: "SPrice", align: "center" },
-  {
-    title: "P/L",
-    field: "pnl",
-    align: "center",
-    formatter: function(cell, formatterParams) {
-      var value = cell.getValue();
-      if (value * 1 < 0) {
-        return (
-          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
-        );
-      } else if (value * 1 >= 0) {
-        return (
-          "<span style='color:#13f113; font-weight:bold'>" +
-          "+" +
-          value +
-          "</span>"
-        );
-      } else {
-        return (
-          "<span style='color:yellow; font-weight:bold'>" +
-          "open order" +
-          "</span>"
-        );
-      }
-    }
-  }
+  { title: "Sell if Price", field: "SPrice", align: "center" }
+  // {
+  //   title: "P/L",
+  //   field: "pnl",
+  //   align: "center",
+  //   formatter: function(cell, formatterParams) {
+  //     var value = cell.getValue();
+  //     if (value * 1 < 0) {
+  //       return (
+  //         "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+  //       );
+  //     } else if (value * 1 >= 0) {
+  //       return (
+  //         "<span style='color:#13f113; font-weight:bold'>" +
+  //         "+" +
+  //         value +
+  //         "</span>"
+  //       );
+  //     } else {
+  //       return (
+  //         "<span style='color:yellow; font-weight:bold'>" +
+  //         "open order" +
+  //         "</span>"
+  //       );
+  //     }
+  //   }
+  // }
 ];
