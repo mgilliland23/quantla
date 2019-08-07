@@ -11,41 +11,48 @@ firebase.auth().onAuthStateChanged(function (user) {
     (self.location.href = "invite.html"), event.preventDefault();
   }
 });
+grabproposedtradedata();
 
+setInterval(function () {
+  grabproposedtradedata();
+  console.log("test");
+}, 30000);
 
-$.getJSON("./assets/AIDecision.json", function (fileData) {
-  // console.log(fileData[fileData.length - 1]);
-  // console.log(fileData[fileData.length - 1].CurrentPrice);
-  // console.log(fileData[fileData.length - 1].AIDecision);
+function grabproposedtradedata() {
 
-  $('#curr_price').text(
-    (Math.round(fileData[fileData.length - 1].CurrentPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-  );
+  $.getJSON("./assets/AIDecision.json", function (fileData) {
+    // console.log(fileData[fileData.length - 1]);
+    // console.log(fileData[fileData.length - 1].CurrentPrice);
+    // console.log(fileData[fileData.length - 1].AIDecision);
 
-  $('#bif_price').text(
-    (Math.round(fileData[fileData.length - 1].BuyIfPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-  );
-  $('#sif_price').text(
-    (Math.round(fileData[fileData.length - 1].SellIfPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-  );
+    $('#curr_price').text(
+      (Math.round(fileData[fileData.length - 1].CurrentPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    );
 
-  $('#indication').text(fileData[fileData.length - 1].AIDecision);
+    $('#bif_price').text(
+      (Math.round(fileData[fileData.length - 1].BuyIfPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    );
+    $('#sif_price').text(
+      (Math.round(fileData[fileData.length - 1].SellIfPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    );
 
-  if (fileData[fileData.length - 1].AIDecision == "Buy") {
-    $("#indication_img").attr('class', 'fas fa-arrow-circle-up');
-    $("#indication_img").css("color", "greenyellow");
-    $("#indication").css("color", "greenyellow");
-  }
-  else if (fileData[fileData.length - 1].AIDecision == "Sell") {
-    $("#indication_img").attr('class', 'fas fa-arrow-circle-down');
-    $("#indication_img").css("color", "red");
-    $("#indication").css("color", "red");
-  }
-  else {
-    $("#indication_img").attr('class', 'fas fa-exchange-alt');
-    $("#indication_img").css("color", "yellow");
-    $("#indication").css("color", "yellow");
-  }
+    $('#indication').text(fileData[fileData.length - 1].AIDecision);
 
-});
+    if (fileData[fileData.length - 1].AIDecision == "Buy") {
+      $("#indication_img").attr('class', 'fas fa-arrow-circle-up');
+      $("#indication_img").css("color", "greenyellow");
+      $("#indication").css("color", "greenyellow");
+    }
+    else if (fileData[fileData.length - 1].AIDecision == "Sell") {
+      $("#indication_img").attr('class', 'fas fa-arrow-circle-down');
+      $("#indication_img").css("color", "red");
+      $("#indication").css("color", "red");
+    }
+    else {
+      $("#indication_img").attr('class', 'fas fa-exchange-alt');
+      $("#indication_img").css("color", "yellow");
+      $("#indication").css("color", "yellow");
+    }
 
+  });
+}
