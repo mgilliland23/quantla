@@ -56,7 +56,7 @@ function buildPriceTable(price) {
     time: d,
     currPrice: price.currentPriceAsks,
     Spread: price.currentPriceAsks - price.currentPriceBids,
-    "10PriceVar": price.tenMinPriceVariation * 1,
+    "10PriceVar": Math.round(price.tenMinPriceVariation * 10000)/10000,
     volume: price.currentVolume
   };
 
@@ -71,11 +71,11 @@ function buildFundamentalsTable(fundamental) {
   var fundamentalsTableRow = {
     time: d,
     hash: fundamental.hashRate,
-    hashVar: fundamental.hashrateVariation,
+    hashVar: Math.round(fundamental.hashrateVariation * 10000)/10000,
     trans: fundamental.transactionFee,
-    transVar: fundamental.transactionFeeVariation,
+    transVar: Math.round(fundamental.transactionFeeVariation * 10000)/10000,
     costT: fundamental.costPerTransaction,
-    costTVar: fundamental.costPerTransactionVariation
+    costTVar: Math.round(fundamental.costPerTransactionVariation * 10000)/10000,
   };
   return fundamentalsTableRow;
 }

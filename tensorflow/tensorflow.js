@@ -1,96 +1,114 @@
 // npm install @tensorflow/tfjs
 var tf = require('@tensorflow/tfjs');
-var firebase = require("firebase");
-var admin = require("firebase-admin");
-var atob = require('atob');
 
-var firebaseConfig = {
-    apiKey: atob("QUl6YVN5QXhFVnMzQVVVLTNWVmhWX0tQdmVkSmw0U2pDdC1XVkFJ"),
-    authDomain: atob("cXVhbnRsYS5maXJlYmFzZWFwcC5jb20="),
-    databaseURL: atob("aHR0cHM6Ly9xdWFudGxhLmZpcmViYXNlaW8uY29t"),
-    projectId: "quantla",
-    storageBucket: atob("cXVhbnRsYS5hcHBzcG90LmNvbQ=="),
-    messagingSenderId: atob("NzAyNjA0ODczMTU5"),
-    appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
-};
+let jsonData = require('../public/assets/data.json');
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
+var xdata = [];
+var ydata = [];
+var x0 = [];
+var x1 = [];
+var x2 = [];
+var x3 = [];
+var x4 = [];
+var x5 = [];
+var x6 = [];
+var x7 = [];
+var x8 = [];
+var x9 = [];
+var x10 = [];
+var y0 = [];
 
-// console.log(db.collection('prices').get());
+jsonData.forEach(function (entry) {
+    x0.push(entry[2].articles[0].score);
+    x1.push(entry[0].currentPriceAsks);
+    x2.push(entry[0].currentPriceAsks - entry[0].currentPriceBids);
+    x3.push(entry[0].tenMinPriceVariation);
+    x4.push(entry[0].currentVolume);
+    x5.push(entry[1].hashRate);
+    x6.push(entry[1].hashrateVariation);
+    x7.push(entry[1].transactionFee);
+    x8.push(entry[1].transactionFeeVariation);
+    x9.push(entry[1].costPerTransaction);
+    x10.push(entry[1].costPerTransactionVariation);
+    y0.push(entry[0].tenMinPriceVariation);
+});
 
-var pricesdata = [];
+// console.log(Math.max.apply(Math, x0));
+// console.log(Math.min.apply(Math, x0));
 
-// db.collection('prices').limit(288).get().then(function (snapshot) {
-//     snapshot.docs.forEach(function (doc) {
-//         pricesdata = doc.data();
+var BuySignal = y0.sort()[y0.length - Math.floor((y0.length / 3))];
+var SellSignal = y0.sort()[Math.floor((y0.length / 3))];
 
-//         console.log(pricesdata.length);
-//     })
-// });
+// console.log(y0.sort());
+// console.log(SellSignal);
+// console.log(BuySignal);
+
+jsonData.forEach(function (entry) {
+    // console.log(entry[0]);
+    // xdata.push(entry[1]);
+    // xdata.push(entry[2].articles[0].score);
+
+    xdata.push(
+        [
+            (entry[2].articles[0].score - Math.min.apply(Math, x0)) / (Math.max.apply(Math, x0) - Math.min.apply(Math, x0) * 0.99999999999),
+            (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) / (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
+            (entry[0].currentPriceAsks - entry[0].currentPriceBids - Math.min.apply(Math, x2)) / (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
+            (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) / (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
+            (entry[0].currentVolume - Math.min.apply(Math, x4)) / (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
+            (entry[1].hashRate - Math.min.apply(Math, x5)) / (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
+            (entry[1].hashrateVariation - Math.min.apply(Math, x6)) / (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
+            (entry[1].transactionFee - Math.min.apply(Math, x7)) / (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
+            (entry[1].transactionFeeVariation - Math.min.apply(Math, x8)) / (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
+            (entry[1].costPerTransaction - Math.min.apply(Math, x9)) / (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
+            (entry[1].costPerTransactionVariation - Math.min.apply(Math, x10)) / (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
+        ]
+    );
+
+    if (entry[0].tenMinPriceVariation >= BuySignal) {
+        ydata.push([1, 0, 0]);
+        // ydata.push("Buy");
+    }
+    else if (entry[0].tenMinPriceVariation <= SellSignal) {
+        ydata.push([0, 0, 1]);
+        // ydata.push("Sell");
+    }
+    else {
+        ydata.push([0, 1, 0]);
+        // ydata.push("Hold");
+    }
+
+    // fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
+    // newsTableData.push(buildNewsTable(entry[2]));
+});
 
 
+// shift remove beginning
+ydata.shift();
+ydata.shift();
 
+// pop remove final
+xdata.pop();
+xdata.pop();
 
-// var ref = database.collection('prices');
+// console.log(xdata[xdata.length-1]);
+// console.log(ydata[ydata.length-1]);
 
-// console.log(ref);
+let model;
 
-// firebase.getCollections().then(collections => {
-//     for (let collection of collections) {
-//         console.log(`Found collection with id: ${collection.id}`);
-//     }
-// });
+// console.log(labelsTensor.print());
 
-
-
-
-
-// var xdata = [];
-// var ydata = [];
-
-// let model;
-
-// // dummy data... I'm just constructing xdata and ydata random here.. xdata is the inputs and ydata is Buy/Sell/Hold
-// for (i = 0; i < 144; i++) {
-
-//     xdata[i] = [
-//         Math.random(),
-//         Math.random(),
-//         Math.random(),
-//         Math.random()
-//     ];
-
-//     randstate = Math.floor(Math.random() * (1 - (-1) + 1)) + (-1);
-
-//     if (randstate === -1) {
-//         ydata[i] = 0; //Sell
-//     } else if (randstate === 0) {
-//         ydata[i] = 1; //Hold
-//     }
-//     else {
-//         ydata[i] = 2; //Buy
-//     };
-
-// };
-// // dummy data end
-
-// labelsTensor = tf.tensor1d(ydata, 'int32');
-// // console.log(labelsTensor.print());
-
-// xs = tf.tensor2d(xdata);
-// // oneHot only works with numbers... need to convert text to num in our case Sell==0 ; Hold == 1; Buy == 2
-// ys = tf.oneHot(labelsTensor, 3);
+xs = tf.tensor2d(xdata);
+ys = tf.tensor2d(ydata);
 
 // labelsTensor.dispose();
 
-// // console.log(xs.shape);
-// // console.log(ys.shape);
+console.log(xs.shape);
+console.log(ys.shape);
 
-// // console.log(xs.print());
-// // console.log(ys.print());
+// console.log(xs.print());
+// console.log(ys.print());
 
-// // setting up the model... input >> hidden >> output
+// setting up the model... input >> hidden >> output
 // model = tf.sequential();
 
 // let hidden = tf.layers.dense({
