@@ -80,7 +80,7 @@ function runTensorFlowAnalysis() {
     SellSignal = y0.sort()[Math.floor((y0.length / 3))];
     CurrentPrice = x1[x1.length - 1] * 1;
     dateCreated = t0[t0.length - 1] * 1;
-    console.log(dateCreated);
+    // console.log(dateCreated);
     // console.log(tf.memory().numTensors);
 
 
