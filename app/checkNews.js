@@ -18,12 +18,20 @@ var News = function (datetime) {
       var results = JSON.parse(
         convert.xml2json(body, { compact: true, spaces: 4 })
       );
-      console.log()
+      console.log();
+
+
+
 
       count = 0;
       found_news = 1;
 
       for (var i = 0; i < found_news; i++) {
+
+        if (results.rss.channel.item[i] == undefined) {
+          console.log(colors.inverse("this is a very bad error!"));
+        }
+
         var options = {
           url:
             "https://cors-anywhere.herokuapp.com/https://natural-language-understanding-demo.ng.bluemix.net/api/analyze",
@@ -96,7 +104,8 @@ var News = function (datetime) {
           }
           else {
 
-            console.log(options.headers);
+            // console.log(options.headers);
+            console.log(colors.inverse("can't connect to IBM"));
             var newsArticle = {
               url: options.body.url,
               score: 0,
