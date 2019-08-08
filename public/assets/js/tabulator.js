@@ -10,6 +10,30 @@ function grabtabulatordata() {
   var pricesTableData = [];
   var fundamentalsTableData = [];
 
+  $.get("api/news", function(data) {
+    console.log(data);
+    data.forEach(function(entry) {
+      newsTableData.push(buildNewsTable(entry));
+    });
+    createTable(
+      "#news-table",
+      orderTable(newsTableData).slice(0, 30),
+      NewsConfigData
+    );
+  });
+
+  $.get("api/prices", function(data) {
+    console.log(data);
+    data.forEach(function(entry) {
+      pricesTableData.push(buildPriceTable(entry));
+    });
+    createTable(
+      "#prices-table",
+      orderTable(pricesTableData).slice(0, 30),
+      PricesConfigData
+    );
+  });
+
   $.getJSON("./assets/AIDecision.json", function(json) {
     //console.log(json); // this will show the info it in firebug console
     json.forEach(function(entry) {
@@ -30,25 +54,12 @@ function grabtabulatordata() {
     json.forEach(function(entry) {
       // console.log(entry[0]);
 
-      pricesTableData.push(buildPriceTable(entry[0]));
       fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
-      newsTableData.push(buildNewsTable(entry[2]));
     });
-
-    createTable(
-      "#prices-table",
-      orderTable(pricesTableData).slice(0, 30),
-      PricesConfigData
-    );
     createTable(
       "#fund-table",
       orderTable(fundamentalsTableData).slice(0, 30),
       FundConfigData
-    );
-    createTable(
-      "#news-table",
-      orderTable(newsTableData).slice(0, 30),
-      NewsConfigData
     );
   });
 }

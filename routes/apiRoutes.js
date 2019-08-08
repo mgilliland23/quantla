@@ -50,6 +50,8 @@ module.exports = function(app) {
         });
         priceObjs.push(priceObj);
       });
+      console.log("prices from db: ");
+      console.log(priceObjs);
       res.json(priceObjs);
     });
   });
