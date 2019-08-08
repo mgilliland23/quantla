@@ -11,6 +11,7 @@ firebase.auth().onAuthStateChanged(function (user) {
     (self.location.href = "invite.html"), event.preventDefault();
   }
 });
+
 grabproposedtradedata();
 
 setInterval(function () {
@@ -21,7 +22,7 @@ setInterval(function () {
 function grabproposedtradedata() {
 
   $.getJSON("https://poloniex.com/public?command=returnOrderBook&currencyPair=USDC_BTC&depth=1", function (results) {
-    console.log(results.asks[0][0]);
+    // console.log(results.asks[0][0]);
 
     $('#curr_price').text(
       (Math.round(results.asks[0][0] * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
