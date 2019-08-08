@@ -8,27 +8,26 @@ var tf = require('@tensorflow/tfjs');
 //     var jsonData = JSON.parse(fileData);
 // })
 
-runTensorFlowAnalysis();
 
-setInterval(function () {
-    // tf.disposeVariables();
+// this timeout was added to avoid quantla to save data after tensorflow analysis.
+setTimeout(function () {
     runTensorFlowAnalysis();
-}, 300000);
+
+
+    setInterval(function () {
+        // tf.disposeVariables();
+        runTensorFlowAnalysis();
+    }, 300000);
+}, 10000);
+
+
 // }, 30000);
 
 
 function runTensorFlowAnalysis() {
-    // TODO: ther eis a bug when loading the json file ... 
-    // for some reason the prediction is running multiple times with the same data
 
     console.log("tensorflow prediction is running...");
     console.log('Tensors memory check: ' + tf.memory().numTensors);
-
-    // var jsonData = require('./public/assets/data.json');
-    // jsonData = fs.readFile("./public/assets/data.json");
-    // fs.readFile("./public/assets/data.json", function (err, fileData) {
-    //     var jsonData = JSON.parse(fileData);
-    // })
 
     let rawdata = fs.readFileSync('./public/assets/data.json');
     let jsonData = JSON.parse(rawdata);
@@ -37,7 +36,9 @@ function runTensorFlowAnalysis() {
     var xdata = [];
     var ydata = [];
     var origin = [];
-    var x0 = [];
+    var x01 = [];
+    var x02 = [];
+    var x03 = [];
     var x1 = [];
     var x2 = [];
     var x3 = [];
@@ -51,9 +52,12 @@ function runTensorFlowAnalysis() {
     var y0 = [];
     var t0 = [];
 
+
     jsonData.forEach(function (entry) {
         // console.log(entry[2].articles[0].score);
-        x0.push(entry[2].articles[0].score);
+        x01.push(entry[2].documentScore);
+        x02.push(entry[2].bitcoinScore);
+        x03.push(entry[2].btcScore);
         x1.push(entry[0].currentPriceAsks);
         x2.push(entry[0].currentPriceAsks - entry[0].currentPriceBids);
         x3.push(entry[0].tenMinPriceVariation);
@@ -95,7 +99,9 @@ function runTensorFlowAnalysis() {
 
         xdata.push(
             [
-                (entry[2].articles[0].score - Math.min.apply(Math, x0)) / (Math.max.apply(Math, x0) - Math.min.apply(Math, x0) * 0.99999999999),
+                (entry[2].documentScore - Math.min.apply(Math, x01)) / (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
+                (entry[2].bitcoinScore - Math.min.apply(Math, x02)) / (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
+                (entry[2].btcScore - Math.min.apply(Math, x03)) / (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
                 (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) / (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
                 (entry[0].currentPriceAsks - entry[0].currentPriceBids - Math.min.apply(Math, x2)) / (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
                 (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) / (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
@@ -111,7 +117,9 @@ function runTensorFlowAnalysis() {
 
         origin.push(
             [
-                (entry[2].articles[0].score - Math.min.apply(Math, x0)) / (Math.max.apply(Math, x0) - Math.min.apply(Math, x0) * 0.99999999999),
+                (entry[2].documentScore - Math.min.apply(Math, x01)) / (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
+                (entry[2].bitcoinScore - Math.min.apply(Math, x02)) / (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
+                (entry[2].btcScore - Math.min.apply(Math, x03)) / (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
                 (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) / (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
                 (entry[0].currentPriceAsks - entry[0].currentPriceBids - Math.min.apply(Math, x2)) / (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
                 (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) / (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
@@ -167,27 +175,6 @@ function runTensorFlowAnalysis() {
     }
 
 
-    // console.log(xdata[0]);
-    // console.log(xdata[xdata.length-1]);
-    // console.log(ydata[ydata.length-1]);
-
-
-
-
-    // console.log(labelsTensor.print());
-
-    // console.log(tf.memory().numTensors); // 2 
-    // labelsTensor.dispose();
-
-
-    // console.log(ys.shape);
-
-    // console.log(xs.print());
-    // console.log(ys.print());
-
-    // setting up the model... input >> hidden >> output
-
-
     trainData(xdata, ydata);
 
 
@@ -207,7 +194,7 @@ function runTensorFlowAnalysis() {
         let hidden = tf.layers.dense({
             units: 64, //number 1st column of hidden layers
             activation: "sigmoid",
-            inputDim: 121 //data that is comming in...
+            inputDim: 143 //data that is comming in...
         });
 
         let inner = tf.layers.dense({
