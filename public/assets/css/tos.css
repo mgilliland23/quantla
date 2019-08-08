@@ -6,7 +6,7 @@ body {
   flex-wrap: wrap;
   padding: 0;
   margin: 0;
-  padding-top: 100px;
+  /* padding-top: 100px; */
   padding-bottom: 100px;
   /* height: 100vh; */
   width: 100%;
@@ -15,6 +15,18 @@ body {
   /* overflow-x: hidden; */
 }
 
+.header-icon {
+  font-size: 60px;
+  color: #9acc14;
+  width: 68px;
+  float: left;
+  margin-top: 3px;
+  line-height: 0;
+}
+
+.header-title {
+  margin-left: 80px;
+}
 
 body::-webkit-scrollbar {
   width: 1em;
