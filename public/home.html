@@ -46,7 +46,7 @@
     <!-- font-family: 'Roboto', sans-serif; -->
 
     <!-- particles.js -->
-    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script> -->
 
     <!-- reCAPTCHA type:v3 -->
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdFrYAUAAAAAMPcS_9e_upcDbcHO_VgqHPUUAXx"></script> -->
@@ -75,16 +75,20 @@
             <div id="landscape-overlay"></div>
 
             <div style="z-index: 2;">
-                <h1 style="margin-top: 50px; color:yellowgreen; font-size: 60px;z-index: 2;">Quantla</h1>
+                <h1 style="margin-top: 50px; color:yellowgreen; font-size: 60px;z-index: 3;">Quantla</h1>
 
                 <p style="text-align: center;z-index: 2;"><img src="/images/quantla_logo_circle_green.png" width="100px"
                         height="100px"></p>
+
+
             </div>
+
 
         </div>
 
         <div style="background: url(./images/quantla_app3.png); background-size: cover ; background-repeat: no-repeat;">
         </div>
+
 
     </div>
 
@@ -236,15 +240,11 @@
                     being able to spot trends in a much larger scale!
                 </h1>
 
-                <div style="z-index: 2;">
-                    <h1
-                        style="margin-top: 30px; color:yellowgreen; font-size: 20px;z-index: 2; font-family: 'Ubuntu Mono', monospace;">
-                        Quantla</h1>
 
-                    <p style="text-align: center;z-index: 2;"><img src="/images/quantla_logo_circle_green.png"
-                            width="40px" height="40px"></p>
-                </div>
-
+                <a href="/" style="margin: auto; text-decoration: none; margin-top:10px;">
+                    <button style="margin-top: 15px;" id="signUp" type="submit" class="custom-button-green">Try the app
+                        now!</button>
+                </a>
 
             </div>
 
@@ -439,131 +439,132 @@
 
 
 
+    <div id="content">
 
-    <div id="content4"
-        style="background: url(./images/focus_nyc5.jpg); background-size: cover; background-repeat: no-repeat; padding-bottom: 0px; padding-top: 0px;  font-family: 'Roboto', sans-serif; font-weight: 100;">
-        <div id="landscape-overlay" class="height: 100%;">
+        <div class="mt-4" style="padding-top: 10px; padding-bottom: 40px;">
 
-            <section class="team-section text-center"  style="padding-top: 50px; padding-bottom: 100px;">
-
-                <!-- Section heading -->
-                <h1 class="h1-responsive" style="padding-top: 0px;">Our Team</h1>
-                <!-- Section description -->
-                <h5 class="grey-text w-responsive mx-auto" style="max-width: 850px; font-size: 17px">All partners are
-                    FULLSTACK DEVELOPERS
-                    that got the chance to know each other while going to
-                    <a href="https://bootcamp.cvn.columbia.edu/" style="text-decoration: none;">Columbia University
-                        in New York</a>. The team has its core passion to develop application and build technology.
-                </h5>
-
-                <!-- <div class='row mb-3'>
-
-                <a href="https://bootcamp.cvn.columbia.edu/" style="text-align: center; margin: auto">
-                    <img class="columbiaimg" src="./images/columbia_logo.svg" width="350px" style="color: white;" >
-                </a>
-
-            </div> -->
-
-                <!-- Grid row -->
-                <div class="row justify-content-md-center">
+            <div class="mt-1">
+                <h1 style="font-size: 50px; font-weight: 300;">Our Team</h1>
+            </div>
 
 
-
-                    <!-- Grid row -->
-                    <div class="row mt-3 justify-content-md-center">
-
-                        <div class="col-lg-3 col-md-6 mb-lg-0 mb-5">
-                            <div class="avatar mx-auto">
-                                <img src="./images/team1.png" class="rounded-circle z-depth-1" alt="Sample avatar"
-                                    width="175px" height="175px">
-                            </div>
-                            <h5 class="font-weight-bold mt-4 mb-3">Rodrigo Costa</h5>
-                            <p class="text-uppercase"><strong id="directortitle">Data Science Director</strong></p>
-                            <p style="margin-top: -10px; margin-bottom: 5px;"><strong id="directortitle">Fullstack
-                                    developer</strong></p>
-
-                            <p>Physics grad with a passion for math and machine learning. Also works in the Financial
-                                Industry managing technology for eTrading, API Dev, data minning and market
-                                models.
-                            </p>
-
-                            <div class='row'>
-
-                                <div class='col-3'></div>
-
-                                <div class='col-2'>
-                                    <a class="p-2 fa-lg ins-ic" href="http://github.com/costargc">
-                                        <i class="fab fa-github custom-text"></i>
-                                    </a>
-                                </div>
-
-                                <div class='col-2'>
-                                    <a class="p-2 fa-lg ins-ic" href="https://www.linkedin.com/in/costargc/en">
-                                        <i class="fab fa-linkedin custom-text"></i>
-                                    </a>
-                                </div>
-
-                                <div class='col-2'>
-                                    <a class="p-2 fa-lg ins-ic" href="https://www.instagram.com/costargc/">
-                                        <i class="fab fa-instagram custom-text"></i>
-                                    </a>
-                                </div>
-
-                                <div class='col-3'></div>
-
-                            </div>
-
-                        </div><!-- Grid column -->
-
-                        <!-- Grid column -->
-                        <div class="col-lg-3 col-md-6">
-                            <div class="avatar mx-auto">
-                                <img src="./images/team5.png" class="rounded-circle z-depth-1" alt="Sample avatar"
-                                    width="175px" height="175px">
-                            </div>
-                            <h5 class="font-weight-bold mt-4 mb-3">Matt Gilliland</h5>
-                            <p class="text-uppercase"><strong id="directortitle">CIO/CEO</strong></p>
-                            <p style="margin-top: -10px; margin-bottom: 5px;"><strong id="directortitle">Fullstack
-                                    developer</strong></p>
-                            <p>Bachelors in Computer Science & Applied Mathematics with a Masters in Computer
-                                Science, and fullstack developer from Columbia University.
-                            </p>
-
-
-                            <div class='row'>
-
-                                <div class='col-4'></div>
-
-                                <div class='col-2'>
-                                    <a class="p-2 fa-lg ins-ic" href="https://github.com/mgilliland23">
-                                        <i class="fab fa-github custom-text"></i>
-                                    </a>
-                                </div>
-
-                                <div class='col-2'>
-                                    <a class="p-2 fa-lg ins-ic"
-                                        href="https://www.linkedin.com/in/matthew-gilliland-77695595/">
-                                        <i class="fab fa-linkedin custom-text"></i>
-                                    </a>
-                                </div>
-
-
-                                <div class='col-4'></div>
-
-                            </div>
-                        </div><!-- Grid column -->
-
-
-                    </div><!-- Grid row -->
-
-
-
-
-
-            </section><!-- Section: Team v.1 -->
         </div>
 
+        <div class="row justify-content-center">
+            <!-- <div class="col-12 text-center"> -->
+
+
+            <div class="card">
+                <div class="card-body">
+                    <!-- Grid column -->
+                    <div class="col text-center">
+                        <div class="avatar mx-auto">
+                            <img src="./images/team1.png" class="rounded-circle z-depth-1" alt="Sample avatar"
+                                width="175px" height="175px">
+                        </div>
+                        <h5 class="font-weight-bold mt-4 mb-3">Rodrigo Costa</h5>
+                        <p class="text-uppercase"><strong id="directortitle">Data Science Director</strong></p>
+                        <p style="margin-top: -15px; margin-bottom: 5px;"><strong id="directortitle">Fullstack
+                                developer</strong></p>
+
+                        <p>Physics grad with a passion for math and machine learning. Also works in the Financial
+                            Industry managing technology for eTrading, API Dev, data minning and market
+                            models.
+                        </p>
+
+                        <div class='row'>
+
+                            <div class='col-3'></div>
+
+                            <div class='col-2'>
+                                <a class="p-2 fa-lg ins-ic" href="http://github.com/costargc">
+                                    <i class="fab fa-github custom-text"></i>
+                                </a>
+                            </div>
+
+                            <div class='col-2'>
+                                <a class="p-2 fa-lg ins-ic" href="https://www.linkedin.com/in/costargc/en">
+                                    <i class="fab fa-linkedin custom-text"></i>
+                                </a>
+                            </div>
+
+                            <div class='col-2'>
+                                <a class="p-2 fa-lg ins-ic" href="https://www.instagram.com/costargc/">
+                                    <i class="fab fa-instagram custom-text"></i>
+                                </a>
+                            </div>
+
+                            <div class='col-3'></div>
+
+                        </div>
+
+                    </div><!-- Grid column -->
+
+
+                </div>
+
+            </div>
+
+
+
+
+
+
+
+            <div class="card">
+                <div class="card-body">
+                    <!-- Grid column -->
+                    <div class="col  text-center">
+                        <div class="avatar mx-auto">
+                            <img src="./images/team5.png" class="rounded-circle z-depth-1" alt="Sample avatar"
+                                width="175px" height="175px">
+                        </div>
+                        <h5 class="font-weight-bold mt-4 mb-3">Matt Gilliland</h5>
+                        <p class="text-uppercase"><strong id="directortitle">CEO/CTO</strong></p>
+                        <p style="margin-top: -15px; margin-bottom: 5px;"><strong id="directortitle">Fullstack
+                                developer</strong></p>
+                        <p>Bachelors in Computer Science & Applied Mathematics with a Masters in Computer
+                            Science, and fullstack developer from Columbia University.
+                        </p>
+
+
+                        <div class='row'>
+
+                            <div class='col-4'></div>
+
+                            <div class='col-2'>
+                                <a class="p-2 fa-lg ins-ic" href="https://github.com/mgilliland23">
+                                    <i class="fab fa-github custom-text"></i>
+                                </a>
+                            </div>
+
+                            <div class='col-2'>
+                                <a class="p-2 fa-lg ins-ic"
+                                    href="https://www.linkedin.com/in/matthew-gilliland-77695595/">
+                                    <i class="fab fa-linkedin custom-text"></i>
+                                </a>
+                            </div>
+
+
+                            <div class='col-4'></div>
+
+                        </div>
+                    </div><!-- Grid column -->
+
+
+                </div>
+
+            </div>
+
+            <!-- </div> -->
+
+        </div>
+
+
+
+
     </div>
+
 
 
 
