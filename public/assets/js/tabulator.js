@@ -10,7 +10,10 @@ function grabtabulatordata() {
   var pricesTableData = [];
   var fundamentalsTableData = [];
 
-  $.get("api/news", function(data) {
+  var datetime = { time: Math.floor(new Date() / 1000) };
+  var hourprevious = datetime - 3600;
+
+  $.post("api/news", datetime, function(data) {
     console.log(data);
     data.forEach(function(entry) {
       newsTableData.push(buildNewsTable(entry));
@@ -22,7 +25,7 @@ function grabtabulatordata() {
     );
   });
 
-  $.get("api/prices", function(data) {
+  $.post("api/prices", datetime, function(data) {
     console.log(data);
     data.forEach(function(entry) {
       pricesTableData.push(buildPriceTable(entry));
@@ -123,8 +126,6 @@ function buildNewsTable(news) {
   // console.log(news);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(news.dateCreated));
-  var bitcoinScore = news.bitcoinScore;
-  news;
   var newsTableRow = {
     time: d,
     "doc-score": news.documentScore,

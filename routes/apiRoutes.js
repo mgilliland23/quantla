@@ -3,11 +3,11 @@ const Op = mysqlDB.Sequelize.Op;
 require("../controller/controller.js")();
 
 module.exports = function(app) {
-  var datetime = Math.floor(new Date() / 1000);
-  var hourprevious = datetime - 3600;
-
   // Get news articles
-  app.get("/api/news", function(req, res) {
+  app.post("/api/news", function(req, res) {
+    console.log(req.body.time);
+    var datetime = req.body.time;
+    var hourprevious = datetime - 3600;
     mysqlDB.News.findAll({
       attributes: ["dateCreated", "btcScore", "bitcoinScore", "documentScore"],
       where: {
@@ -27,7 +27,9 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/prices", function(req, res) {
+  app.post("/api/prices", function(req, res) {
+    var datetime = req.body.time;
+    var hourprevious = datetime - 3600;
     mysqlDB.Prices.findAll({
       attributes: [
         "dateCreated",
@@ -56,7 +58,9 @@ module.exports = function(app) {
     });
   });
 
-  app.get("/api/fundamentals", function(req, res) {
+  app.post("/api/fundamentals", function(req, res) {
+    var datetime = req.body.time;
+    var hourprevious = datetime - 3600;
     mysqlDB.Fundamentals.findAll({
       attributes: [
         "dateCreated",
