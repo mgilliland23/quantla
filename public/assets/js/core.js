@@ -20,14 +20,23 @@ setInterval(function () {
 
 function grabproposedtradedata() {
 
+  $.getJSON("https://poloniex.com/public?command=returnOrderBook&currencyPair=USDC_BTC&depth=1", function (results) {
+    console.log(results.asks[0][0]);
+
+    $('#curr_price').text(
+      (Math.round(results.asks[0][0] * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    );
+
+  })
+
   $.getJSON("./assets/AIDecision.json", function (fileData) {
     // console.log(fileData[fileData.length - 1]);
     // console.log(fileData[fileData.length - 1].CurrentPrice);
     // console.log(fileData[fileData.length - 1].AIDecision);
 
-    $('#curr_price').text(
-      (Math.round(fileData[fileData.length - 1].CurrentPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
-    );
+    // $('#curr_price').text(
+    //   (Math.round(fileData[fileData.length - 1].CurrentPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
+    // );
 
     $('#bif_price').text(
       (Math.round(fileData[fileData.length - 1].BuyIfPrice * 100) / 100).toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,')
