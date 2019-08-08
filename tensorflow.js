@@ -8,7 +8,12 @@ var tf = require('@tensorflow/tfjs');
 //     var jsonData = JSON.parse(fileData);
 // })
 
-runTensorFlowAnalysis();
+
+// this timeout was added to avoid quantla to save data after tensorflow analysis.
+setTimeout(function () {
+    runTensorFlowAnalysis();
+}, 10000);
+
 
 setInterval(function () {
     // tf.disposeVariables();
