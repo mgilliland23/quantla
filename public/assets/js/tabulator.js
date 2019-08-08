@@ -1,35 +1,33 @@
 grabtabulatordata();
-setInterval(function () {
+setInterval(function() {
   grabtabulatordata();
   console.log("test");
 }, 30000);
 
 function grabtabulatordata() {
-
   var TradeData = [];
   var newsTableData = [];
   var pricesTableData = [];
   var fundamentalsTableData = [];
 
-
-  $.getJSON("./assets/AIDecision.json", function (json) {
+  $.getJSON("./assets/AIDecision.json", function(json) {
     //console.log(json); // this will show the info it in firebug console
-    json.forEach(function (entry) {
+    json.forEach(function(entry) {
       console.log(entry[0]);
 
       TradeData.push(buildDecisionTable(entry));
-
     });
 
-    createTable("#trade-table", orderTable(TradeData).slice(0, 30), TradeConfigData);
-
+    createTable(
+      "#trade-table",
+      orderTable(TradeData).slice(0, 30),
+      TradeConfigData
+    );
   });
 
-
-
-  $.getJSON("/assets/data.json", function (json) {
+  $.getJSON("/assets/data.json", function(json) {
     //console.log(json); // this will show the info it in firebug console
-    json.forEach(function (entry) {
+    json.forEach(function(entry) {
       // console.log(entry[0]);
 
       pricesTableData.push(buildPriceTable(entry[0]));
@@ -37,12 +35,22 @@ function grabtabulatordata() {
       newsTableData.push(buildNewsTable(entry[2]));
     });
 
-    createTable("#prices-table", orderTable(pricesTableData).slice(0, 30), PricesConfigData);
-    createTable("#fund-table", orderTable(fundamentalsTableData).slice(0, 30), FundConfigData);
-    createTable("#news-table", orderTable(newsTableData).slice(0, 30), NewsConfigData);
+    createTable(
+      "#prices-table",
+      orderTable(pricesTableData).slice(0, 30),
+      PricesConfigData
+    );
+    createTable(
+      "#fund-table",
+      orderTable(fundamentalsTableData).slice(0, 30),
+      FundConfigData
+    );
+    createTable(
+      "#news-table",
+      orderTable(newsTableData).slice(0, 30),
+      NewsConfigData
+    );
   });
-
-
 }
 
 function orderTable(data) {
@@ -50,7 +58,7 @@ function orderTable(data) {
   for (i = 0; i < data.length; i++) {
     ordered[i] = data[data.length - 1 - i];
   }
-  return ordered
+  return ordered;
 }
 
 function buildPriceTable(price) {
@@ -65,10 +73,8 @@ function buildPriceTable(price) {
     volume: price.currentVolume
   };
 
-
   return pricesTableRow;
 }
-
 
 function buildDecisionTable(AIdata) {
   // console.log(price);
@@ -79,7 +85,7 @@ function buildDecisionTable(AIdata) {
     currprice: AIdata.CurrentPrice,
     indication: AIdata.AIDecision,
     BPrice: AIdata.BuyIfPrice,
-    SPrice: AIdata.SellIfPrice,
+    SPrice: AIdata.SellIfPrice
   };
 
   return AITableRow;
@@ -96,7 +102,8 @@ function buildFundamentalsTable(fundamental) {
     trans: fundamental.transactionFee,
     transVar: Math.round(fundamental.transactionFeeVariation * 10000) / 10000,
     costT: fundamental.costPerTransaction,
-    costTVar: Math.round(fundamental.costPerTransactionVariation * 10000) / 10000,
+    costTVar:
+      Math.round(fundamental.costPerTransactionVariation * 10000) / 10000
   };
   return fundamentalsTableRow;
 }
@@ -104,14 +111,14 @@ function buildFundamentalsTable(fundamental) {
 function buildNewsTable(news) {
   // console.log(news);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-  d.setUTCSeconds(parseInt(news.articles[0].dateCreated));
-  var article = news.articles[0];
-
+  d.setUTCSeconds(parseInt(news.dateCreated));
+  var bitcoinScore = news.bitcoinScore;
+  news;
   var newsTableRow = {
     time: d,
-    "news title": article.title,
-    link: article.url,
-    "score-link": article.score
+    "doc-score": news.documentScore,
+    "bitcoin-score": news.bitcoinScore,
+    "btc-score": news.btcScore
   };
   return newsTableRow;
 }
@@ -189,5 +196,4 @@ function createTable(tableName, tableData, configData) {
   table.setData(tableData);
 }
 
-  //generate box plot
-
+//generate box plot
