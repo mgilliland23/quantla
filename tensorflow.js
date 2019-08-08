@@ -12,13 +12,15 @@ var tf = require('@tensorflow/tfjs');
 // this timeout was added to avoid quantla to save data after tensorflow analysis.
 setTimeout(function () {
     runTensorFlowAnalysis();
+
+
+    setInterval(function () {
+        // tf.disposeVariables();
+        runTensorFlowAnalysis();
+    }, 300000);
 }, 10000);
 
 
-setInterval(function () {
-    // tf.disposeVariables();
-    runTensorFlowAnalysis();
-}, 300000);
 // }, 30000);
 
 
