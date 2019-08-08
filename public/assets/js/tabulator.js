@@ -14,7 +14,7 @@ function grabtabulatordata() {
   var hourprevious = datetime - 3600;
 
   $.post("api/news", datetime, function(data) {
-    console.log(data);
+    //console.log(data);
     data.forEach(function(entry) {
       newsTableData.push(buildNewsTable(entry));
     });
@@ -26,7 +26,7 @@ function grabtabulatordata() {
   });
 
   $.post("api/prices", datetime, function(data) {
-    console.log(data);
+    console.log("front end prices: ", data);
     data.forEach(function(entry) {
       pricesTableData.push(buildPriceTable(entry));
     });
@@ -34,6 +34,18 @@ function grabtabulatordata() {
       "#prices-table",
       orderTable(pricesTableData).slice(0, 30),
       PricesConfigData
+    );
+  });
+
+  $.post("api/fundamentals", datetime, function(data) {
+    console.log("front end prices: ", data);
+    data.forEach(function(entry) {
+      fundamentalsTableData.push(buildFundamentalsTable(entry));
+    });
+    createTable(
+      "#fund-table",
+      orderTable(fundamentalsTableData).slice(0, 30),
+      FundConfigData
     );
   });
 
@@ -49,20 +61,6 @@ function grabtabulatordata() {
       "#trade-table",
       orderTable(TradeData).slice(0, 30),
       TradeConfigData
-    );
-  });
-
-  $.getJSON("/assets/data.json", function(json) {
-    //console.log(json); // this will show the info it in firebug console
-    json.forEach(function(entry) {
-      // console.log(entry[0]);
-
-      fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
-    });
-    createTable(
-      "#fund-table",
-      orderTable(fundamentalsTableData).slice(0, 30),
-      FundConfigData
     );
   });
 }
@@ -82,7 +80,9 @@ function buildPriceTable(price) {
   var pricesTableRow = {
     time: d,
     currPrice: price.currentPriceAsks,
-    Spread: price.currentPriceAsks - price.currentPriceBids,
+    Spread: parseFloat(
+      (price.currentPriceAsks - price.currentPriceBids).toFixed(4)
+    ),
     "10PriceVar": Math.round(price.tenMinPriceVariation * 10000) / 10000,
     volume: price.currentVolume
   };
