@@ -6,24 +6,24 @@ var db = require("./models");
 
 // Set your secret key: remember to change this to your live secret key in production
 // See your keys here: https://dashboard.stripe.com/account/apikeys
-const stripe = require("stripe")("sk_test_zRBUN5ocH6mbIcm5snAJJnxH00naNOrZtj");
+// const stripe = require("stripe")("sk_test_zRBUN5ocH6mbIcm5snAJJnxH00naNOrZtj");
 
-(async () => {
-  const session = await stripe.checkout.sessions.create({
-    payment_method_types: ["card"],
-    subscription_data: {
-      items: [
-        {
-          plan: "plan_123"
-        }
-      ]
-    },
-    success_url: "/core",
-    cancel_url: "https://example.com/cancel"
-  });
+// (async () => {
+//   const session = await stripe.checkout.sessions.create({
+//     payment_method_types: ["card"],
+//     subscription_data: {
+//       items: [
+//         {
+//           plan: "plan_123"
+//         }
+//       ]
+//     },
+//     success_url: "/core",
+//     cancel_url: "https://example.com/cancel"
+//   });
 
-  console.log(session);
-})();
+//   console.log(session);
+// })();
 
 var app = express();
 var PORT = process.env.PORT || 3000;

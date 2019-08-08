@@ -48,6 +48,7 @@
 
     <!-- reCAPTCHA type:v3 -->
     <!-- <script src="https://www.google.com/recaptcha/api.js?render=6LdFrYAUAAAAAMPcS_9e_upcDbcHO_VgqHPUUAXx"></script> -->
+
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
@@ -58,9 +59,6 @@
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
     <script src="/assets/js/main.js"></script>
-    <script src="https://js.stripe.com/v3/"></script>
-
-
 
 </head>
 
@@ -69,7 +67,7 @@
 
     <div class="container">
 
-        <section style="max-width: 380px; align-content: center; margin: auto; padding-bottom: 150px">
+        <section style="max-width: 350px; align-content: center; margin: auto; padding-bottom: 150px">
 
             <div class="row" style="padding-bottom: 20px;">
                 <div class="col-2">
@@ -84,56 +82,37 @@
 
             </div>
 
-            <div class="row">
+            <div class="row" style="margin: auto">
 
                 <div class="card" id="inviteCard">
-                    <div class="card-body" id="inviteBody">
+                    <div class="card-body">
 
                         <div style="margin-bottom: 10px;"><span>Invite code:</span></div>
 
-                        <form id="codeForm">
+                        <form>
                             <input type="text" title="Please enter your invite code" required="" value="" name="code"
                                 id="code" class="form-control"
                                 oninvalid="this.setCustomValidity('please enter your invite code')">
 
                             <button style="margin-top: 15px;" id="signUp" type="submit" class="custom-button-green">Sign
                                 Up</button>
-                            <button style="margin-top: 15px;" id="buyInvite" type="submit"
-                                class="custom-button-green">Purchase Code</button>
+
                         </form>
 
                     </div>
-
-                    <!-- Payment Modal -->
-                    <div class="modal" tabindex="-1" role="dialog" id="paymentModal">
-                        <div class="modal-dialog" role="document">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title">Modal title</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    <p>Modal body text goes here.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary">Save changes</button>
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Payment Modal  -->
 
                 </div>
 
                 <div id="firebaseui-auth-container"></div>
 
-                <div class="text-center" style="max-width: 380px; align-content: center; margin: auto;">
-                    <small>If you are already a member click <a href="#" id="login">here</a> to
-                        login.</small>
-                    <br><small><a href="/team">Check our team</a></small>
+                <div class="text-center" style="max-width: 350px; margin: auto;">
+                    <div>
+                        <small>If you are already a member click <a href="#" id="login">here</a> to
+                            login.</small>
+                    </div>
+                    <div>
+                        <small><a href="/team">Check our team</a></small>
+                    </div>
                 </div>
 
             </div>

@@ -57,10 +57,6 @@ button:focus {
   border-color: #99cb14;
 }
 
-#buyInvite {
-  float: right;
-}
-
 .form-control {
   padding: 6px 12px;
   font-size: 14px;
@@ -85,30 +81,63 @@ button:focus {
 
 /* Styling for firebaseUI widget */
 
+.mdl-card{
+  width: 100%;
+}
+
+#firebaseui-auth-container{
+  padding: 0;
+  margin: auto;
+  width: 100%;
+}
+
 .firebaseui-container {
-  max-width: 380px !important;
-  width: 380px !important;
+  display: flex;
+  flex-direction: column;
   background-color: rgba(148, 155, 168, 0.1);
-  color: white !important;
-  padding: 20px 0;
+  position: relative;
+  top: 0;
+  width: 90%;
+  padding: 0px 0px 0px 0px;
+  margin: 20px 20px 20px 20px;
+  border: 0;
 }
 
 .firebaseui-title {
-  color: white !important;
+  color: white ;
 }
 
 .firebaseui-link {
   color: #99cb14;
 }
 
+
+.mdl-button{
+  background: #00000000;
+  color: #99cb14;
+}
+
+.mdl-button:hover{
+  background: #00000000;
+  color: #99cb14;
+}
+
 .mdl-button--raised.mdl-button--colored {
   background: #99cb14;
+  color: white;
 }
 
 .mdl-button--raised.mdl-button--colored:hover {
-  background: #baf519;
+  background: #99cb14;
   color: white;
 }
+
+.mdl-button.mdl-button--colored{
+  background: #85af11;
+  color: white;
+}
+
+
 
 .firebaseui-label,
 .firebaseui-input {
@@ -117,7 +146,10 @@ button:focus {
 
 .firebaseui-textfield.mdl-textfield .firebaseui-input {
   border-color: white;
+  font-size: 14px;
 }
+
+
 
 .firebaseui-textfield.mdl-textfield:focus .firebaseui-input {
   border-color: white;
@@ -130,18 +162,27 @@ button:focus {
 .firebaseui-text {
   color: rgba(255, 255, 255, 0.87);
   direction: ltr;
-  font-size: 16px;
+  font-size: 13px;
   line-height: 24px;
   text-align: left;
 }
 
-.firebaseui-input-invalid {
-  color: rgba(255, 255, 255, 0.87);
-}
 
 .firebaseui-textfield {
   color: rgba(255, 255, 255, 0.87);
   width: 100%;
+}
+
+/* mdl-card mdl-shadow--2dp firebaseui-container firebaseui-id-page-sign-in */
+
+.firebaseui-tos-list{
+  margin: 0;
+  padding: 0;
+  text-align: right;
+}
+
+.firebaseui-textfield-invalid{
+  color: greenyellow;
 }
 
 .firebaseui-tos {
@@ -151,7 +192,7 @@ button:focus {
   line-height: 16px;
   margin-bottom: 24px;
   margin-top: 0;
-  text-align: left;
+  text-align: center;
 }
 
 .mdl-textfield--floating-label.is-dirty .mdl-textfield__label,
@@ -161,6 +202,10 @@ button:focus {
 
 .mdl-button--primary.mdl-button--primary {
   color: #99cb14;
+}
+
+.mdl-button--primary.mdl-button--primary:hover {
+  color: #c0fd18;
 }
 
 .form-control:focus {
