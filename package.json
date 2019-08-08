@@ -8,7 +8,10 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
+    "start": "concurrently \"npm:quantla-server\" \"npm:quantla-core\" \"npm:quantla-tensorflow\"",
+    "quantla-server": "node server.js",
+    "quantla-core": "node quantla.js",
+    "quantla-tensorflow": "node tensorflow.js"
   },
   "repository": {
     "type": "git",
@@ -25,6 +28,7 @@
     "atob": "^2.1.2",
     "base-64": "^0.1.0",
     "cli-table": "^0.3.1",
+    "concurrently": "^4.1.1",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
     "express-handlebars": "^3.1.0",
