@@ -15,7 +15,7 @@ setInterval(runAnalysis, 300000);
 
 function runAnalysis() {
   //This will be the date time used to link the different data sets Unix epoch format
-  var datetime = Math.floor(new Date() / 1000).toString();
+  var datetime = Math.floor(new Date() / 1000);
 
   console.log("Analysis being run at: ", datetime);
 
