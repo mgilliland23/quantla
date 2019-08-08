@@ -34,17 +34,35 @@ var News = function(datetime) {
         console.log(analysisResults.sentiment.targets);
         var sentimentAnalysis = analysisResults.sentiment.targets;
 
-        var bitcoin = sentimentAnalysis[0];
-        var BTC = sentimentAnalysis[1];
-        console.log(analysisResults.sentiment.document);
-
-        var newsObj = {
-          dateCreated: datetime,
-          btcScore: BTC.score,
-          bitcoinScore: bitcoin.score,
-          documentScore: analysisResults.sentiment.document.score
-        };
-        resolve(newsObj);
+        if (sentimentAnalysis.length === 1) {
+          var bitcoin = sentimentAnalysis[0];
+          var BTC = 0;
+          var newsObj = {
+            dateCreated: datetime,
+            btcScore: BTC.score,
+            bitcoinScore: bitcoin.score,
+            documentScore: analysisResults.sentiment.document.score
+          };
+        }
+        if (sentimentAnalysis.length >= 2) {
+          var bitcoin = sentimentAnalysis[0];
+          var BTC = sentimentAnalysis[1];
+          var newsObj = {
+            dateCreated: datetime,
+            btcScore: BTC.score,
+            bitcoinScore: bitcoin.score,
+            documentScore: analysisResults.sentiment.document.score
+          };
+          resolve(newsObj);
+        } else {
+          var newsObj = {
+            dateCreated: datetime,
+            btcScore: 0,
+            bitcoinScore: 0,
+            documentScore: 0
+          };
+          resolve(newsObj);
+        }
       })
       .catch(err => {
         var newsObj = {
