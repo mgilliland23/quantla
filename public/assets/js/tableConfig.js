@@ -1,5 +1,5 @@
-var boxFormatter = function (cell, formatterParams, onRendered) {
-  onRendered(function () {
+var boxFormatter = function(cell, formatterParams, onRendered) {
+  onRendered(function() {
     //instantiate sparkline after the cell element has been aded to the DOM
     $(cell.getElement()).sparkline(cell.getValue(), {
       width: "100%",
@@ -9,8 +9,8 @@ var boxFormatter = function (cell, formatterParams, onRendered) {
   });
 };
 
-var lineFormatter = function (cell, formatterParams, onRendered) {
-  onRendered(function () {
+var lineFormatter = function(cell, formatterParams, onRendered) {
+  onRendered(function() {
     //instantiate sparkline after the cell element has been aded to the DOM
     $(cell.getElement()).sparkline(cell.getValue(), {
       width: "100%",
@@ -28,7 +28,7 @@ PricesConfigData = [
     title: "10min Price var",
     field: "10PriceVar",
     align: "center",
-    formatter: function (cell, formatterParams) {
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
         return (
@@ -44,7 +44,7 @@ PricesConfigData = [
       }
     }
   },
-  { title: "volume", field: "volume", align: "center" },
+  { title: "volume", field: "volume", align: "center" }
 ];
 
 FundConfigData = [
@@ -54,7 +54,7 @@ FundConfigData = [
     title: "Hash Rate var",
     field: "hashVar",
     align: "center",
-    formatter: function (cell, formatterParams) {
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
         return (
@@ -75,7 +75,7 @@ FundConfigData = [
     title: "Transactions var",
     field: "transVar",
     align: "center",
-    formatter: function (cell, formatterParams) {
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
         return (
@@ -96,7 +96,7 @@ FundConfigData = [
     title: "C/T var",
     field: "costTVar",
     align: "center",
-    formatter: function (cell, formatterParams) {
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
         return (
@@ -116,24 +116,60 @@ FundConfigData = [
 
 NewsConfigData = [
   { title: "time", field: "time", align: "center" },
-  { title: "news title", field: "news title", align: "center" },
   {
-    title: "link",
+    title: "Twitter Feed",
     field: "link",
     align: "center",
-    formatter: function (cell, formatterParams) {
-      var value = cell.getValue();
-      return (
-        "<a href=" + value + ">News Link</a>"
-        // "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
-      );
+    formatter: function(cell, formatterParams) {
+      return "<a href='https://twitter.com/hashtag/bitcoin?f=tweets&vertical=news'>#bitcoin</a>";
+      // "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
     }
   },
   {
-    title: "score-link",
-    field: "score-link",
+    title: "Overall Sentiment",
+    field: "doc-score",
     align: "center",
-    formatter: function (cell, formatterParams) {
+    formatter: function(cell, formatterParams) {
+      var value = cell.getValue();
+      if (value < 0) {
+        return (
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+        );
+      } else {
+        return (
+          "<span style='color:#13f113; font-weight:bold'>" +
+          "+" +
+          value +
+          "</span>"
+        );
+      }
+    }
+  },
+  {
+    title: "'Bitcoin' Sentiment",
+    field: "bitcoin-score",
+    align: "center",
+    formatter: function(cell, formatterParams) {
+      var value = cell.getValue();
+      if (value < 0) {
+        return (
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
+        );
+      } else {
+        return (
+          "<span style='color:#13f113; font-weight:bold'>" +
+          "+" +
+          value +
+          "</span>"
+        );
+      }
+    }
+  },
+  {
+    title: "'BTC' Sentiment",
+    field: "btc-score",
+    align: "center",
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
         return (
@@ -156,8 +192,10 @@ TradeConfigData = [
   { title: "time", field: "time", align: "center" },
   { title: "current price", field: "currprice", align: "center" },
   {
-    title: "Its time to", field: "indication", align: "center",
-    formatter: function (cell, formatterParams) {
+    title: "Its time to",
+    field: "indication",
+    align: "center",
+    formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value === "Buy") {
         return (
@@ -165,16 +203,11 @@ TradeConfigData = [
         );
       } else if (value === "Hold") {
         return (
-          "<span style='color:yellow; font-weight:bold'>" +
-          value +
-          "</span>"
+          "<span style='color:yellow; font-weight:bold'>" + value + "</span>"
         );
-      }
-      else if (value === "Sell") {
+      } else if (value === "Sell") {
         return (
-          "<span style='color:#fa4e4e; font-weight:bold'>" +
-          value +
-          "</span>"
+          "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
         );
       }
     }

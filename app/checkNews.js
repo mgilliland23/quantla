@@ -33,6 +33,7 @@ var News = function(datetime) {
       .then(analysisResults => {
         console.log(analysisResults.sentiment.targets);
         var sentimentAnalysis = analysisResults.sentiment.targets;
+
         var bitcoin = sentimentAnalysis[0];
         var BTC = sentimentAnalysis[1];
         console.log(analysisResults.sentiment.document);

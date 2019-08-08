@@ -60,14 +60,9 @@ function runAnalysis() {
   var getNews = news.checkNews.then(
     function(result) {
       //Write to DB
-      result.articles[0]["dateCreated"] = datetime;
-
       db.collection("news")
         .doc(datetime)
-        .set({
-          dateCreated: datetime,
-          articles: result.articles
-        });
+        .set(result);
       console.log("News data has been added to the database");
       return result;
     },
@@ -110,9 +105,8 @@ function runAnalysis() {
       return err;
     }
   );
-  //getPrices, getFundamentals,
 
-  var functs = [getNews];
+  var functs = [getPrices, getFundamentals, getNews];
   Promise.all(functs).then(function(values) {
     console.log(values);
     writeToFile(values);
