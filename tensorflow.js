@@ -4,46 +4,32 @@ var tf = require("@tensorflow/tfjs");
 
 require("./controller/controller.js")();
 
-// var jsonData = require('./public/assets/data.json');
-// jsonData = fs.readFile("./public/assets/data.json");
-// fs.readFile("./public/assets/data.json", function (err, fileData) {
-//     var jsonData = JSON.parse(fileData);
-// })
+var Controller = require("./controller/tensorController.js");
 
 // // this timeout was added to avoid quantla to save data after tensorflow analysis.
-// setTimeout(function() {
-//   //console.log("setTimeout");
+setTimeout(function() {
+  var controller = new Controller();
+  controller.getData.then(function(result) {
+    runTensorFlowAnalysis(result);
+  });
 
-//   //runTensorFlowAnalysis();
+  setInterval(function() {
+    var controller = new Controller();
+    controller.getData.then(function(result) {
+      runTensorFlowAnalysis(result);
+    });
+    tf.disposeVariables();
+  }, 300000);
+}, 10000);
 
-//   setInterval(function() {
-//     //console.log("setInterval");
-
-//     tf.disposeVariables();
-
-//     //runTensorFlowAnalysis();
-//   }, 300000);
-// }, 10000);
-
-// // }, 30000);
-
-// runTensorFlowAnalysis();
 console.log("Tensorflow");
-
-getData.then(function(result) {
-  //console.log(result);
-  runTensorFlowAnalysis(result);
-});
 
 function runTensorFlowAnalysis(dataLoad) {
   console.log("tensorflow prediction is running...");
   console.log("Tensors memory check: " + tf.memory().numTensors);
 
-  //   let rawdata = fs.readFileSync("./public/assets/data.json");
-  //   let jsonData = JSON.parse(rawdata);
-  // fs.readFileSync("./public/assets/data.json");
   var jsonData = JSON.parse(dataLoad);
-  console.log(jsonData);
+  //console.log(jsonData);
   //console.log(jsonData);
 
   // TODO: change the data creation to make it generict if we add a new data source for the model.
@@ -98,10 +84,7 @@ function runTensorFlowAnalysis(dataLoad) {
   CurrentPrice = x1[x1.length - 1] * 1;
   dateCreated = t0[t0.length - 1] * 1;
 
-  console.log("date created in tensor", dateCreated);
-  // console.log(dateCreated);
   // console.log(tf.memory().numTensors);
-
   // console.log(y0.sort());
   console.log(SellSignal);
   console.log(BuySignal);
@@ -183,9 +166,6 @@ function runTensorFlowAnalysis(dataLoad) {
       ydata.push([0, 1, 0]);
       // ydata.push("Hold");
     }
-
-    // fundamentalsTableData.push(buildFundamentalsTable(entry[1]));
-    // newsTableData.push(buildNewsTable(entry[2]));
   });
 
   // shift remove beginning
@@ -219,7 +199,7 @@ function runTensorFlowAnalysis(dataLoad) {
     let xs = tf.tensor2d(xdt);
     let ys = tf.tensor2d(ydt);
 
-    console.log(xs.shape);
+    //console.log(xs.shape);
 
     model = tf.sequential();
 
@@ -337,14 +317,6 @@ function runTensorFlowAnalysis(dataLoad) {
         tf.dispose(ysPredict);
         tf.disposeVariables();
         // tf.reset_default_graph();
-
-        // var json = JSON.parse(fileData);
-        // json.push(PredictResults);
-        // var jsonContent = JSON.stringify(json);
-        // fs.writeFile("./public/assets/AIDecision.json", jsonContent, err => {
-        //   if (err) throw err;
-        //   console.log("data written to file");
-        // });
       });
 
       // console.log(ysPredict.data().then(function (results) {

@@ -6,9 +6,6 @@ const fs = require("fs");
 require("./controller/controller.js")();
 require("./app/tools.js")();
 
-// apikey = grabmykey();
-// console.log("\033[2J");
-
 // Run the analysis for all BTC data sets immediately, and then every 30,000ms (5min)
 runAnalysis();
 setInterval(runAnalysis, 300000);
@@ -21,7 +18,7 @@ function runAnalysis() {
 
   // // Run analysis on BTC news. Store results to MySQL DB
   var news = new News(datetime);
-  var getNews = news.checkNews.then(function(result) {
+  news.checkNews.then(function(result) {
     //Write to DB
     //console.log("check news results: ", result);
     addNewsToDB(result);
@@ -30,7 +27,7 @@ function runAnalysis() {
 
   //Run analysis on BTC price data. Store results to MySQL DB
   var prices = new Prices(datetime);
-  var getPrices = prices.checkPrices.then(function(result) {
+  prices.checkPrices.then(function(result) {
     // console.log("check prices results: ", result);
     addPricesToDB(result);
     return result;
@@ -38,27 +35,9 @@ function runAnalysis() {
 
   // Run analysis on fundamentals data. Store results to MySQL DB
   var fundamentals = new Fundamentals(datetime);
-  var getFundamentals = fundamentals.checkFundamentals.then(function(result) {
+  fundamentals.checkFundamentals.then(function(result) {
     // console.log("check fundamentals results: ", result);
     addFundamentalsToDB(result);
     return result;
-  });
-
-  var functs = [getPrices, getFundamentals, getNews];
-  // Promise.all(functs).then(function(values) {
-  //   //console.log(values);
-  //   //writeToFile(values);
-  // });
-}
-
-function writeToFile(APIdata) {
-  fs.readFile("./public/assets/data.json", function(err, fileData) {
-    var json = JSON.parse(fileData);
-    json.push(APIdata);
-    var jsonContent = JSON.stringify(json);
-    fs.writeFile("./public/assets/data.json", jsonContent, err => {
-      if (err) throw err;
-      console.log("data written to file");
-    });
   });
 }

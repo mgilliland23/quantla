@@ -31,7 +31,6 @@ var News = function(datetime) {
     naturalLanguageUnderstanding
       .analyze(analyzeParams)
       .then(analysisResults => {
-        console.log(analysisResults.sentiment.targets);
         var sentimentAnalysis = analysisResults.sentiment.targets;
 
         if (sentimentAnalysis.length === 1) {
