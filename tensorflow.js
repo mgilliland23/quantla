@@ -29,17 +29,21 @@ require("./controller/controller.js")();
 
 // runTensorFlowAnalysis();
 console.log("Tensorflow");
-console.log();
-getData();
-function runTensorFlowAnalysis() {
+
+getData.then(function(result) {
+  //console.log(result);
+  runTensorFlowAnalysis(result);
+});
+
+function runTensorFlowAnalysis(dataLoad) {
   console.log("tensorflow prediction is running...");
   console.log("Tensors memory check: " + tf.memory().numTensors);
 
   //   let rawdata = fs.readFileSync("./public/assets/data.json");
   //   let jsonData = JSON.parse(rawdata);
   // fs.readFileSync("./public/assets/data.json");
-  var jsonData = JSON.parse(dataFromDB);
-  //console.log(jsonData);
+  var jsonData = JSON.parse(dataLoad);
+  console.log(jsonData);
   //console.log(jsonData);
 
   // TODO: change the data creation to make it generict if we add a new data source for the model.

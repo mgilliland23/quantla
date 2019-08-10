@@ -22,7 +22,7 @@ module.exports = function() {
   var datetime = Math.floor(new Date() / 1000);
   var twoDaysAgo = datetime - 172800;
 
-  this.getData = function() {
+  this.getData = new Promise(function(resolve) {
     connection.query(dbQuery, function(err, result) {
       var resultVector = [];
       if (err) throw err;
@@ -56,10 +56,10 @@ module.exports = function() {
         dateMatchedData.push(news);
         resultVector.push(dateMatchedData);
       });
-      console.log(resultVector);
-      return resultVector;
+      //console.log(resultVector);
+      resolve(JSON.stringify(resultVector));
     });
-  };
+  });
 
   var getFundamentalsFromDB = new Promise(function(resolve) {
     db.Fundamentals.findAll({
