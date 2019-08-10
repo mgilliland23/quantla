@@ -93,7 +93,7 @@ button:focus {
   width: 150px;
 }
 
-.firebaseui-id-secondary-link {
+.firebaseui-form-links {
   display: none !important;
 }
 

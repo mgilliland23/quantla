@@ -51,6 +51,7 @@ firebase.auth().onAuthStateChanged(function(user) {
 $("#login").on("click", function() {
   console.log("clicker");
   $("#inviteCard").hide();
+  $("#footerText").hide();
   $("#loginCard").show();
 });
 
@@ -94,6 +95,7 @@ $("#signUp").on("click", function(event) {
       if (data.length > 0) {
         //And if so, hide the invite field and show the login UI
         $("#inviteCard").hide();
+        $("#footerText").hide();
         //Start google's login UI
         ui.start("#firebaseui-auth-container", uiConfig);
         $(".firebaseui-title").text("Sign up with email");
