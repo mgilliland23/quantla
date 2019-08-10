@@ -23,7 +23,7 @@ function runAnalysis() {
   var news = new News(datetime);
   var getNews = news.checkNews.then(function(result) {
     //Write to DB
-    console.log("check news results: ", result);
+    //console.log("check news results: ", result);
     addNewsToDB(result);
     return result;
   });
@@ -31,7 +31,7 @@ function runAnalysis() {
   //Run analysis on BTC price data. Store results to MySQL DB
   var prices = new Prices(datetime);
   var getPrices = prices.checkPrices.then(function(result) {
-    console.log("check prices results: ", result);
+    // console.log("check prices results: ", result);
     addPricesToDB(result);
     return result;
   });
@@ -39,16 +39,16 @@ function runAnalysis() {
   // Run analysis on fundamentals data. Store results to MySQL DB
   var fundamentals = new Fundamentals(datetime);
   var getFundamentals = fundamentals.checkFundamentals.then(function(result) {
-    console.log("check fundamentals results: ", result);
+    // console.log("check fundamentals results: ", result);
     addFundamentalsToDB(result);
     return result;
   });
 
   var functs = [getPrices, getFundamentals, getNews];
-  Promise.all(functs).then(function(values) {
-    //console.log(values);
-    //writeToFile(values);
-  });
+  // Promise.all(functs).then(function(values) {
+  //   //console.log(values);
+  //   //writeToFile(values);
+  // });
 }
 
 function writeToFile(APIdata) {
