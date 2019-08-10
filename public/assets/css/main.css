@@ -93,6 +93,25 @@ button:focus {
   width: 150px;
 }
 
+.firebaseui-id-secondary-link {
+  display: none !important;
+}
+
+.firebaseui-input,
+.firebaseui-input-invalid {
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87);
+  direction: ltr;
+  font-size: 16px;
+  width: 100%;
+}
+.firebaseui-input-toggle-on {
+  background-image: url(https://www.gstatic.com/images/icons/material/system/1x/visibility_white_24dp.png);
+}
+.firebaseui-input-toggle-off {
+  background-image: url(https://www.gstatic.com/images/icons/material/system/1x/visibility_off_white_24dp.png);
+}
+
 .firebaseui-form-actions {
   display: flex;
   justify-content: center;
