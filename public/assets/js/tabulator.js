@@ -2,7 +2,7 @@ grabtabulatordata();
 setInterval(function() {
   grabtabulatordata();
   console.log("test");
-}, 30000);
+}, 300000);
 
 function grabtabulatordata() {
   var decisionsTableData = [];
@@ -38,7 +38,7 @@ function grabtabulatordata() {
   });
 
   $.post("api/fundamentals", datetime, function(data) {
-    console.log("front end prices: ", data);
+    console.log("front end fundamentals: ", data);
     data.forEach(function(entry) {
       fundamentalsTableData.push(buildFundamentalsTable(entry));
     });
@@ -108,10 +108,10 @@ function buildDecisionsTable(AIdata) {
   d.setUTCSeconds(parseInt(AIdata.dateCreated * 1));
   var AITableRow = {
     time: d,
-    currprice: AIdata.CurrentPrice,
-    indication: AIdata.AIDecision,
-    BPrice: AIdata.BuyIfPrice,
-    SPrice: AIdata.SellIfPrice
+    currprice: AIdata.currentPrice,
+    indication: AIdata.aiDecision,
+    BPrice: AIdata.buyIfPrice,
+    SPrice: AIdata.sellIfPrice
   };
 
   return AITableRow;

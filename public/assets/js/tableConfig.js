@@ -188,7 +188,7 @@ NewsConfigData = [
   // { title: "Box Plot", field: "box", width: 160, formatter: boxFormatter }
 ];
 
-TradeConfigData = [
+DecisionsConfigData = [
   { title: "time", field: "time", align: "center" },
   { title: "current price", field: "currprice", align: "center" },
   {
