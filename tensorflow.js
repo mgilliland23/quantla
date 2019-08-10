@@ -4,36 +4,32 @@ var tf = require("@tensorflow/tfjs");
 
 require("./controller/controller.js")();
 
-// var jsonData = require('./public/assets/data.json');
-// jsonData = fs.readFile("./public/assets/data.json");
-// fs.readFile("./public/assets/data.json", function (err, fileData) {
-//     var jsonData = JSON.parse(fileData);
-// })
+var Controller = require("./controller/tensorController.js");
 
 // // this timeout was added to avoid quantla to save data after tensorflow analysis.
-// setTimeout(function() {
-//   //console.log("setTimeout");
+setTimeout(function() {
+  var controller = new Controller();
+  controller.getData.then(function(result) {
+    //console.log(result);
+    runTensorFlowAnalysis(result);
+  });
 
-//   //runTensorFlowAnalysis();
+  setInterval(function() {
+    var controller = new Controller();
+    controller.getData.then(function(result) {
+      //console.log(result);
+      runTensorFlowAnalysis(result);
+    });
+    tf.disposeVariables();
 
-//   setInterval(function() {
-//     //console.log("setInterval");
-
-//     tf.disposeVariables();
-
-//     //runTensorFlowAnalysis();
-//   }, 300000);
-// }, 10000);
+    //runTensorFlowAnalysis();
+  }, 300000);
+}, 10000);
 
 // // }, 30000);
 
 // runTensorFlowAnalysis();
 console.log("Tensorflow");
-
-getData.then(function(result) {
-  //console.log(result);
-  runTensorFlowAnalysis(result);
-});
 
 function runTensorFlowAnalysis(dataLoad) {
   console.log("tensorflow prediction is running...");
