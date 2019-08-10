@@ -19,7 +19,7 @@ setTimeout(function() {
       runTensorFlowAnalysis(result);
     });
     tf.disposeVariables();
-  }, 300000);
+  }, 100000);
 }, 10000);
 
 console.log("Tensorflow");

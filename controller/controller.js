@@ -54,22 +54,3 @@ module.exports = function() {
     });
   };
 };
-
-function matchData(prices, fundamentals, news) {
-  var allData = [];
-  prices.forEach(function(priceEntry, index) {
-    var dateSortedArray = [];
-    dateSortedArray.push(priceEntry);
-
-    if (fundamentals[index] === null) {
-      dateSortedArray.push({});
-    } else dateSortedArray.push(fundamentals[index]);
-
-    if (news[index] === null) {
-      dateSortedArray.push({});
-    } else dateSortedArray.push(news[index]);
-
-    allData.push(dateSortedArray);
-  });
-  return allData;
-}

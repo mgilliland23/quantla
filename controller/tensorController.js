@@ -51,8 +51,10 @@ var tController = function() {
         resultVector.push(dateMatchedData);
       });
       //console.log(resultVector);
+
       resolve(JSON.stringify(resultVector));
-      return;
+      //connection.end();
+      //return;
     });
   });
 };

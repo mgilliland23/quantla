@@ -8,7 +8,7 @@ require("./app/tools.js")();
 
 // Run the analysis for all BTC data sets immediately, and then every 30,000ms (5min)
 runAnalysis();
-setInterval(runAnalysis, 300000);
+setInterval(runAnalysis, 100000);
 
 function runAnalysis() {
   //This will be the date time used to link the different data sets Unix epoch format
