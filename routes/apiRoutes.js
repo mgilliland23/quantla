@@ -52,8 +52,8 @@ module.exports = function(app) {
         });
         priceObjs.push(priceObj);
       });
-      console.log("prices from db: ");
-      console.log(priceObjs);
+      //console.log("prices from db: ");
+      //console.log(priceObjs);
       res.json(priceObjs);
     });
   });
@@ -94,11 +94,13 @@ module.exports = function(app) {
     db.Decisions.findAll({
       attributes: [
         "dateCreated",
-        "currentPriceAsks",
-        "currentPriceBids",
-        "previousPrice",
-        "tenMinPriceVariation",
-        "currentVolume"
+        "buyProb",
+        "holdProb",
+        "sellProb",
+        "currentPrice",
+        "aiDecision",
+        "sellIfPrice",
+        "buyIfPrice"
       ],
       where: {
         dateCreated: {
@@ -106,16 +108,16 @@ module.exports = function(app) {
         }
       }
     }).then(function(resultset) {
-      var priceObjs = [];
+      var decisionObjs = [];
       resultset.forEach(resultSetItem => {
-        var priceObj = resultSetItem.get({
+        var decisionObj = resultSetItem.get({
           plain: true
         });
-        priceObjs.push(priceObj);
+        decisionObjs.push(decisionObj);
       });
-      console.log("prices from db: ");
-      console.log(priceObjs);
-      res.json(priceObjs);
+      //console.log("decisions from db: ");
+      // console.log(decisionObjs);
+      res.json(decisionObjs);
     });
   });
 

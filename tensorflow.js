@@ -12,11 +12,14 @@ require("./controller/controller.js")();
 
 // this timeout was added to avoid quantla to save data after tensorflow analysis.
 setTimeout(function() {
+  console.log("setTimeout");
   getDataFromDB.then(function(dataFromDB) {
     runTensorFlowAnalysis(dataFromDB);
   });
 
   setInterval(function() {
+    console.log("setInterval");
+
     tf.disposeVariables();
     getDataFromDB.then(function(dataFromDB) {
       runTensorFlowAnalysis(dataFromDB);
@@ -36,7 +39,7 @@ function runTensorFlowAnalysis(dataFromDB) {
   //   let jsonData = JSON.parse(rawdata);
   // fs.readFileSync("./public/assets/data.json");
   let jsonData = JSON.parse(dataFromDB);
-  console.log(jsonData);
+  //console.log(jsonData);
 
   // TODO: change the data creation to make it generict if we add a new data source for the model.
   var xdata = [];
@@ -89,6 +92,8 @@ function runTensorFlowAnalysis(dataFromDB) {
   SellSignal = y0.sort()[Math.floor(y0.length / 3)];
   CurrentPrice = x1[x1.length - 1] * 1;
   dateCreated = t0[t0.length - 1] * 1;
+
+  console.log("date created in tensor", dateCreated);
   // console.log(dateCreated);
   // console.log(tf.memory().numTensors);
 
@@ -314,7 +319,7 @@ function runTensorFlowAnalysis(dataFromDB) {
 
       console.log(PredictResults);
 
-      addPredictionsToDB(PredictResults);
+      addDecisionsToDB(PredictResults);
 
       fs.readFile("./public/assets/AIDecision.json", function(err, fileData) {
         tf.dispose(xs);
@@ -328,13 +333,13 @@ function runTensorFlowAnalysis(dataFromDB) {
         tf.disposeVariables();
         // tf.reset_default_graph();
 
-        var json = JSON.parse(fileData);
-        json.push(PredictResults);
-        var jsonContent = JSON.stringify(json);
-        fs.writeFile("./public/assets/AIDecision.json", jsonContent, err => {
-          if (err) throw err;
-          console.log("data written to file");
-        });
+        // var json = JSON.parse(fileData);
+        // json.push(PredictResults);
+        // var jsonContent = JSON.stringify(json);
+        // fs.writeFile("./public/assets/AIDecision.json", jsonContent, err => {
+        //   if (err) throw err;
+        //   console.log("data written to file");
+        // });
       });
 
       // console.log(ysPredict.data().then(function (results) {

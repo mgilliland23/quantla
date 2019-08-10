@@ -37,19 +37,19 @@ var Prices = function(datetime) {
       });
     }).then(function(results) {
       var currentPriceAsks = parseFloat(results[0][0].asks[0][0]);
-      console.log("current ask price", currentPriceAsks);
+      //console.log("current ask price", currentPriceAsks);
 
       var currentPriceBids = parseFloat(results[0][0].bids[0][0]);
-      console.log("current bid price", currentPriceBids);
+      //console.log("current bid price", currentPriceBids);
 
-      console.log("24hr volume in USD: ", results[1][0]["USDC_BTC"]);
+      //console.log("24hr volume in USD: ", results[1][0]["USDC_BTC"]);
       var currentVolume = parseFloat(results[1][0]["USDC_BTC"].USDC);
 
       //Get the object that contains all the previous price data objects from the response body
-      console.log("Previous price: ", results[2][0][0].close);
+      //console.log("Previous price: ", results[2][0][0].close);
       //get the price data from 10 minutes ago
       var previousPriceClose = parseFloat(results[2][0][0].close);
-      console.log("previous price (10 mins ago): ", previousPriceClose);
+      //console.log("previous price (10 mins ago): ", previousPriceClose);
 
       var tenMinPriceVariation = currentPriceAsks / previousPriceClose - 1;
 

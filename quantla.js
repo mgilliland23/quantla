@@ -17,7 +17,7 @@ function runAnalysis() {
   //This will be the date time used to link the different data sets Unix epoch format
   var datetime = Math.floor(new Date() / 1000);
 
-  console.log("Analysis being run at: ", datetime);
+  console.log("Quantla being run at: ", datetime);
 
   // // Run analysis on BTC news. Store results to MySQL DB
   var news = new News(datetime);
@@ -46,8 +46,8 @@ function runAnalysis() {
 
   var functs = [getPrices, getFundamentals, getNews];
   Promise.all(functs).then(function(values) {
-    console.log(values);
-    writeToFile(values);
+    //console.log(values);
+    //writeToFile(values);
   });
 }
 
