@@ -2,7 +2,7 @@ grabtabulatordata();
 setInterval(function() {
   grabtabulatordata();
   console.log("test");
-}, 300000);
+}, 100000);
 
 function grabtabulatordata() {
   var decisionsTableData = [];
