@@ -1,5 +1,5 @@
-var mysqlDB = require("../models");
-const Op = mysqlDB.Sequelize.Op;
+var db = require("../models");
+const Op = db.Sequelize.Op;
 require("../controller/controller.js")();
 
 module.exports = function(app) {
@@ -8,7 +8,7 @@ module.exports = function(app) {
     console.log(req.body.time);
     var datetime = req.body.time;
     var hourprevious = datetime - 3600;
-    mysqlDB.News.findAll({
+    db.News.findAll({
       attributes: ["dateCreated", "btcScore", "bitcoinScore", "documentScore"],
       where: {
         dateCreated: {
@@ -30,7 +30,7 @@ module.exports = function(app) {
   app.post("/api/prices", function(req, res) {
     var datetime = req.body.time;
     var hourprevious = datetime - 3600;
-    mysqlDB.Prices.findAll({
+    db.Prices.findAll({
       attributes: [
         "dateCreated",
         "currentPriceAsks",
@@ -61,7 +61,7 @@ module.exports = function(app) {
   app.post("/api/fundamentals", function(req, res) {
     var datetime = req.body.time;
     var hourprevious = datetime - 3600;
-    mysqlDB.Fundamentals.findAll({
+    db.Fundamentals.findAll({
       attributes: [
         "dateCreated",
         "hashRate",
@@ -91,7 +91,7 @@ module.exports = function(app) {
   // Check for invite key in the database
   app.post("/api/inviteKeys", function(req, res) {
     console.log("key from front end", req.body.inviteString);
-    mysqlDB.Invite.findAll({
+    db.Invite.findAll({
       where: { inviteString: req.body.inviteString }
     }).then(function(dbResponse) {
       console.log(dbResponse);
