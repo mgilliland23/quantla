@@ -31,6 +31,7 @@ setTimeout(function() {
 
 function runTensorFlowAnalysis() {
   getDataFromDB.then(function(dataFromDB) {
+    console.log(dataFromDB);
     console.log("tensorflow prediction is running...");
     console.log("Tensors memory check: " + tf.memory().numTensors);
 
