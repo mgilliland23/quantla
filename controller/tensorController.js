@@ -1,12 +1,4 @@
-var mysql = require("mysql");
-
-var connection = mysql.createConnection({
-  host: "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
-  port: 3306,
-  user: "matt",
-  password: "password",
-  database: "quantla_db"
-});
+var db = require("../models");
 
 var dbQuery =
   "SELECT * FROM News " +
@@ -17,7 +9,7 @@ var dbQuery =
 
 var tController = function() {
   this.getData = new Promise(function(resolve) {
-    connection.query(dbQuery, function(err, result) {
+    db.connection.query(dbQuery, function(err, result) {
       var resultVector = [];
       if (err) throw err;
       result.forEach(function(entry) {
@@ -50,7 +42,7 @@ var tController = function() {
         dateMatchedData.push(news);
         resultVector.push(dateMatchedData);
       });
-      //console.log(resultVector);
+      console.log("data from DB:: ", resultVector[resultVector.length - 1]);
 
       resolve(JSON.stringify(resultVector));
       //connection.end();

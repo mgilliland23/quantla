@@ -6,20 +6,19 @@ require("./controller/controller.js")();
 
 var Controller = require("./controller/tensorController.js");
 
+var controller = new Controller();
+controller.getData.then(function(result) {
+  runTensorFlowAnalysis(result);
+});
 // // this timeout was added to avoid quantla to save data after tensorflow analysis.
 setTimeout(function() {
-  var controller = new Controller();
-  controller.getData.then(function(result) {
-    runTensorFlowAnalysis(result);
-  });
-
   setInterval(function() {
     var controller = new Controller();
     controller.getData.then(function(result) {
       runTensorFlowAnalysis(result);
     });
     tf.disposeVariables();
-  }, 100000);
+  }, 300000);
 }, 10000);
 
 console.log("Tensorflow");
@@ -29,7 +28,7 @@ function runTensorFlowAnalysis(dataLoad) {
   console.log("Tensors memory check: " + tf.memory().numTensors);
 
   var jsonData = JSON.parse(dataLoad);
-  //console.log(jsonData);
+  console.log(jsonData[jsonData.length - 1]);
   //console.log(jsonData);
 
   // TODO: change the data creation to make it generict if we add a new data source for the model.
@@ -74,7 +73,7 @@ function runTensorFlowAnalysis(dataLoad) {
   // console.log(Math.max.apply(Math, x0));
   // console.log(Math.min.apply(Math, x0));
 
-  var dateCreated = 0;
+  var dateCreated1 = 0;
   var CurrentPrice = 0;
   var BuySignal = 0;
   var SellSignal = 0;
@@ -82,8 +81,8 @@ function runTensorFlowAnalysis(dataLoad) {
   BuySignal = y0.sort()[y0.length - Math.floor(y0.length / 3)];
   SellSignal = y0.sort()[Math.floor(y0.length / 3)];
   CurrentPrice = x1[x1.length - 1] * 1;
-  dateCreated = t0[t0.length - 1] * 1;
-
+  dateCreated1 = t0[t0.length - 1] * 1;
+  console.log("tensorflow date created: ", dateCreated1);
   // console.log(tf.memory().numTensors);
   // console.log(y0.sort());
   console.log(SellSignal);
@@ -282,7 +281,7 @@ function runTensorFlowAnalysis(dataLoad) {
         PredictResults.HoldProb,
         PredictResults.SellProb
       );
-      PredictResults["dateCreated"] = dateCreated;
+      PredictResults["dateCreated"] = dateCreated1;
       PredictResults["CurrentPrice"] = CurrentPrice;
 
       if (AIDecision === PredictResults.BuyProb) {

@@ -1,10 +1,7 @@
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
-module.exports = function() {
-  var datetime = Math.floor(new Date() / 1000);
-  var twoDaysAgo = datetime - 172800;
-
+var Controller = function() {
   this.addNewsToDB = function(newsObj) {
     db.News.create({
       dateCreated: newsObj.dateCreated,
@@ -54,3 +51,5 @@ module.exports = function() {
     });
   };
 };
+
+module.exports = Controller;

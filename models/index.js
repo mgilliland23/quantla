@@ -7,6 +7,7 @@ var basename = path.basename(module.filename);
 var env = "development";
 var config = require(__dirname + "/../config/config.json")[env];
 var db = {};
+var mysql = require("mysql");
 
 if (config.use_env_variable) {
   var sequelize = new Sequelize(process.env[config.use_env_variable]);
@@ -19,6 +20,14 @@ if (config.use_env_variable) {
     config
   );
 }
+
+var connection = mysql.createConnection({
+  host: "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
+  port: 3306,
+  user: config.username,
+  password: config.password,
+  database: config.database
+});
 
 fs.readdirSync(__dirname)
   .filter(function(file) {
@@ -39,5 +48,6 @@ Object.keys(db).forEach(function(modelName) {
 
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
+db.connection = connection;
 
 module.exports = db;

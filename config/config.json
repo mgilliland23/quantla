@@ -2,7 +2,7 @@
   "development": {
     "username": "matt",
     "password": "password",
-    "database": "quantla_db",
+    "database": "quantla_db_test",
     "host": "quantla-db.c6bauoxrw8fl.us-east-1.rds.amazonaws.com",
     "dialect": "mysql"
   },
