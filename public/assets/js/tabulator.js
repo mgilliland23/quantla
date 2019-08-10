@@ -5,7 +5,7 @@ setInterval(function() {
 }, 30000);
 
 function grabtabulatordata() {
-  var TradeData = [];
+  var decisionsTableData = [];
   var newsTableData = [];
   var pricesTableData = [];
   var fundamentalsTableData = [];
@@ -49,20 +49,32 @@ function grabtabulatordata() {
     );
   });
 
-  $.getJSON("./assets/AIDecision.json", function(json) {
-    //console.log(json); // this will show the info it in firebug console
-    json.forEach(function(entry) {
-      console.log(entry[0]);
-
-      TradeData.push(buildDecisionTable(entry));
+  $.post("api/decisions", datetime, function(data) {
+    console.log("front end decisions: ", data);
+    data.forEach(function(entry) {
+      decisionsTableData.push(buildDecisionsTable(entry));
     });
-
     createTable(
       "#trade-table",
-      orderTable(TradeData).slice(0, 30),
-      TradeConfigData
+      orderTable(decisionsTableData).slice(0, 30),
+      DecisionsConfigData
     );
   });
+
+  // $.getJSON("./assets/AIDecision.json", function(json) {
+  //   //console.log(json); // this will show the info it in firebug console
+  //   json.forEach(function(entry) {
+  //     console.log(entry[0]);
+
+  //     tradesTableData.push(buildDecisionTable(entry));
+  //   });
+
+  //   createTable(
+  //     "#trade-table",
+  //     orderTable(tradesTableData).slice(0, 30),
+  //     TradeConfigData
+  //   );
+  // });
 }
 
 function orderTable(data) {
@@ -90,7 +102,7 @@ function buildPriceTable(price) {
   return pricesTableRow;
 }
 
-function buildDecisionTable(AIdata) {
+function buildDecisionsTable(AIdata) {
   // console.log(price);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(AIdata.dateCreated * 1));

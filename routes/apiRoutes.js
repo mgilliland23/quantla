@@ -88,6 +88,37 @@ module.exports = function(app) {
     });
   });
 
+  app.post("/api/decisions", function(req, res) {
+    var datetime = req.body.time;
+    var hourprevious = datetime - 3600;
+    db.Decisions.findAll({
+      attributes: [
+        "dateCreated",
+        "currentPriceAsks",
+        "currentPriceBids",
+        "previousPrice",
+        "tenMinPriceVariation",
+        "currentVolume"
+      ],
+      where: {
+        dateCreated: {
+          [Op.between]: [hourprevious, datetime] // BETWEEN now AND an hour ago
+        }
+      }
+    }).then(function(resultset) {
+      var priceObjs = [];
+      resultset.forEach(resultSetItem => {
+        var priceObj = resultSetItem.get({
+          plain: true
+        });
+        priceObjs.push(priceObj);
+      });
+      console.log("prices from db: ");
+      console.log(priceObjs);
+      res.json(priceObjs);
+    });
+  });
+
   // Check for invite key in the database
   app.post("/api/inviteKeys", function(req, res) {
     console.log("key from front end", req.body.inviteString);
