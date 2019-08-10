@@ -14,7 +14,7 @@ function grabtabulatordata() {
   var hourprevious = datetime - 3600;
 
   $.post("api/news", datetime, function(data) {
-    //console.log(data);
+    console.log("front end news:", data);
     data.forEach(function(entry) {
       newsTableData.push(buildNewsTable(entry));
     });

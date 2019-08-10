@@ -1,10 +1,7 @@
 var db = require("../models");
 const Op = db.Sequelize.Op;
 
-module.exports = function() {
-  var datetime = Math.floor(new Date() / 1000);
-  var twoDaysAgo = datetime - 172800;
-
+var Controller = function() {
   this.addNewsToDB = function(newsObj) {
     db.News.create({
       dateCreated: newsObj.dateCreated,
@@ -55,21 +52,4 @@ module.exports = function() {
   };
 };
 
-function matchData(prices, fundamentals, news) {
-  var allData = [];
-  prices.forEach(function(priceEntry, index) {
-    var dateSortedArray = [];
-    dateSortedArray.push(priceEntry);
-
-    if (fundamentals[index] === null) {
-      dateSortedArray.push({});
-    } else dateSortedArray.push(fundamentals[index]);
-
-    if (news[index] === null) {
-      dateSortedArray.push({});
-    } else dateSortedArray.push(news[index]);
-
-    allData.push(dateSortedArray);
-  });
-  return allData;
-}
+module.exports = Controller;
