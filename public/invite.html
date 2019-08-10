@@ -52,7 +52,7 @@
     <!-- firebase -->
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/6.3.3/firebase-auth.js"></script>
-    <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script>
+    <!-- <script src="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.js"></script> -->
     <link type="text/css" rel="stylesheet" href="https://cdn.firebase.com/libs/firebaseui/4.1.0/firebaseui.css" />
 
     <!-- setup -->
@@ -103,7 +103,51 @@
 
                 </div>
 
-                <div id="firebaseui-auth-container"></div>
+                <div class="card" id="loginCard">
+                    <form onsubmit="return false;">
+                        <div class="firebaseui-card-header">
+                            <h1 class="firebaseui-title">Sign in</h1>
+                        </div>
+                        <div class="firebaseui-card-content">
+                            <div class="firebaseui-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty is-upgraded"
+                                data-upgraded=",MaterialTextfield"><label class="mdl-textfield__label firebaseui-label"
+                                    for="email">Email</label><input type="email" name="email" id="email"
+                                    autocomplete="username"
+                                    class="mdl-textfield__input firebaseui-input firebaseui-id-email"></div>
+                            <div class="firebaseui-error-wrapper">
+                                <p
+                                    class="firebaseui-error firebaseui-text-input-error firebaseui-hidden firebaseui-id-email-error">
+                                </p>
+                            </div>
+                            <div class="firebaseui-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty"
+                                data-upgraded=",MaterialTextfield"><label class="mdl-textfield__label firebaseui-label"
+                                    for="password">Password</label><input type="password" name="password" id="password"
+                                    autocomplete="current-password"
+                                    class="mdl-textfield__input firebaseui-input firebaseui-id-password"></div>
+                            <div class="firebaseui-error-wrapper">
+                                <p
+                                    class="firebaseui-error firebaseui-text-input-error firebaseui-hidden firebaseui-id-password-error">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="firebaseui-card-actions">
+
+                            <div class="firebaseui-form-actions"><button id="signIn" type="submit"
+                                    class="firebaseui-id-submit firebaseui-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                    data-upgraded=",MaterialButton">Sign In</button></div>
+                        </div>
+                        <div class="firebaseui-card-footer">
+                            <ul class="firebaseui-tos-list firebaseui-tos">
+                                <li class="firebaseui-inline-list-item"><a href="tos.html"
+                                        class="firebaseui-link firebaseui-tos-link" target="_blank">Terms of Service</a>
+                                </li>
+                                <li class="firebaseui-inline-list-item"><a href="tos.html"
+                                        class="firebaseui-link firebaseui-pp-link" target="_blank">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
 
                 <div class="text-center" style="max-width: 350px; margin: auto;">
                     <div>

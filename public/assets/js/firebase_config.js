@@ -8,5 +8,3 @@ var firebaseConfig = {
   messagingSenderId: atob("NzAyNjA0ODczMTU5"),
   appId: atob("MTo3MDI2MDQ4NzMxNTk6d2ViOmI3MzgwNzgyNTZjNzYxYjU=")
 };
-// Initialize Firebase
-firebase.initializeApp(firebaseConfig);

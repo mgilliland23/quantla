@@ -1,43 +1,82 @@
 // FirebaseUI config.
-var uiConfig = {
-  signInSuccessUrl: "/core",
-  signInFlow: "popup",
-  signInOptions: [
-    // Leave the lines as is for the providers you want to offer your users.
-    //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
-    // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
-    // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    // firebase.auth.GithubAuthProvider.PROVIDER_ID,
-    firebase.auth.EmailAuthProvider.PROVIDER_ID
-    // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
-    // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
-  ],
-  // tosUrl and privacyPolicyUrl accept either url string or a callback
-  // function.
-  // Terms of service url/callback.
-  tosUrl: function() {
-    window.location.assign("/terms");
-  },
-  // Privacy policy url/callback.
-  privacyPolicyUrl: function() {
-    window.location.assign("/terms");
-  },
-  credentialHelper: firebaseui.auth.CredentialHelper.NONE
-};
+// var uiConfig = {
+//   signInSuccessUrl: "/core",
+//   signInFlow: "popup",
+//   signInOptions: [
+//     // Leave the lines as is for the providers you want to offer your users.
+//     //firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+//     // firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+//     // firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+//     // firebase.auth.GithubAuthProvider.PROVIDER_ID,
+//     firebase.auth.EmailAuthProvider.PROVIDER_ID
+//     // firebase.auth.PhoneAuthProvider.PROVIDER_ID,
+//     // firebaseui.auth.AnonymousAuthProvider.PROVIDER_ID
+//   ],
+//   // tosUrl and privacyPolicyUrl accept either url string or a callback
+//   // function.
+//   // Terms of service url/callback.
+//   tosUrl: function() {
+//     window.location.assign("/terms");
+//   },
+//   // Privacy policy url/callback.
+//   privacyPolicyUrl: function() {
+//     window.location.assign("/terms");
+//   },
+//   credentialHelper: firebaseui.auth.CredentialHelper.NONE
+// };
 
-// Initialize the FirebaseUI Widget using Firebase.
-var ui = new firebaseui.auth.AuthUI(firebase.auth());
+// // Initialize the FirebaseUI Widget using Firebase.
+// var ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-if (ui.isPendingRedirect()) {
-  $("#inviteCard").hide();
-  ui.start("#firebaseui-auth-container", uiConfig);
-}
+// if (ui.isPendingRedirect()) {
+//   $("#inviteCard").hide();
+//   ui.start("#firebaseui-auth-container", uiConfig);
+// }
+
+firebase.initializeApp(firebaseConfig);
+
+const auth = firebase.auth();
+
+// listen for auth status changes
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("User id: " + user.uid);
+    (self.location.href = "core.html"), event.preventDefault();
+  } else {
+    console.log("no one is signed in");
+    // No user is signed in.
+  }
+});
 
 $("#login").on("click", function() {
   console.log("clicker");
   $("#inviteCard").hide();
   //Start google's login UI
-  ui.start("#firebaseui-auth-container", uiConfig);
+  $("#loginCard").show();
+});
+
+$("#signIn").on("click", function() {
+  event.preventDefault();
+  console.log("login clicked");
+
+  email = $("#email")
+    .val()
+    .trim();
+  password = $("#password")
+    .val()
+    .trim();
+  console.log(email);
+  console.log(password);
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
 });
 
 $("#signUp").on("click", function(event) {

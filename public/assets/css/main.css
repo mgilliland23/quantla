@@ -79,13 +79,27 @@ button:focus {
   color: red;
 }
 
-/* Styling for firebaseUI widget */
+/* Styling for Signup/Login widgets */
 
-.mdl-card{
+.mdl-card {
   width: 100%;
 }
 
-#firebaseui-auth-container{
+#loginCard {
+  display: none;
+}
+
+.firebaseui-id-submit {
+  width: 150px;
+}
+
+.firebaseui-form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#firebaseui-auth-container {
   padding: 0;
   margin: auto;
   width: 100%;
@@ -104,20 +118,19 @@ button:focus {
 }
 
 .firebaseui-title {
-  color: white ;
+  color: white;
 }
 
 .firebaseui-link {
   color: #99cb14;
 }
 
-
-.mdl-button{
+.mdl-button {
   background: #00000000;
   color: #99cb14;
 }
 
-.mdl-button:hover{
+.mdl-button:hover {
   background: #00000000;
   color: #99cb14;
 }
@@ -132,12 +145,10 @@ button:focus {
   color: white;
 }
 
-.mdl-button.mdl-button--colored{
+.mdl-button.mdl-button--colored {
   background: #85af11;
   color: white;
 }
-
-
 
 .firebaseui-label,
 .firebaseui-input {
@@ -148,8 +159,6 @@ button:focus {
   border-color: white;
   font-size: 14px;
 }
-
-
 
 .firebaseui-textfield.mdl-textfield:focus .firebaseui-input {
   border-color: white;
@@ -167,7 +176,6 @@ button:focus {
   text-align: left;
 }
 
-
 .firebaseui-textfield {
   color: rgba(255, 255, 255, 0.87);
   width: 100%;
@@ -175,13 +183,13 @@ button:focus {
 
 /* mdl-card mdl-shadow--2dp firebaseui-container firebaseui-id-page-sign-in */
 
-.firebaseui-tos-list{
+.firebaseui-tos-list {
   margin: 0;
   padding: 0;
   text-align: right;
 }
 
-.firebaseui-textfield-invalid{
+.firebaseui-textfield-invalid {
   color: greenyellow;
 }
 
