@@ -26,11 +26,14 @@ var Fundamentals = function(datetime) {
       });
     }).then(function(results) {
       //1 day variation for hashrate
-      var hashRateData = results[0][0].values;
-      var currHashRate = hashRateData[0].y;
-      var prevHashRate = hashRateData[1].y;
-      var hashRateVariation = currHashRate / prevHashRate - 1;
-
+      var hashrateData = results[0][0].values;
+      var currHashrate = hashrateData[0].y;
+      var prevHashRate = hashrateData[1].y;
+      console.log("prevHashRate", prevHashRate);
+      var hashrateVariation = currHashrate / prevHashRate - 1;
+      if (hashrateVariation === 0) {
+        hashrateVariation = 0.00001;
+      }
       //1 day variation for transaction fee
       var transactionFeeData = results[1][0].values;
       var currTransactionFee = transactionFeeData[0].y;
@@ -46,8 +49,8 @@ var Fundamentals = function(datetime) {
 
       var fundamentalsObj = {
         dateCreated: datetime,
-        hashRate: currHashRate,
-        hashrateVariation: hashRateVariation,
+        hashRate: currHashrate,
+        hashrateVariation: hashrateVariation,
         transactionFee: currTransactionFee,
         transactionFeeVariation: transactionFeeVariation,
         costPerTransaction: currCostPerTransaction,

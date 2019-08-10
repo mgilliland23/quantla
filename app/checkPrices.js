@@ -36,20 +36,19 @@ var Prices = function(datetime) {
         return [JSON.parse(body), url];
       });
     }).then(function(results) {
-
-      var currentPriceAsks = results[0][0].asks[0][0];
+      var currentPriceAsks = parseFloat(results[0][0].asks[0][0]);
       console.log("current ask price", currentPriceAsks);
 
-      var currentPriceBids = results[0][0].bids[0][0];
+      var currentPriceBids = parseFloat(results[0][0].bids[0][0]);
       console.log("current bid price", currentPriceBids);
 
       console.log("24hr volume in USD: ", results[1][0]["USDC_BTC"]);
-      var currentVolume = results[1][0]["USDC_BTC"].USDC;
+      var currentVolume = parseFloat(results[1][0]["USDC_BTC"].USDC);
 
       //Get the object that contains all the previous price data objects from the response body
       console.log("Previous price: ", results[2][0][0].close);
       //get the price data from 10 minutes ago
-      var previousPriceClose = results[2][0][0].close;
+      var previousPriceClose = parseFloat(results[2][0][0].close);
       console.log("previous price (10 mins ago): ", previousPriceClose);
 
       var tenMinPriceVariation = currentPriceAsks / previousPriceClose - 1;
@@ -57,7 +56,6 @@ var Prices = function(datetime) {
       // Construct the object to be returned by the function
       var priceData = {
         dateCreated: datetime,
-
         currentPriceAsks: currentPriceAsks,
         currentPriceBids: currentPriceBids,
         previousPrice: previousPriceClose,
