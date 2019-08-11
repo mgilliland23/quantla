@@ -143,7 +143,7 @@
                                 <li class="firebaseui-inline-list-item"><a href="tos.html"
                                         class="firebaseui-link firebaseui-tos-link" target="_blank">Terms of Service</a>
                                 </li>
-                                <li class="firebaseui-inline-list-item"><a href="tos.html"
+                                <li class="firebaseui-inline-list-item"><a href="terms"
                                         class="firebaseui-link firebaseui-pp-link" target="_blank">Privacy Policy</a>
                                 </li>
                             </ul>
@@ -161,6 +161,17 @@
                     </div>
                 </div>
 
+                <!-- Load Stripe.js on your website. -->
+                <script src="https://js.stripe.com/v3"></script>
+
+                <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-sku_FbIKf30wocKTqr" role="link">
+                    Checkout
+                </button>
+
+                <div id="error-message"></div>
             </div>
 
         </section>
@@ -170,6 +181,7 @@
 
     <script src="assets/js/firebase_config.js"></script>
     <script src="assets/js/login.js"></script>
+    <script src="assets/js/stripe.js"></script>
 
 
 
