@@ -1,14 +1,14 @@
-var stripe = Stripe("pk_live_G54aTnWHKfG5ii4Kj34vUerI004h2VSbzI");
+var stripe = Stripe("pk_test_karsmt0rzRKNQFzBMmj02VGZ00jgAWpFlU");
 
 var checkoutButton = document.getElementById(
-  "checkout-button-sku_FbcRETN9HdQ97p"
+  "checkout-button-sku_Fbe2vWevNEkBlM"
 );
 checkoutButton.addEventListener("click", function() {
   // When the customer clicks on the button, redirect
   // them to Checkout.
   stripe
     .redirectToCheckout({
-      items: [{ sku: "sku_FbcRETN9HdQ97p", quantity: 1 }],
+      items: [{ sku: "sku_Fbe2vWevNEkBlM", quantity: 1 }],
 
       // Do not rely on the redirect to the successUrl for fulfilling
       // purchases, customers may not always reach the success_url after
@@ -16,9 +16,9 @@ checkoutButton.addEventListener("click", function() {
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
       successUrl:
-        window.location.protocol + "//www.quantla.herokuapp.com/success.html",
+        window.location.protocol + "//www.heokuapp.quantla.com/success",
       cancelUrl:
-        window.location.protocol + "//www.quantla.herokuapp.com/canceled"
+        window.location.protocol + "//www.herokuapp.quantla.com/canceled"
     })
     .then(function(result) {
       if (result.error) {
