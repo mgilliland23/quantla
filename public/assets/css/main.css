@@ -79,6 +79,28 @@ button:focus {
   color: red;
 }
 
+#invite-code {
+  padding: 6px 12px;
+  font-size: 2rem;
+  line-height: 1.42857143;
+  color: #949ba2;
+  border: 1px solid #394147;
+  border-radius: 4px;
+  background-color: #394147;
+  text-align: center;
+}
+
+.checkout-button {
+  margin: auto;
+  margin-top: 20px;
+  color: #85af11;
+  height: 2.5 rem;
+  font-size: 1.25rem;
+  border: none;
+  border: none !important;
+  background: transparent;
+}
+
 /* Styling for Signup/Login widgets */
 
 .mdl-card {
