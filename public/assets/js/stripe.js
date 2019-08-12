@@ -15,8 +15,10 @@ checkoutButton.addEventListener("click", function() {
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: window.location.protocol + "//quantla.herokuapp.com/success",
-      cancelUrl: window.location.protocol + "//quantla.herokuapp.com/canceled"
+      successUrl:
+        window.location.protocol + "//quantla.herokuapp.com/success.html",
+      cancelUrl:
+        window.location.protocol + "//quantla.herokuapp.com/canceled.html"
     })
     .then(function(result) {
       if (result.error) {
