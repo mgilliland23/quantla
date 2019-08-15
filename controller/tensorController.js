@@ -5,11 +5,15 @@ var dbQuery =
   "JOIN Prices " +
   "ON News.dateCreated = Prices.dateCreated " +
   "JOIN Fundamentals " +
-  "ON News.dateCreated = Fundamentals.dateCreated";
+  "ON News.dateCreated = Fundamentals.dateCreated " +
+  "WHERE News.dateCreated > ?";
+
+var currDateTime = Math.floor(new Date() / 1000);
+var yesterday = currDateTime - 86400;
 
 var tController = function() {
   this.getData = new Promise(function(resolve) {
-    db.connection.query(dbQuery, function(err, result) {
+    db.connection.query(dbQuery, yesterday, function(err, result) {
       var resultVector = [];
       if (err) throw err;
       result.forEach(function(entry) {
@@ -42,7 +46,7 @@ var tController = function() {
         dateMatchedData.push(news);
         resultVector.push(dateMatchedData);
       });
-      console.log("data from DB:: ", resultVector[resultVector.length - 1]);
+      //console.log("data from DB:: ", resultVector[resultVector.length - 1]);
 
       resolve(JSON.stringify(resultVector));
       //connection.end();
