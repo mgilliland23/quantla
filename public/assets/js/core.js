@@ -66,6 +66,20 @@ function grabproposedtradedata() {
     }
   });
 
+  $(document).ready(function() {
+    // click handler for logout
+    $("#logout").on("click", function(event) {
+      event.preventDefault();
+      firebase
+        .auth()
+        .signOut()
+        .then(() => {
+          console.log("user signed out");
+        });
+      (self.location.href = "invite.html"), event.preventDefault();
+    });
+  });
+
   // $.getJSON("./assets/AIDecision.json", function(data) {
   //   // console.log(fileData[fileData.length - 1]);
   //   // console.log(fileData[fileData.length - 1].CurrentPrice);
