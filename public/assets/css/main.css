@@ -79,13 +79,68 @@ button:focus {
   color: red;
 }
 
-/* Styling for firebaseUI widget */
+#invite-code {
+  padding: 6px 12px;
+  font-size: 2rem;
+  line-height: 1.42857143;
+  color: #949ba2;
+  border: 1px solid #394147;
+  border-radius: 4px;
+  background-color: #394147;
+  text-align: center;
+}
 
-.mdl-card{
+.checkout-button {
+  margin: auto;
+  margin-top: 10px;
+  color: #85af11;
+  height: 2.5 rem;
+  font-size: 1.25rem;
+  border: none;
+  border: none !important;
+  background: transparent;
+}
+
+/* Styling for Signup/Login widgets */
+
+.mdl-card {
   width: 100%;
 }
 
-#firebaseui-auth-container{
+#loginCard {
+  display: none;
+}
+
+.firebaseui-id-submit {
+  width: 150px;
+}
+
+.firebaseui-form-links {
+  display: none !important;
+}
+
+.firebaseui-input,
+.firebaseui-input-invalid {
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.87);
+  direction: ltr;
+  font-size: 16px;
+  width: 100%;
+}
+.firebaseui-input-toggle-on {
+  background-image: url(https://www.gstatic.com/images/icons/material/system/1x/visibility_white_24dp.png);
+}
+.firebaseui-input-toggle-off {
+  background-image: url(https://www.gstatic.com/images/icons/material/system/1x/visibility_off_white_24dp.png);
+}
+
+.firebaseui-form-actions {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#firebaseui-auth-container {
   padding: 0;
   margin: auto;
   width: 100%;
@@ -104,20 +159,19 @@ button:focus {
 }
 
 .firebaseui-title {
-  color: white ;
+  color: white;
 }
 
 .firebaseui-link {
   color: #99cb14;
 }
 
-
-.mdl-button{
+.mdl-button {
   background: #00000000;
   color: #99cb14;
 }
 
-.mdl-button:hover{
+.mdl-button:hover {
   background: #00000000;
   color: #99cb14;
 }
@@ -132,12 +186,10 @@ button:focus {
   color: white;
 }
 
-.mdl-button.mdl-button--colored{
+.mdl-button.mdl-button--colored {
   background: #85af11;
   color: white;
 }
-
-
 
 .firebaseui-label,
 .firebaseui-input {
@@ -148,8 +200,6 @@ button:focus {
   border-color: white;
   font-size: 14px;
 }
-
-
 
 .firebaseui-textfield.mdl-textfield:focus .firebaseui-input {
   border-color: white;
@@ -167,7 +217,6 @@ button:focus {
   text-align: left;
 }
 
-
 .firebaseui-textfield {
   color: rgba(255, 255, 255, 0.87);
   width: 100%;
@@ -175,13 +224,13 @@ button:focus {
 
 /* mdl-card mdl-shadow--2dp firebaseui-container firebaseui-id-page-sign-in */
 
-.firebaseui-tos-list{
+.firebaseui-tos-list {
   margin: 0;
   padding: 0;
   text-align: right;
 }
 
-.firebaseui-textfield-invalid{
+.firebaseui-textfield-invalid {
   color: greenyellow;
 }
 

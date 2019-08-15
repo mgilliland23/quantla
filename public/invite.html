@@ -105,16 +105,69 @@
 
                 <div id="firebaseui-auth-container"></div>
 
-                <div class="text-center" style="max-width: 350px; margin: auto;">
+                <div class="card" id="loginCard">
+                    <form onsubmit="return false;">
+                        <div class="firebaseui-card-header">
+                            <h1 class="firebaseui-title">Sign in</h1>
+                        </div>
+                        <div class="firebaseui-card-content">
+                            <div class="firebaseui-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-dirty is-upgraded"
+                                data-upgraded=",MaterialTextfield"><label class="mdl-textfield__label firebaseui-label"
+                                    for="email">Email</label><input type="email" name="email" id="email"
+                                    autocomplete="username"
+                                    class="mdl-textfield__input firebaseui-input firebaseui-id-email"></div>
+                            <div class="firebaseui-error-wrapper">
+                                <p
+                                    class="firebaseui-error firebaseui-text-input-error firebaseui-hidden firebaseui-id-email-error">
+                                </p>
+                            </div>
+                            <div class="firebaseui-textfield mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty"
+                                data-upgraded=",MaterialTextfield"><label class="mdl-textfield__label firebaseui-label"
+                                    for="password">Password</label><input type="password" name="password" id="password"
+                                    autocomplete="current-password"
+                                    class="mdl-textfield__input firebaseui-input firebaseui-id-password"></div>
+                            <div class="firebaseui-error-wrapper">
+                                <p
+                                    class="firebaseui-error firebaseui-text-input-error firebaseui-hidden firebaseui-id-password-error">
+                                </p>
+                            </div>
+                        </div>
+                        <div class="firebaseui-card-actions">
+
+                            <div class="firebaseui-form-actions"><button id="signIn" type="submit"
+                                    class="firebaseui-id-submit firebaseui-button mdl-button mdl-js-button mdl-button--raised mdl-button--colored"
+                                    data-upgraded=",MaterialButton">Sign In</button></div>
+                        </div>
+                        <div class="firebaseui-card-footer">
+                            <ul class="firebaseui-tos-list firebaseui-tos">
+                                <li class="firebaseui-inline-list-item"><a href="tos.html"
+                                        class="firebaseui-link firebaseui-tos-link" target="_blank">Terms of Service</a>
+                                </li>
+                                <li class="firebaseui-inline-list-item"><a href="terms"
+                                        class="firebaseui-link firebaseui-pp-link" target="_blank">Privacy Policy</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </form>
+                </div>
+
+                <div id="footerText" class="text-center" style="max-width: 350px; margin: auto;">
                     <div>
                         <small>If you are already a member click <a href="#" id="login">here</a> to
                             login.</small>
                     </div>
                     <div>
-                        <small><a href="/home">How this work?</a></small>
+                        <small><a href="/home.html">How this work?</a></small>
                     </div>
                 </div>
 
+                <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                <a href="purchase.html" class="checkout-button"><button class="checkout-button custom-button-green"
+                        role="link">
+                        Purchase an Invite Code
+                    </button></a>
+
+                <div id="error-message"></div>
             </div>
 
         </section>
@@ -124,7 +177,7 @@
 
     <script src="assets/js/firebase_config.js"></script>
     <script src="assets/js/login.js"></script>
-
+    <script src="assets/js/stripe.js"></script>
 
 
 </body>

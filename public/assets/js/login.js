@@ -1,3 +1,5 @@
+firebase.initializeApp(firebaseConfig);
+
 // FirebaseUI config.
 var uiConfig = {
   signInSuccessUrl: "/core",
@@ -33,11 +35,48 @@ if (ui.isPendingRedirect()) {
   ui.start("#firebaseui-auth-container", uiConfig);
 }
 
+const auth = firebase.auth();
+
+// listen for auth status changes
+firebase.auth().onAuthStateChanged(function(user) {
+  if (user) {
+    console.log("User id: " + user.uid);
+    (self.location.href = "core.html"), event.preventDefault();
+  } else {
+    console.log("no one is signed in");
+    // No user is signed in.
+  }
+});
+
 $("#login").on("click", function() {
   console.log("clicker");
   $("#inviteCard").hide();
-  //Start google's login UI
-  ui.start("#firebaseui-auth-container", uiConfig);
+  $("#footerText").hide();
+  $("#loginCard").show();
+});
+
+$("#signIn").on("click", function() {
+  event.preventDefault();
+  console.log("login clicked");
+
+  email = $("#email")
+    .val()
+    .trim();
+  password = $("#password")
+    .val()
+    .trim();
+  console.log(email);
+  console.log(password);
+
+  firebase
+    .auth()
+    .signInWithEmailAndPassword(email, password)
+    .catch(function(error) {
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
 });
 
 $("#signUp").on("click", function(event) {
@@ -56,8 +95,10 @@ $("#signUp").on("click", function(event) {
       if (data.length > 0) {
         //And if so, hide the invite field and show the login UI
         $("#inviteCard").hide();
+        $("#footerText").hide();
         //Start google's login UI
         ui.start("#firebaseui-auth-container", uiConfig);
+        $(".firebaseui-title").text("Sign up with email");
       } else {
         if ($("#codeForm").find("p").length === 0) {
           //display error message on front end

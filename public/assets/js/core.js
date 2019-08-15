@@ -1,4 +1,7 @@
 var userID;
+
+firebase.initializeApp(firebaseConfig);
+
 //Get the user id of the current user
 firebase.auth().onAuthStateChanged(function(user) {
   if (user) {
