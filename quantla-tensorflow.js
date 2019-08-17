@@ -7,18 +7,18 @@ require("./controller/controller.js")();
 var Controller = require("./controller/tensorController.js");
 var runCount = 0;
 
-setTimeout(function() {
+setTimeout(function () {
   var controller = new Controller();
-  controller.getData.then(function(result) {
+  controller.getData.then(function (result) {
     runTensorFlowAnalysis(result);
   });
 }, 10000);
 
 // // this timeout was added to avoid quantla to save data after tensorflow analysis.
-setTimeout(function() {
-  setInterval(function() {
+setTimeout(function () {
+  setInterval(function () {
     var controller = new Controller();
-    controller.getData.then(function(result) {
+    controller.getData.then(function (result) {
       runTensorFlowAnalysis(result);
     });
   }, 300000);
@@ -61,7 +61,7 @@ function runTensorFlowAnalysis(dataLoad) {
   var y0 = [];
   var t0 = [];
 
-  jsonData.forEach(function(entry) {
+  jsonData.forEach(function (entry) {
     //console.log(entry[2].articles[0].score);
     x01.push(entry[2].documentScore);
     x02.push(entry[2].bitcoinScore);
@@ -98,71 +98,71 @@ function runTensorFlowAnalysis(dataLoad) {
   // console.log(SellSignal);
   // console.log(BuySignal);
 
-  jsonData.forEach(function(entry) {
+  jsonData.forEach(function (entry) {
     // console.log(entry[0]);
     // xdata.push(entry[1]);
     // xdata.push(entry[2].articles[0].score);
 
     xdata.push([
       (entry[2].documentScore - Math.min.apply(Math, x01)) /
-        (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
+      (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
       (entry[2].bitcoinScore - Math.min.apply(Math, x02)) /
-        (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
+      (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
       (entry[2].btcScore - Math.min.apply(Math, x03)) /
-        (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
+      (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
       (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) /
-        (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
+      (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
       (entry[0].currentPriceAsks -
         entry[0].currentPriceBids -
         Math.min.apply(Math, x2)) /
-        (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
+      (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
       (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) /
-        (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
+      (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
       (entry[0].currentVolume - Math.min.apply(Math, x4)) /
-        (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
+      (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
       (entry[1].hashRate - Math.min.apply(Math, x5)) /
-        (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
+      (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
       (entry[1].hashrateVariation - Math.min.apply(Math, x6)) /
-        (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
+      (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
       (entry[1].transactionFee - Math.min.apply(Math, x7)) /
-        (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
+      (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
       (entry[1].transactionFeeVariation - Math.min.apply(Math, x8)) /
-        (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
+      (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
       (entry[1].costPerTransaction - Math.min.apply(Math, x9)) /
-        (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
+      (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
       (entry[1].costPerTransactionVariation - Math.min.apply(Math, x10)) /
-        (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
+      (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
     ]);
 
     origin.push([
       (entry[2].documentScore - Math.min.apply(Math, x01)) /
-        (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
+      (Math.max.apply(Math, x01) - Math.min.apply(Math, x01) * 0.99999999999),
       (entry[2].bitcoinScore - Math.min.apply(Math, x02)) /
-        (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
+      (Math.max.apply(Math, x02) - Math.min.apply(Math, x02) * 0.99999999999),
       (entry[2].btcScore - Math.min.apply(Math, x03)) /
-        (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
+      (Math.max.apply(Math, x03) - Math.min.apply(Math, x03) * 0.99999999999),
       (entry[0].currentPriceAsks - Math.min.apply(Math, x1)) /
-        (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
+      (Math.max.apply(Math, x1) - Math.min.apply(Math, x1) * 0.99999999999),
       (entry[0].currentPriceAsks -
         entry[0].currentPriceBids -
         Math.min.apply(Math, x2)) /
-        (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
+      (Math.max.apply(Math, x2) - Math.min.apply(Math, x2) * 0.99999999999),
       (entry[0].tenMinPriceVariation - Math.min.apply(Math, x3)) /
-        (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
+      (Math.max.apply(Math, x3) - Math.min.apply(Math, x3) * 0.99999999999),
       (entry[0].currentVolume - Math.min.apply(Math, x4)) /
-        (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
+      (Math.max.apply(Math, x4) - Math.min.apply(Math, x4) * 0.99999999999),
       (entry[1].hashRate - Math.min.apply(Math, x5)) /
-        (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
+      (Math.max.apply(Math, x5) - Math.min.apply(Math, x5) * 0.99999999999),
       (entry[1].hashrateVariation - Math.min.apply(Math, x6)) /
-        (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
+      (Math.max.apply(Math, x6) - Math.min.apply(Math, x6) * 0.99999999999),
       (entry[1].transactionFee - Math.min.apply(Math, x7)) /
-        (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
+      (Math.max.apply(Math, x7) - Math.min.apply(Math, x7) * 0.99999999999),
       (entry[1].transactionFeeVariation - Math.min.apply(Math, x8)) /
-        (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
+      (Math.max.apply(Math, x8) - Math.min.apply(Math, x8) * 0.99999999999),
       (entry[1].costPerTransaction - Math.min.apply(Math, x9)) /
-        (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
+      (Math.max.apply(Math, x9) - Math.min.apply(Math, x9) * 0.99999999999),
       (entry[1].costPerTransactionVariation - Math.min.apply(Math, x10)) /
-        (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
+      (Math.max.apply(Math, x10) - Math.min.apply(Math, x10) * 0.99999999999)
     ]);
 
     if (entry[0].tenMinPriceVariation >= BuySignal) {
@@ -331,7 +331,7 @@ function trainData(xdt, ydt) {
     // shuffle: true, // If I want to use only
   };
 
-  model.fit(xs, ys, options).then(function(results) {
+  model.fit(xs, ys, options).then(function (results) {
     // console.dir(results.history.loss, { 'maxArrayLength': null });
 
     console.log("start loss: " + results.history.loss[0]);
