@@ -71,7 +71,7 @@
 
             <div class="row" style="padding-bottom: 20px;">
                 <div class="col-2">
-                    <img src="/images/quantla_logo_circle_green.png" width="60px" height="60px">
+                    <a href="/"><img src="/images/quantla_logo_circle_green.png" width="60px" height="60px"></a>
                 </div>
                 <div class="col-10">
                     <div>
@@ -90,13 +90,12 @@
                         <div style="margin-bottom: 10px;"><span>Invite code:</span></div>
 
                         <form>
-                            <input type="text" title="Please enter your invite code" required="" value="" name="code"
-                                id="code" class="form-control"
-                                oninvalid="this.setCustomValidity('please enter your invite code')">
+                            <input type="text" class="form-control" placeholder="" name="code" id="code" required>
 
-                            <button style="margin-top: 15px;" id="signUp" type="submit" class="custom-button-green">Sign
-                                Up</button>
-
+                            <input type="submit" id="signUp" value="Sign Up" class="custom-button-green"
+                                style="margin-top: 15px;" />
+                            <!-- <button style="margin-top: 15px;" type="submit" id="signUp" class="custom-button-green">Sign
+                                Up</button> -->
                         </form>
 
                     </div>

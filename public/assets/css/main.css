@@ -162,6 +162,19 @@ button:focus {
   color: white;
 }
 
+.mdl-button:active {
+    background: #99cb14 !important;
+    color: #fff;
+}
+
+.mdl-button:focus {
+  background: #99cb14 !important;
+  color: #fff;
+}
+
+
+
+
 .firebaseui-link {
   color: #99cb14;
 }
