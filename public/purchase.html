@@ -21,6 +21,8 @@
     <!-- <meta name="google-site-verification" content="R1q5qs8M0opPmtmUrw0BuuI2i0221xZ94q8ITQkxzLg"> -->
     <meta name="application-name" content="Quantla">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
 
     <title>Quantla</title>
 
@@ -52,7 +54,9 @@
     <!-- setup -->
     <link rel="stylesheet" href="/assets/css/main.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
+    <link rel="stylesheet" href="/assets/css/stripe.css">
     <script src="assets/js/main.js"></script>
+
 
 </head>
 
@@ -83,8 +87,7 @@
                         <div style="margin-bottom: 10px;"><span>One month access:</span></div>
                         <p id="invite-code">$99</p>
                         <small>
-                            <div>Estimated monthly return on investment with a starting account balance of $10,000 is
-                                $250</div>
+                            <div></div>
                         </small>
                         <button class="checkout-button custom-button-green" id="checkout-button-sku_Fbe2vWevNEkBlM"
                             role="link">
@@ -98,8 +101,7 @@
                         <div style="margin-bottom: 10px;"><span>One year access:</span></div>
                         <p id="invite-code">$999</p>
                         <small>
-                            <div>Estimated yearly return on investment with a starting account balance of $10,000 is
-                                $3500</div>
+                            <div></div>
                         </small>
                         <button class="checkout-button custom-button-green" id="checkout-button-sku_Fbe2vWevNEkBlM"
                             role="link">
@@ -109,6 +111,32 @@
                     </div>
 
                 </div>
+
+                <!-- Create a button that your customers click to complete their purchase. Customize the styling to suit your branding. -->
+                <button
+                    style="background-color:#6772E5;color:#FFF;padding:8px 12px;border:0;border-radius:4px;font-size:1em"
+                    id="checkout-button-plan_FeeDkTMnj3WiHu" role="link">
+                    Checkout
+                </button>
+
+                <div id="error-message"></div>
+
+
+                <!-- <form action="/charge" method="post" id="payment-form">
+                    <div class="form-row">
+                        <label for="card-element">
+                            Credit or debit card
+                        </label>
+                        <div id="card-element">
+                            A Stripe Element will be inserted here.
+                        </div>
+
+                        Used to display form errors.
+                        <div id="card-errors" role="alert"></div>
+                    </div>
+
+                    <button class="custom-button-green">Submit Payment</button>
+                </form> -->
                 <!-- <div id="footerText" class="text-center" style="max-width: 350px; margin: auto;">
                     <small>
                         <div>Click <a href="invite.html" id="login">here</a> to create your account</div>
@@ -122,7 +150,9 @@
     </div>
 
     <div class="particles_full" id="particles-js"> </div>
+    <script src="https://js.stripe.com/v3/"></script>
 
+    <script src="assets/js/stripe.js"></script>
 
 </body>
 
