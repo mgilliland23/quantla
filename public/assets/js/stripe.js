@@ -86,8 +86,8 @@ checkoutButton.addEventListener("click", function() {
       // a successful payment.
       // Instead use one of the strategies described in
       // https://stripe.com/docs/payments/checkout/fulfillment
-      successUrl: window.location.protocol + "//www.quantla.com/success",
-      cancelUrl: window.location.protocol + "//www.quantla.com/canceled"
+      successUrl: window.location.protocol + "//www.quantla.com/success.html",
+      cancelUrl: window.location.protocol + "//www.quantla.com/cancelled.html"
     })
     .then(function(result) {
       if (result.error) {
