@@ -69,7 +69,7 @@
 //   form.submit();
 // }
 
-var stripe = Stripe("pk_live_G54aTnWHKfG5ii4Kj34vUerI004h2VSbzI");
+var stripe = Stripe("pk_test_karsmt0rzRKNQFzBMmj02VGZ00jgAWpFlU");
 
 var checkoutButton = document.getElementById(
   "checkout-button-plan_FeeDkTMnj3WiHu"
