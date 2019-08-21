@@ -87,9 +87,24 @@ function runTensorFlowAnalysis(dataLoad) {
   var CurrentPrice = 0;
   var BuySignal = 0;
   var SellSignal = 0;
+  var BuySignalPredict = 0;
+  var SellSignalPredict = 0;
 
   BuySignal = y0.sort()[y0.length - Math.floor(y0.length / 3)];
   SellSignal = y0.sort()[Math.floor(y0.length / 3)];
+
+  console.log("BuySignal: ", BuySignal);
+  console.log("SellSignal: ", SellSignal);
+
+  // TODO: a better way to find out the Buy and Sell predict line would be to look 
+  // at the market depth order book and see large BTC walls in there.
+  // for now, this hardcode above combining Buy and Sell signal and limiting it to at least +/- 0.01/3 is fine...
+  BuySignalPredict = Math.max(BuySignal, Math.abs(SellSignal), 0.01 / 3);
+  SellSignalPredict = Math.min(SellSignal, -Math.abs(BuySignal), -0.01 / 3);
+
+  console.log("BuySignalPredict: ", BuySignalPredict);
+  console.log("SellSignalPredict: ", SellSignalPredict);
+
   CurrentPrice = x1[x1.length - 1] * 1;
   dateCreated1 = t0[t0.length - 1] * 1;
   console.log("tensorflow date created: ", dateCreated1);
@@ -231,21 +246,30 @@ function runTensorFlowAnalysis(dataLoad) {
   PredictResults["CurrentPrice"] = CurrentPrice;
 
   if (AIDecision === PredictResults.BuyProb) {
+
     console.log("It's time to buy");
     PredictResults["AIDecision"] = "Buy";
-    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
+    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignalPredict);
     PredictResults["BuyIfPrice"] = CurrentPrice;
+
   } else if (AIDecision === PredictResults.HoldProb) {
+
     console.log("It's time to Hold");
     PredictResults["AIDecision"] = "Hold";
-    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignal);
-    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
+    PredictResults["SellIfPrice"] = CurrentPrice * (1 + BuySignalPredict);
+    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignalPredict);
+
   } else {
+
     console.log("It's time to Sell");
     PredictResults["AIDecision"] = "Sell";
     PredictResults["SellIfPrice"] = CurrentPrice;
-    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignal);
+    PredictResults["BuyIfPrice"] = CurrentPrice * (1 + SellSignalPredict);
+
   }
+
+  console.log("PredictResults SellIfPrice:", PredictResults["SellIfPrice"]);
+  console.log("PredictResults BuyIfPrice:", PredictResults["BuyIfPrice"]);
 
   console.log(PredictResults);
 
