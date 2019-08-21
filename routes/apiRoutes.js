@@ -2,6 +2,14 @@ var db = require("../models");
 const Op = db.Sequelize.Op;
 require("../controller/controller.js")();
 
+const keyPublishable = process.env.PUBLISHABLE_KEY;
+const keySecret = process.env.SECRET_KEY;
+
+// Set your secret key: remember to change this to your live secret key in production
+// See your keys here: https://dashboard.stripe.com/account/apikeys
+const stripe = require("stripe")(keySecret);
+const bodyParser = require("body-parser");
+
 module.exports = function(app) {
   // Get news articles
   app.post("/api/news", function(req, res) {
@@ -130,5 +138,57 @@ module.exports = function(app) {
       console.log(dbResponse);
       res.json(dbResponse);
     });
+  });
+
+  app.post("/charge", function(req, res) {
+    // Token is created using Checkout or Elements!
+    // Get the payment token ID submitted by the form:
+    //const token = request.body.stripeToken; // Using Express
+
+    stripe.customers
+      .create({
+        //email: req.body.email,
+        card: req.body.id
+      })
+      .then(customer =>
+        stripe.subscriptions.create({
+          customer: customer,
+          items: [
+            {
+              plan: "plan_FeeDkTMnj3WiHu"
+            }
+          ]
+        })
+      )
+      .then(charge => res.send(charge))
+      .catch(err => {
+        console.log("Error:", err);
+        res.status(500).send({ error: "Purchase Failed" });
+      });
+
+    // const customer = stripe.customers.create(
+    //   {
+    //     email: "email@gmail.com",
+    //     source: "tok_visa"
+    //   },
+    //   function(err, customer) {
+    //     // asynchronously called
+    //   }
+    // );
+
+    // stripe.subscriptions.create(
+    //   {
+    //     customer: customer,
+    //     items: [
+    //       {
+    //         plan: "plan_FeeDkTMnj3WiHu"
+    //       }
+    //     ],
+    //     expand: ["latest_invoice.payment_intent"]
+    //   },
+    //   function(err, subscription) {
+    //     // asynchronously called
+    //   }
+    // );
   });
 };
