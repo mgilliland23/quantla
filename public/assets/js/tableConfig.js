@@ -2,7 +2,7 @@ var boxFormatter = function(cell, formatterParams, onRendered) {
   onRendered(function() {
     //instantiate sparkline after the cell element has been aded to the DOM
     $(cell.getElement()).sparkline(cell.getValue(), {
-      width: "100%",
+      width: "190%",
       type: "box",
       disableTooltips: true
     });
@@ -13,7 +13,7 @@ var lineFormatter = function(cell, formatterParams, onRendered) {
   onRendered(function() {
     //instantiate sparkline after the cell element has been aded to the DOM
     $(cell.getElement()).sparkline(cell.getValue(), {
-      width: "100%",
+      width: "190%",
       type: "line",
       disableTooltips: true
     });
@@ -48,7 +48,7 @@ PricesConfigData = [
 ];
 
 FundConfigData = [
-  { title: "time", field: "time", align: "center" },
+  { title: "time", field: "time", align: "center" , width: 190 },
   { title: "Hash Rate", field: "hash", align: "center" },
   {
     title: "Hash Rate var",
@@ -115,7 +115,7 @@ FundConfigData = [
 ];
 
 NewsConfigData = [
-  { title: "time", field: "time", align: "center" },
+  { title: "time", field: "time", align: "center" , width: 190 },
   {
     title: "Twitter Feed",
     field: "link",
@@ -189,7 +189,7 @@ NewsConfigData = [
 ];
 
 DecisionsConfigData = [
-  { title: "time", field: "time", align: "center" },
+  { title: "time", field: "time", align: "center" , width: 190 },
   { title: "current price", field: "currprice", align: "center" },
   {
     title: "Its time to",

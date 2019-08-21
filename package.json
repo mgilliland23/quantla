@@ -9,9 +9,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm:quantla-server\" \"npm:quantla-core\" \"npm:quantla-tensorflow\"",
-    "quantla-server": "node server.js",
-    "quantla-core": "node quantla.js",
-    "quantla-tensorflow": "node tensorflow.js"
+    "quantla-server": "node quantla-server.js",
+    "quantla-core": "node quantla-core.js",
+    "quantla-tensorflow": "node quantla-tensorflow.js"
   },
   "repository": {
     "type": "git",
