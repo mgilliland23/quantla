@@ -21,7 +21,7 @@ var lineFormatter = function(cell, formatterParams, onRendered) {
 };
 
 PricesConfigData = [
-  { title: "time", field: "time", align: "center", width: 190 },
+  { title: "time", field: "time", align: "center" },
   { title: "Current Price (Ask)", field: "currPrice", align: "center" },
   { title: "Bid x Ask Spread", field: "Spread", align: "center" },
   {

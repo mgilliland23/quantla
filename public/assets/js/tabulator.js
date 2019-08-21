@@ -60,21 +60,6 @@ function grabtabulatordata() {
       DecisionsConfigData
     );
   });
-
-  // $.getJSON("./assets/AIDecision.json", function(json) {
-  //   //console.log(json); // this will show the info it in firebug console
-  //   json.forEach(function(entry) {
-  //     console.log(entry[0]);
-
-  //     tradesTableData.push(buildDecisionTable(entry));
-  //   });
-
-  //   createTable(
-  //     "#trade-table",
-  //     orderTable(tradesTableData).slice(0, 30),
-  //     TradeConfigData
-  //   );
-  // });
 }
 
 function orderTable(data) {
@@ -89,8 +74,11 @@ function buildPriceTable(price) {
   // console.log(price);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(price.dateCreated));
+  var dateStr = moment(d, "ddd MMM D YYYY HH:mm:ss").format("h:mm A - MMM DD");
+
+  // Wed Aug 21 2019 18:30:35 GMT-0400 (Eastern Daylight Time)
   var pricesTableRow = {
-    time: d,
+    time: dateStr,
     currPrice: price.currentPriceAsks,
     Spread: parseFloat(
       (price.currentPriceAsks - price.currentPriceBids).toFixed(4)
@@ -106,8 +94,9 @@ function buildDecisionsTable(AIdata) {
   // console.log(price);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(AIdata.dateCreated * 1));
+  var dateStr = moment(d, "ddd MMM D YYYY HH:mm:ss").format("h:mm A - MMM DD");
   var AITableRow = {
-    time: d,
+    time: dateStr,
     currprice: AIdata.currentPrice,
     indication: AIdata.aiDecision,
     BPrice: AIdata.buyIfPrice,
@@ -120,9 +109,9 @@ function buildDecisionsTable(AIdata) {
 function buildFundamentalsTable(fundamental) {
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(fundamental.dateCreated));
-
+  var dateStr = moment(d, "ddd MMM D YYYY HH:mm:ss").format("h:mm A - MMM DD");
   var fundamentalsTableRow = {
-    time: d,
+    time: dateStr,
     hash: fundamental.hashRate,
     hashVar: Math.round(fundamental.hashrateVariation * 10000) / 10000,
     trans: fundamental.transactionFee,
@@ -138,72 +127,15 @@ function buildNewsTable(news) {
   // console.log(news);
   var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
   d.setUTCSeconds(parseInt(news.dateCreated));
+  var dateStr = moment(d, "ddd MMM D YYYY HH:mm:ss").format("h:mm A - MMM DD");
   var newsTableRow = {
-    time: d,
+    time: dateStr,
     "doc-score": news.documentScore,
     "bitcoin-score": news.bitcoinScore,
     "btc-score": news.btcScore
   };
   return newsTableRow;
 }
-
-// $.get("api/news", function(data) {
-//   var newsTableData = [];
-//   var articles = data[0].articles;
-
-//   articles.forEach(function(article) {
-//     var newsTableRow = {
-//       time: article.date,
-//       "news title": article.title,
-//       link: article.url,
-//       "score-link": article.score
-//     };
-//     newsTableData.push(newsTableRow);
-//   });
-//   createTable("#news-table", newsTableData, NewsConfigData);
-// });
-
-// $.get("api/prices", function(data) {
-//   var pricesTableData = [];
-//   var prices = data;
-
-//   prices.forEach(function(price) {
-//     console.log(price.currentPrice);
-//     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-//     d.setUTCSeconds(parseInt(price.timestamp));
-
-//     var pricesTableRow = {
-//       time: d,
-//       currPrice: price.currentPrice,
-//       PriceVar: "~",
-//       "10PriceVar": price.tenMinPriceVariation
-//     };
-//     pricesTableData.push(pricesTableRow);
-//   });
-//   createTable("#prices-table", pricesTableData, PricesConfigData);
-// });
-
-// $.get("api/fundamentals", function(data) {
-//   var fundamentalsTableData = [];
-//   var fundamentals = data;
-
-//   fundamentals.forEach(function(fundamental) {
-//     var d = new Date(0); // The 0 there is the key, which sets the date to the epoch
-//     d.setUTCSeconds(parseInt(fundamental.timestamp));
-
-//     var fundamentalsTableRow = {
-//       time: d,
-//       hash: fundamental.hashrate,
-//       hashVar: fundamental.hashrateVariation,
-//       trans: fundamental.transactionFee,
-//       transVar: fundamental.transactionFeeVariation,
-//       costT: fundamental.costPerTransaction,
-//       costTVar: fundamental.costPerTransactionVariation
-//     };
-//     fundamentalsTableData.push(fundamentalsTableRow);
-//   });
-//   createTable("#fund-table", fundamentalsTableData, FundConfigData);
-// });
 
 function createTable(tableName, tableData, configData) {
   var table = new Tabulator(tableName, {
