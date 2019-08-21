@@ -1,5 +1,6 @@
 var stripe = Stripe("pk_test_karsmt0rzRKNQFzBMmj02VGZ00jgAWpFlU");
 
+
 var checkoutButton = document.getElementById(
   "checkout-button-plan_FeffRhD7wQ80pV"
 );
