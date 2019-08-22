@@ -36,7 +36,7 @@ function grabproposedtradedata() {
     }
   );
   var currDatetime = { time: Math.floor(new Date() / 1000) };
-  $.post("api/decisions", currDatetime, function(data) {
+  $.get("api/decisions", function(data) {
     console.log("front end decisions: ", data);
     $("#bif_price").text(
       (Math.round(data[data.length - 1].buyIfPrice * 100) / 100)

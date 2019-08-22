@@ -12,9 +12,9 @@ const bodyParser = require("body-parser");
 
 module.exports = function(app) {
   // Get news articles
-  app.post("/api/news", function(req, res) {
+  app.get("/api/news", function(req, res) {
     console.log(req.body.time);
-    var datetime = req.body.time;
+    var datetime = Math.floor(new Date() / 1000);
     var hourprevious = datetime - 3600;
     db.News.findAll({
       attributes: ["dateCreated", "btcScore", "bitcoinScore", "documentScore"],
@@ -35,8 +35,8 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/prices", function(req, res) {
-    var datetime = req.body.time;
+  app.get("/api/prices", function(req, res) {
+    var datetime = Math.floor(new Date() / 1000);
     var hourprevious = datetime - 3600;
     db.Prices.findAll({
       attributes: [
@@ -66,8 +66,8 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/fundamentals", function(req, res) {
-    var datetime = req.body.time;
+  app.get("/api/fundamentals", function(req, res) {
+    var datetime = Math.floor(new Date() / 1000);
     var hourprevious = datetime - 3600;
     db.Fundamentals.findAll({
       attributes: [
@@ -96,8 +96,8 @@ module.exports = function(app) {
     });
   });
 
-  app.post("/api/decisions", function(req, res) {
-    var datetime = req.body.time;
+  app.get("/api/decisions", function(req, res) {
+    var datetime = Math.floor(new Date() / 1000);
     var hourprevious = datetime - 3600;
     db.Decisions.findAll({
       attributes: [
@@ -138,57 +138,5 @@ module.exports = function(app) {
       console.log(dbResponse);
       res.json(dbResponse);
     });
-  });
-
-  app.post("/charge", function(req, res) {
-    // Token is created using Checkout or Elements!
-    // Get the payment token ID submitted by the form:
-    //const token = request.body.stripeToken; // Using Express
-
-    stripe.customers
-      .create({
-        //email: req.body.email,
-        card: req.body.id
-      })
-      .then(customer =>
-        stripe.subscriptions.create({
-          customer: customer,
-          items: [
-            {
-              plan: "plan_FeeDkTMnj3WiHu"
-            }
-          ]
-        })
-      )
-      .then(charge => res.send(charge))
-      .catch(err => {
-        console.log("Error:", err);
-        res.status(500).send({ error: "Purchase Failed" });
-      });
-
-    // const customer = stripe.customers.create(
-    //   {
-    //     email: "email@gmail.com",
-    //     source: "tok_visa"
-    //   },
-    //   function(err, customer) {
-    //     // asynchronously called
-    //   }
-    // );
-
-    // stripe.subscriptions.create(
-    //   {
-    //     customer: customer,
-    //     items: [
-    //       {
-    //         plan: "plan_FeeDkTMnj3WiHu"
-    //       }
-    //     ],
-    //     expand: ["latest_invoice.payment_intent"]
-    //   },
-    //   function(err, subscription) {
-    //     // asynchronously called
-    //   }
-    // );
   });
 };
