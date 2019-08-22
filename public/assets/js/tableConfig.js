@@ -21,13 +21,24 @@ var lineFormatter = function(cell, formatterParams, onRendered) {
 };
 
 PricesConfigData = [
-  { title: "time", field: "time", align: "center" },
-  { title: "Current Price (Ask)", field: "currPrice", align: "center" },
-  { title: "Bid x Ask Spread", field: "Spread", align: "center" },
+  { title: "time", field: "time", align: "center", width: 130 },
+  {
+    title: "Current Price (Ask)",
+    field: "currPrice",
+    align: "center",
+    minWidth: 150
+  },
+  {
+    title: "Bid x Ask Spread",
+    field: "Spread",
+    align: "center",
+    minWidth: 150
+  },
   {
     title: "10min Price var",
     field: "10PriceVar",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -44,16 +55,17 @@ PricesConfigData = [
       }
     }
   },
-  { title: "volume", field: "volume", align: "center" }
+  { title: "Volume", field: "volume", align: "center", minWidth: 150 }
 ];
 
 FundConfigData = [
-  { title: "time", field: "time", align: "center" , width: 190 },
+  { title: "time", field: "time", align: "center", width: 130 },
   { title: "Hash Rate", field: "hash", align: "center" },
   {
     title: "Hash Rate var",
     field: "hashVar",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -70,11 +82,12 @@ FundConfigData = [
       }
     }
   },
-  { title: "Transactions", field: "trans", align: "center" },
+  { title: "Transactions", field: "trans", align: "center", minWidth: 150 },
   {
     title: "Transactions var",
     field: "transVar",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -91,11 +104,12 @@ FundConfigData = [
       }
     }
   },
-  { title: "C/T", field: "costT", align: "center" },
+  { title: "C/T", field: "costT", align: "center", minWidth: 150 },
   {
     title: "C/T var",
     field: "costTVar",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -115,11 +129,12 @@ FundConfigData = [
 ];
 
 NewsConfigData = [
-  { title: "time", field: "time", align: "center" , width: 190 },
+  { title: "time", field: "time", align: "center", width: 130 },
   {
     title: "Twitter Feed",
     field: "link",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       return "<a href='https://twitter.com/hashtag/bitcoin?f=tweets&vertical=news'>#bitcoin</a>";
       // "<span style='color:#fa4e4e; font-weight:bold'>" + value + "</span>"
@@ -129,6 +144,7 @@ NewsConfigData = [
     title: "Overall Sentiment",
     field: "doc-score",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -149,6 +165,7 @@ NewsConfigData = [
     title: "'Bitcoin' Sentiment",
     field: "bitcoin-score",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -169,6 +186,7 @@ NewsConfigData = [
     title: "'BTC' Sentiment",
     field: "btc-score",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value < 0) {
@@ -189,12 +207,18 @@ NewsConfigData = [
 ];
 
 DecisionsConfigData = [
-  { title: "time", field: "time", align: "center" , width: 190 },
-  { title: "current price", field: "currprice", align: "center" },
+  { title: "time", field: "time", align: "center", width: 130 },
+  {
+    title: "current price",
+    field: "currprice",
+    align: "center",
+    minWidth: 150
+  },
   {
     title: "Its time to",
     field: "indication",
     align: "center",
+    minWidth: 150,
     formatter: function(cell, formatterParams) {
       var value = cell.getValue();
       if (value === "Buy") {
@@ -212,8 +236,8 @@ DecisionsConfigData = [
       }
     }
   },
-  { title: "Buy if Price", field: "BPrice", align: "center" },
-  { title: "Sell if Price", field: "SPrice", align: "center" }
+  { title: "Buy if Price", field: "BPrice", align: "center", minWidth: 150 },
+  { title: "Sell if Price", field: "SPrice", align: "center", minWidth: 150 }
   // {
   //   title: "P/L",
   //   field: "pnl",

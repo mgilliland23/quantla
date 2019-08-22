@@ -141,7 +141,7 @@ function createTable(tableName, tableData, configData) {
   var table = new Tabulator(tableName, {
     height: 0,
     tooltips: true,
-    responsiveLayout: "hide",
+    responsiveLayout: "collapse",
     movableRows: false,
     resizableColumns: false,
     persistentSort: false,
