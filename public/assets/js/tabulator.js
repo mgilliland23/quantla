@@ -13,7 +13,7 @@ function grabtabulatordata() {
   var datetime = { time: Math.floor(new Date() / 1000) };
   var hourprevious = datetime - 3600;
 
-  $.post("api/news", datetime, function(data) {
+  $.get("api/news", function(data) {
     console.log("front end news:", data);
     data.forEach(function(entry) {
       newsTableData.push(buildNewsTable(entry));
@@ -25,7 +25,7 @@ function grabtabulatordata() {
     );
   });
 
-  $.post("api/prices", datetime, function(data) {
+  $.get("api/prices", function(data) {
     console.log("front end prices: ", data);
     data.forEach(function(entry) {
       pricesTableData.push(buildPriceTable(entry));
@@ -37,7 +37,7 @@ function grabtabulatordata() {
     );
   });
 
-  $.post("api/fundamentals", datetime, function(data) {
+  $.get("api/fundamentals", function(data) {
     console.log("front end fundamentals: ", data);
     data.forEach(function(entry) {
       fundamentalsTableData.push(buildFundamentalsTable(entry));
@@ -49,7 +49,7 @@ function grabtabulatordata() {
     );
   });
 
-  $.post("api/decisions", datetime, function(data) {
+  $.get("api/decisions", function(data) {
     console.log("front end decisions: ", data);
     data.forEach(function(entry) {
       decisionsTableData.push(buildDecisionsTable(entry));
